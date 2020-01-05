@@ -165,7 +165,8 @@ public class CustomMatch {
      */
     public CustomMatch(){}
     
-    public boolean syncTBA(){
+    public void syncTBA(){
+        int allPos = Integer.valueOf(alliancePosition.toString().charAt(alliancePosition.toString().length()-1));
         //TODO add scout rank stuff
         
         //FIXME add match find and score breakdown find, assign to scoreBreakdown
@@ -187,8 +188,49 @@ public class CustomMatch {
         //TODO add calculated match point verification
         
         if(rankingPoints!=(int)scoreBreakdown.get("rp")){
-        
+            Fun.reportMatchDataError("Ranking points are inconsistant", matchNum, alliancePosition);
+            rankingPoints=(int)scoreBreakdown.get("rp");
         }
-        return true;
+        
+        if (startLevel == HabLevel.ONE && ((String) scoreBreakdown.get("preMatchLevelRobot"+(allPos))).equals("HabLevel2")) {
+            Fun.reportMatchDataError("Start hab level is incorrect", matchNum, alliancePosition);
+            startLevel=HabLevel.TWO;
+        }else if(startLevel == HabLevel.TWO &&((String) scoreBreakdown.get("preMatchLevelRobot"+(allPos))).equals("HabLevel1")){
+            Fun.reportMatchDataError("Start hab level is incorrect", matchNum, alliancePosition);
+            startLevel=HabLevel.ONE;
+        }
+        
+        if (crossedLine && (((String)scoreBreakdown.get("habLineRobot"+allPos)).equals("None"))){
+            Fun.reportMatchDataError("Robot is incorrectly reported as crossing hab line",matchNum, alliancePosition);
+            crossedLine=!crossedLine;
+        }else if(!crossedLine && (((String)scoreBreakdown.get("habLineRobot"+allPos)).equals("CrossedHabLineInSandstorm"))){
+            Fun.reportMatchDataError("Robot is incorrectly reported as not moving during sandstorm",matchNum, alliancePosition);
+            crossedLine=!crossedLine;
+        }
+        
+        if(scoreBreakdown.get("endgameRobot"+allPos)!=null &&
+                scaleLevel.basic!=((String)scoreBreakdown.get("endgameRobot"+allPos)).charAt(((String) scoreBreakdown.get("endgameRobot"+allPos)).length()-1)){
+            Fun.reportMatchDataError("Climb level is incorrect",matchNum, alliancePosition);
+            switch (((String)scoreBreakdown.get("endgameRobot"+allPos)).charAt(((String) scoreBreakdown.get("endgameRobot"+allPos)).length()-1)){
+                case 1:
+                    scaleLevel=HabLevel.ONE;
+                case 2:
+                    scaleLevel=HabLevel.TWO;
+                case 3:
+                    scaleLevel=HabLevel.THREE;
+                default:
+                    scaleLevel=HabLevel.NONE;
+            }
+        }
+        
+        if((habRP!=(boolean)scoreBreakdown.get("habDockingRankingPoint"))){
+            Fun.reportMatchDataError("Hab ranking point is incorrect",matchNum,alliancePosition);
+            habRP=!habRP;
+        }
+        
+        if(rocketRP!=(boolean)scoreBreakdown.get("completeRocketRankingPoint")){
+            Fun.reportMatchDataError("Rocket ranking point is incorrect",matchNum,alliancePosition);
+            rocketRP=!rocketRP;
+        }
     }
 }

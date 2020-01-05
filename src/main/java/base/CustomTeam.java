@@ -157,10 +157,10 @@ public class CustomTeam {
     
     private Object changeLogAppend(String fieldName_, Object prev_, Object newVal_){
         if(!prev_.equals(newVal_)) {
-            getChangeTime().add(Date.from(Instant.now()));
-            getChangeField().add(fieldName_);
-            getChangePrev().add(prev_);
-            getChangeNew().add(newVal_);
+            changeTime.add(Date.from(Instant.now()));
+            changeField.add(fieldName_);
+            changePrev.add(prev_);
+            changeNew.add(newVal_);
             return newVal_;
         }else{
             return prev_;

@@ -1,6 +1,6 @@
 package base.lib;
 
-public class Enums {
+public class OLDEnums {
     public static class PitData {
         public enum HabLevel {
             NONE(0), ONE(1), TWO(2), THREE(3);

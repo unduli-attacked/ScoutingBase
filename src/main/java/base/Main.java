@@ -9,9 +9,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class Main /*extends Application*/ {
+public class Main extends Application {
     public static String eventName = "";
     
     public static void main(String[] args) {
+    }
+    
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+    
     }
 }

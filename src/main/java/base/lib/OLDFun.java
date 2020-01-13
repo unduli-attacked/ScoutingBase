@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Instant;
 
-public class Fun {
+public class OLDFun {
     public static void report(Object toReport){
         System.out.println(toReport.toString());
     
@@ -26,7 +26,7 @@ public class Fun {
         }
     }
     
-    public static void reportMatchDataError(Object toReport, int matchNum, Enums.MatchData.Station alliancePos){
+    public static void reportMatchDataError(Object toReport, int matchNum, OLDEnums.MatchData.Station alliancePos){
         System.out.println(toReport.toString()+" in match "+matchNum+" alliance station "+alliancePos.toString());
         
         FileWriter writer = null;

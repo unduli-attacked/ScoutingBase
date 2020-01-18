@@ -2,15 +2,16 @@ package base.scouts;
 
 import base.Match;
 import base.Session;
+import base.lib.DataClasses.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class NoteScout {
-    String name;
+    public String name;
     public ArrayList<Match> matches;
-    ArrayList<HashMap<String, Object>> matchData;
-    ArrayList<Integer> matchesScouted;
+    public ArrayList<NoteScoutMatch> matchData;
+    public ArrayList<Integer> matchesScouted;
     
     public NoteScout(String name_){
         this.name = name_;
@@ -24,26 +25,25 @@ public class NoteScout {
      * adds a match of notes to the note scout. does NOT add it to any Match
      * @param match_  a NOTE SCOUT match hashmap
      */
-    public void addMatch(HashMap<String, Object> match_){
-        this.matchesScouted.add((int)match_.get("matchNum"));
+    public void addMatch(NoteScoutMatch match_){
+        this.matchesScouted.add(match_.matchNum);
         
         //sanitize input
-        String str = (String) match_.get("bigNotes");
+        String str = match_.bigNotes;
         str = str.replaceAll("\n", "  ..  ");
         
-        HashMap<String, Object> temp = new HashMap<>();
-        temp.putAll(match_);
-        temp.put("bigNotes", str);
+        NoteScoutMatch temp = match_;
+        temp.bigNotes = str;
     
         this.matchData.add(temp);
     }
     
-    public HashMap<String, Object> submitMatch(int matchNum_){
+    public NoteScoutMatch submitMatch(int matchNum_){
         if(!matchesScouted.contains(matchNum_)){
             return null;
         }
-        for(HashMap match_ : matchData){
-            if((int)match_.get("matchNum")==matchNum_){
+        for(NoteScoutMatch match_ : matchData){
+            if((int)match_.matchNum==matchNum_){
                 return match_;
             }
         }

@@ -2,11 +2,14 @@ package base.threads;
 
 import base.Main;
 import base.Match;
-import base.lib.DataClasses;
+import base.lib.DataClasses.*;
+import base.lib.Enums;
 import base.scouts.DataScout;
 import base.scouts.NoteScout;
 
 import javax.xml.crypto.Data;
+import java.lang.reflect.Field;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -17,24 +20,56 @@ public class CollationThread extends Thread{
     public void run(){
         for(Match match_ : Main.currentSession.matches){
             if(match_.dataRediness()){
-                HashMap<String, Object> finalData = new HashMap<String, Object>();
+                DataScoutMatch finalData = new DataScoutMatch();
                 DataScout[] scouts = (DataScout[])match_.matchScouts.toArray();
                 Arrays.sort(scouts);
+                finalData.matchNum =  (int) checkData(scouts, "matchNum", match_.matchNum);
+                finalData.allPos = (Enums.Station) checkData(scouts, "allPos", match_.matchNum);
+                finalData.teamNum = (int) checkData(scouts, "teamNum", match_.matchNum);
+                finalData.absent = (boolean) checkData(scouts, "absent", match_.matchNum);
+                finalData.startingPosition = (double) checkData(scouts, "startingPosition", match_.matchNum);
+                finalData.capacityTimeS1 = (LocalTime) checkData(scouts, "capacityTimeS1", match_.matchNum);
+                finalData.capacityTimeS2 = (LocalTime) checkData(scouts, "capacityTimeS2", match_.matchNum);
+                finalData.capacityTimeS3 = (LocalTime) checkData(scouts, "capacityTimeS3", match_.matchNum);
+                finalData.defenseRank = (double) checkData(scouts, "defenseRank", match_.matchNum);
+                finalData.defenseAvoidanceRank = (double) checkData(scouts, "defenseAvoidanceRank", match_.matchNum);
+                finalData.numShots = (int) checkData(scouts, "numShots", match_.matchNum);
+                //FIXME what if this existed
+//                finalData.shots = (ArrayList<Shot>) checkShots(finalData.numShots, scouts);
+                //TODO fouls
+                finalData.yellowCard = (boolean) checkData(scouts, "yellowCard", match_.matchNum);
+                finalData.redCard = (boolean) checkData(scouts, "redCard", match_.matchNum);
+                finalData.activateTimeS2 = (LocalTime) checkData(scouts, "activateTimeS2", match_.matchNum);
+                finalData.activateTimeS3 = (LocalTime) checkData(scouts, "activateTimeS3", match_.matchNum);
+                finalData.climbDuration = (LocalTime) checkData(scouts, "climbDuration", match_.matchNum);
+                finalData.climb = (boolean) checkData(scouts, "climb", match_.matchNum);
+                finalData.buddyClimb = (boolean) checkData(scouts, "buddyClimb", match_.matchNum);
+                finalData.wasAssisted = (boolean) checkData(scouts, "wasAssisted", match_.matchNum);
+                finalData.leveled = (boolean) checkData(scouts, "leveled", match_.matchNum);
+                finalData.parked = (boolean) checkData(scouts, "parked", match_.matchNum);
+                finalData.disabled = (boolean) checkData(scouts, "disabled", match_.matchNum);
+                finalData.incapacitated = (boolean) checkData(scouts, "incapacitated", match_.matchNum);
+                finalData.climbRP = (boolean) checkData(scouts, "climbRP", match_.matchNum);
+                finalData.totalRP = (int) checkData(scouts, "totalRP", match_.matchNum);
+                finalData.totalPoints = (int) checkData(scouts, "totalPoints", match_.matchNum);
+                finalData.driverRank = (double) checkData(scouts, "driverRank", match_.matchNum);
+                finalData.humanPlayerRank = (double) checkData(scouts, "humanPlayerRank", match_.matchNum);
+                
+                for (DataScout scout_ : scouts){
+                    finalData.dataNotes += scout_.matchData.get(scout_.matchesScouted.indexOf(match_.matchNum)).dataNotes;
+                    finalData.dataNotes += "  ;  ";
+                }
+                
+    
                 NoteScout[] noteScouts = (NoteScout[])match_.noteScouts.toArray();
-                finalData.put("matchNum", checkData(scouts, "matchNum", match_.matchNum));
-                finalData.put("allPos", checkData(scouts, "allPos", match_.matchNum));
-                finalData.put("teamNum", checkData(scouts, "teamNum", match_.matchNum));
-                finalData.put("absent", checkData(scouts, "absent", match_.matchNum));
-                finalData.put("startingPosition", checkData(scouts, "startingPosition", match_.matchNum));
-                finalData.put("capacityTimeS1", checkData(scouts, "capacityTimeS1", match_.matchNum));
-                finalData.put("capacityTimeS2", checkData(scouts, "capacityTimeS2", match_.matchNum));
-                finalData.put("capacityTimeS3", checkData(scouts, "capacityTimeS3", match_.matchNum));
-                finalData.put("defenseRank", checkData(scouts, "defenseRank", match_.matchNum));
-                finalData.put("defenseAvoidanceRank", checkData(scouts, "defenseAvoidanceRank", match_.matchNum));
-                finalData.put("numShots", checkData(scouts, "numShots", match_.matchNum));
-                finalData.put("shots", checkShots((int)finalData.get("numShots"), scouts));
                 
-                
+                String finalNotes = "";
+                for(NoteScout scout_ : noteScouts){
+                    finalNotes += scout_.matchData.get(scout_.matchesScouted.indexOf(match_.matchNum)).bigNotes;
+                    finalNotes += "  ;  ";
+                }
+    
+                match_.passFinalData(finalData, finalNotes);
             }
         }
     }
@@ -42,11 +77,26 @@ public class CollationThread extends Thread{
     private Object checkData(DataScout[] scouts, String key, int matchNum){
         boolean isConsist = true;
         ArrayList<Object> scoutData = new ArrayList<>();
-        scoutData.add(scouts[0].matchData.get(scouts[0].matchesScouted.indexOf(matchNum)).get(key));
+        try {
+            scoutData.add(DataScoutMatch.class.getField(key).get(scouts[0].matchData.get(scouts[0].matchesScouted.indexOf(matchNum))));
+        }catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
         if(scouts.length>=2){
-            scoutData.add(scouts[1].matchData.get(scouts[1].matchesScouted.indexOf(matchNum)).get(key));
+            try {
+                scoutData.add(DataScoutMatch.class.getField(key).get(scouts[1].matchData.get(scouts[1].matchesScouted.indexOf(matchNum))));
+            }catch (Exception e){
+                System.out.println(e);
+                return null;
+            }
             if(scouts.length>=3){
-                scoutData.add(scouts[2].matchData.get(scouts[2].matchesScouted.indexOf(matchNum)).get(key));
+                try {
+                    scoutData.add(DataScoutMatch.class.getField(key).get(scouts[2].matchData.get(scouts[2].matchesScouted.indexOf(matchNum))));
+                }catch (Exception e){
+                    System.out.println(e);
+                    return null;
+                }
             }
         }
     
@@ -101,22 +151,6 @@ public class CollationThread extends Thread{
         
         Object[] toReturn = {finalData, scoutsCorrect};
         return toReturn;
-    }
-    
-    private Object checkShots(int numShots, DataScout[] scouts, ){
-        for(int i=0; i<=numShots; i++){
-            DataClasses.Shot zeroShot = ((ArrayList<DataClasses.Shot>)scouts[0].matchData.get(scouts[0].matchesScouted.indexOf(match_.matchNum)).get("shots")).get(i);
-            DataClasses.Shot oneShot=null, twoShot=null;
-            if(scouts.length>=2) oneShot = ((ArrayList<DataClasses.Shot>)scouts[1].matchData.get(scouts[1].matchesScouted.indexOf(match_.matchNum)).get("shots")).get(i);
-            if(scouts.length>=3) twoShot = ((ArrayList<DataClasses.Shot>)scouts[2].matchData.get(scouts[2].matchesScouted.indexOf(match_.matchNum)).get("shots")).get(i);
-            if(zeroShot!=null){
-                if(oneShot!=null){
-                    if(twoShot !=null){
-                        checkData(scouts, )
-                    }
-                }
-            }
-        }
     }
     
     

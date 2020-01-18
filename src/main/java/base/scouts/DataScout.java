@@ -2,6 +2,7 @@ package base.scouts;
 
 import base.Match;
 import base.Session;
+import base.lib.DataClasses.*;
 
 import javax.xml.crypto.Data;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public class DataScout implements Comparable{
     String name;
     double rank; //FIXME this is currently calculated the dumb way. what if it wasnt
     public ArrayList<Match> matches;
-    public ArrayList<HashMap<String, Object>> matchData;
+    public ArrayList<DataScoutMatch> matchData;
     public ArrayList<Integer> matchesScouted;
     
     public DataScout(String name_){
@@ -30,17 +31,17 @@ public class DataScout implements Comparable{
      * adds a match to the data scout. does not add to any Match
      * @param match_  a DATA SCOUT hashmap
      */
-    public void addMatch(HashMap<String, Object> match_){
+    public void addMatch(DataScoutMatch match_){
         this.matchData.add(match_);
-        this.matchesScouted.add((int)match_.get("matchNum"));
+        this.matchesScouted.add((int)match_.matchNum);
     }
     
-    public HashMap<String, Object> submitMatch(int matchNum_){
+    public DataScoutMatch submitMatch(int matchNum_){
         if(!matchesScouted.contains(matchNum_)){
             return null;
         }
-        for(HashMap match_ : matchData){
-            if((int)match_.get("matchNum")==matchNum_){
+        for(DataScoutMatch match_ : matchData){
+            if((int)match_.matchNum==matchNum_){
                 return match_;
             }
         }

@@ -1,5 +1,9 @@
 package base;
 
+import base.scouts.DataScout;
+import base.scouts.NoteScout;
+import base.scouts.PitScout;
+
 import java.util.ArrayList;
 
 public class Session {
@@ -8,12 +12,12 @@ public class Session {
     public String tbaEventKey;
     public String directory;
     
-    public ArrayList matches;
+    public ArrayList<Match> matches;
     public ArrayList pits;
     public ArrayList teams;
-    public ArrayList pitScouts;
-    public ArrayList standScouts;
-    public ArrayList noteScouts;
+    public ArrayList<PitScout> pitScouts;
+    public ArrayList<DataScout> standScouts;
+    public ArrayList<NoteScout> noteScouts;
     
     public int numDataScouts; // per team per match
     public int numNoteScouts; // per alliance

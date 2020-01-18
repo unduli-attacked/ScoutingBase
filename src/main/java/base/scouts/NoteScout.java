@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class NoteScout {
     String name;
     public ArrayList<Match> matches;
-    HashMap<Integer, String> matchData;
+    ArrayList<HashMap<String, Object>> matchData;
     ArrayList<Integer> matchesScouted;
     
     public NoteScout(String name_){
@@ -30,14 +30,23 @@ public class NoteScout {
         //sanitize input
         String str = (String) match_.get("bigNotes");
         str = str.replaceAll("\n", "  ..  ");
+        
+        HashMap<String, Object> temp = new HashMap<>();
+        temp.putAll(match_);
+        temp.put("bigNotes", str);
     
-        this.matchData.put((Integer)match_.get("matchNum"), str);
+        this.matchData.add(temp);
     }
     
-    public String submitMatch(int matchNum_){
+    public HashMap<String, Object> submitMatch(int matchNum_){
         if(!matchesScouted.contains(matchNum_)){
             return null;
         }
-        return this.matchData.get(matchNum_);
+        for(HashMap match_ : matchData){
+            if((int)match_.get("matchNum")==matchNum_){
+                return match_;
+            }
+        }
+        return null;
     }
 }

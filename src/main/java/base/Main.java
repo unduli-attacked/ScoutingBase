@@ -13,8 +13,12 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class Main extends Application {
     public static String eventName = "";
+    public static Session currentSession;
+    public static ArrayList<Session> recoveredSessions;
     
     @Override
     public void start(Stage stage) {

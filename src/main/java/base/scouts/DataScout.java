@@ -29,7 +29,7 @@ public class DataScout implements Comparable{
     
     /**
      * adds a match to the data scout. does not add to any Match
-     * @param match_  a DATA SCOUT hashmap
+     * @param match_  a DATA SCOUT data class
      */
     public void addMatch(DataScoutMatch match_){
         this.matchData.add(match_);

@@ -71,6 +71,14 @@ public class CollationThread extends Thread{
                 }
     
                 match_.passFinalData(finalData, finalNotes);
+                
+                for(DataScout scout_ : scouts){
+                    scout_.matches.add(match_);
+                }
+                
+                for(NoteScout scout_ : noteScouts){
+                    scout_.matches.add(match_);
+                }
             }
         }
     }
@@ -166,9 +174,11 @@ public class CollationThread extends Thread{
     
         for(int i=0; i<numShots-1; i++){
             LocalTime shotTime = LocalTime.of(0,0);
-            if (scoutData.get(0).get(i)!=null){
+            ArrayList<Object> temp = new ArrayList<>();
+            Shot finalShot = null;
+            if (scoutData.get(0).get(i)!=null) {
                 shotTime = scoutData.get(0).get(i).timeStamp;
-                ArrayList<Object> temp = new ArrayList<>(Arrays.asList(scoutData.get(0).get(i)));
+                temp.add(scoutData.get(0).get(i));
                 if(scoutData.size()>=2) {
                     Shot tempShot = Functions.findShot(scoutData.get(1), shotTime, 2.0);
                     if (tempShot != null) temp.add(tempShot);
@@ -177,21 +187,38 @@ public class CollationThread extends Thread{
                         if (tempShot!= null) temp.add(tempShot);
                     }
                 }
-    
                 //FIXME this is jank
                 Object[] confScouts = confScouts(temp);
                 boolean[] scoutsCorrect = (boolean[])confScouts[1];
-                Shot finalShot = (Shot) confScouts[0];
-                
+                finalShot = (Shot) confScouts[0];
+    
                 //TODO confirm that there's no way to check this on TBA
     
                 scouts[0].calculateRank("shots", scoutsCorrect[0]);
                 if(scouts.length >= 2) scouts[1].calculateRank("shots", scoutsCorrect[1]);
                 if(scouts.length >= 3) scouts[2].calculateRank("shots", scoutsCorrect[2]);
-                
-                finalShots.add(finalShot);
-            
+            }else if(scoutData.size()>=2 && scoutData.get(1).get(i)!=null){
+                shotTime = scoutData.get(1).get(i).timeStamp;
+                temp.add(scoutData.get(1).get(i));
+                if(scoutData.size()>=3){
+                    Shot tempShot = Functions.findShot(scoutData.get(2), shotTime, 2.0);
+                    if (tempShot!= null) temp.add(tempShot);
+                }
+                //FIXME this is jank
+                Object[] confScouts = confScouts(temp);
+                boolean[] scoutsCorrect = (boolean[])confScouts[1];
+                finalShot = (Shot) confScouts[0];
+    
+                //TODO confirm that there's no way to check this on TBA
+    
+                scouts[1].calculateRank("shots", scoutsCorrect[1]);
+                if(scouts.length >= 3) scouts[2].calculateRank("shots", scoutsCorrect[2]);
+            }else if (scoutData.size()>=3 && scoutData.get(2).get(i)!=null){
+                scouts[2].calculateRank("shots", true);
+                finalShot = scoutData.get(2).get(i);
             }
+    
+            finalShots.add(finalShot);
         
         }
         
@@ -207,7 +234,7 @@ public class CollationThread extends Thread{
     
     private Object getTBA(String key, DataScout[] scouts, ArrayList<Object> scoutData){
         //TODO once the map comes out
-        //TODO also include rank setting here
+        //TODO also include rank calc here
         return scoutData.get(0);
     }
 }

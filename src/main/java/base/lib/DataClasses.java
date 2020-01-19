@@ -11,11 +11,15 @@ public class DataClasses {
         public Point position;
          
         public Goal scored;
+        
+        public LocalTime timeStamp;
          
-        public Shot(Point position_, Goal goal_){              
+        public Shot(Point position_, Goal goal_, LocalTime timeStamp_){
             this.position = position_;
              
             this.scored = goal_;
+            
+            this.timeStamp = timeStamp_;
          
         }      
     }            

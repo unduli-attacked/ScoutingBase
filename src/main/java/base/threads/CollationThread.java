@@ -4,10 +4,12 @@ import base.Main;
 import base.Match;
 import base.lib.DataClasses.*;
 import base.lib.Enums;
+import base.lib.Functions;
 import base.scouts.DataScout;
 import base.scouts.NoteScout;
 
 import javax.xml.crypto.Data;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -34,8 +36,7 @@ public class CollationThread extends Thread{
                 finalData.defenseRank = (double) checkData(scouts, "defenseRank", match_.matchNum);
                 finalData.defenseAvoidanceRank = (double) checkData(scouts, "defenseAvoidanceRank", match_.matchNum);
                 finalData.numShots = (int) checkData(scouts, "numShots", match_.matchNum);
-                //FIXME what if this existed
-//                finalData.shots = (ArrayList<Shot>) checkShots(finalData.numShots, scouts);
+                finalData.shots = checkShots(scouts, match_.matchNum, finalData.numShots);
                 //TODO fouls
                 finalData.yellowCard = (boolean) checkData(scouts, "yellowCard", match_.matchNum);
                 finalData.redCard = (boolean) checkData(scouts, "redCard", match_.matchNum);
@@ -75,7 +76,6 @@ public class CollationThread extends Thread{
     }
     
     private Object checkData(DataScout[] scouts, String key, int matchNum){
-        boolean isConsist = true;
         ArrayList<Object> scoutData = new ArrayList<>();
         try {
             scoutData.add(DataScoutMatch.class.getField(key).get(scouts[0].matchData.get(scouts[0].matchesScouted.indexOf(matchNum))));
@@ -151,6 +151,52 @@ public class CollationThread extends Thread{
         
         Object[] toReturn = {finalData, scoutsCorrect};
         return toReturn;
+    }
+    
+    private ArrayList<Shot> checkShots(DataScout[] scouts, int matchNum, int numShots){
+        ArrayList<Shot> finalShots = new ArrayList<>();
+        ArrayList<ArrayList<Shot>> scoutData = new ArrayList<>();
+        scoutData.add(scouts[0].matchData.get(scouts[0].matchesScouted.indexOf(matchNum)).shots);
+        if(scouts.length >=2){
+            scoutData.add(scouts[1].matchData.get(scouts[1].matchesScouted.indexOf(matchNum)).shots);
+            if(scouts.length >= 3){
+                scoutData.add(scouts[2].matchData.get(scouts[2].matchesScouted.indexOf(matchNum)).shots);
+            }
+        }
+    
+        for(int i=0; i<numShots-1; i++){
+            LocalTime shotTime = LocalTime.of(0,0);
+            if (scoutData.get(0).get(i)!=null){
+                shotTime = scoutData.get(0).get(i).timeStamp;
+                ArrayList<Object> temp = new ArrayList<>(Arrays.asList(scoutData.get(0).get(i)));
+                if(scoutData.size()>=2) {
+                    Shot tempShot = Functions.findShot(scoutData.get(1), shotTime, 2.0);
+                    if (tempShot != null) temp.add(tempShot);
+                    if(scoutData.size()>=3){
+                        tempShot = Functions.findShot(scoutData.get(2), shotTime, 2.0);
+                        if (tempShot!= null) temp.add(tempShot);
+                    }
+                }
+    
+                //FIXME this is jank
+                Object[] confScouts = confScouts(temp);
+                boolean[] scoutsCorrect = (boolean[])confScouts[1];
+                Shot finalShot = (Shot) confScouts[0];
+                
+                //TODO confirm that there's no way to check this on TBA
+    
+                scouts[0].calculateRank("shots", scoutsCorrect[0]);
+                if(scouts.length >= 2) scouts[1].calculateRank("shots", scoutsCorrect[1]);
+                if(scouts.length >= 3) scouts[2].calculateRank("shots", scoutsCorrect[2]);
+                
+                finalShots.add(finalShot);
+            
+            }
+        
+        }
+        
+        return finalShots;
+        
     }
     
     

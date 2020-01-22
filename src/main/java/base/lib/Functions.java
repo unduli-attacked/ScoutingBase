@@ -21,7 +21,7 @@ public class Functions {
                 return shot_;
             }
         }
-        ReportFunctions.report("Shot at "+timeStamp_.format(DateTimeFormatter.ISO_LOCAL_TIME)+" not found.");
+//        ReportFunctions.report("Shot at "+timeStamp_.format(DateTimeFormatter.ISO_LOCAL_TIME)+" not found.");
         return null;
     }
 }

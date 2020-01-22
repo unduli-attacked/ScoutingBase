@@ -19,9 +19,9 @@ public class Match {
     private boolean isColl = false;
     
     //RAW DATA
-     public ArrayList<DataScout> matchScouts;
-     public ArrayList<NoteScout> noteScouts;
-    public HashMap<String, Object> matchBreakdown;
+     public ArrayList<String> matchScouts = new ArrayList<>();
+     public ArrayList<String> noteScouts = new ArrayList<>();
+    public HashMap<String, Object> matchBreakdown = new HashMap<>();
     
     //FINAL DATA
     public DataScoutMatch matchData;
@@ -36,11 +36,11 @@ public class Match {
     }
     
     public void addDataScout(DataScout scout_){
-        this.matchScouts.add(scout_);
+        this.matchScouts.add(scout_.getName());
     }
 
     public void addNoteScout(NoteScout scout_) {
-        this.noteScouts.add(scout_);
+        this.noteScouts.add(scout_.getName());
     }
     
     public void addTBAData(HashMap<String, Object> matchBreakdown_){

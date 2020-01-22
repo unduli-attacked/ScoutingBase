@@ -11,9 +11,9 @@ import java.util.HashMap;
 public class DataScout implements Comparable{
     String name;
     double rank; //FIXME this is currently calculated the dumb way. what if it wasnt
-    public ArrayList<Match> matches;
-    public ArrayList<DataScoutMatch> matchData;
-    public ArrayList<Integer> matchesScouted;
+    public ArrayList<Match> matches =  new ArrayList<>();
+    public ArrayList<DataScoutMatch> matchData = new ArrayList<>();
+    public ArrayList<Integer> matchesScouted = new ArrayList<>();
     
     public DataScout(String name_){
         this.name = name_;

@@ -9,9 +9,9 @@ import java.util.HashMap;
 
 public class NoteScout {
     public String name;
-    public ArrayList<Match> matches;
-    public ArrayList<NoteScoutMatch> matchData;
-    public ArrayList<Integer> matchesScouted;
+    public ArrayList<Match> matches = new ArrayList<>();
+    public ArrayList<NoteScoutMatch> matchData = new ArrayList<>();
+    public ArrayList<Integer> matchesScouted = new ArrayList<>();
     
     public NoteScout(String name_){
         this.name = name_;

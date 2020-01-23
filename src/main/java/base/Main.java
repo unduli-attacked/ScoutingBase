@@ -18,24 +18,10 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage) {
-        //Creating a Group object
-        Parent root = new VBox();
-        
-        //Creating a scene object
-        Scene scene = new Scene(root, 600, 300);
-        
-        //Setting title to the Stage
         stage.setTitle("BREAD Scouting Base");
-        
-        //Adding scene to the stage
-        stage.setScene(scene);
-        
-        //Displaying the contents of the stage
         stage.show();
     }
     public static void main(String args[]){
-        Session testSession = new Session(2019, "Sac", "2019cada", "");
-        System.out.println(testSession.tbaEventKey);
         launch(args);
     }
 }

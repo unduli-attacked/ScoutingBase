@@ -7,6 +7,7 @@ public class Session {
     public String eventName;
     public String tbaEventKey;
     public String directory;
+    
     public ArrayList matches;
     public ArrayList pits;
     public ArrayList teams;
@@ -14,7 +15,10 @@ public class Session {
     public ArrayList standScouts;
     public ArrayList noteScouts;
     
-    public Session(int year_, String eventName_, String tbaEventKey_, String directory_){
+    public int numDataScouts; // per team per match
+    public int numNoteScouts; // per alliance
+    
+    public Session(int year_, String eventName_, String tbaEventKey_, String directory_, int numDataScouts_, int numNoteScouts_){
         this.year = year_;
         this.eventName = eventName_;
         this.tbaEventKey = tbaEventKey_;
@@ -26,5 +30,8 @@ public class Session {
         this.pitScouts = new ArrayList();
         this.standScouts = new ArrayList();
         this.noteScouts = new ArrayList();
+        
+        this.numDataScouts = numDataScouts_;
+        this.numNoteScouts = numNoteScouts_;
     }
 }

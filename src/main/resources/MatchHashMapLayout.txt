@@ -1,0 +1,34 @@
+              String | Object
+------------------------------------------
+           scoutName | String
+            matchNum | int
+              allPos | Station
+             teamNum | int
+              absent | boolean
+    startingPosition | double
+      capacityTimeS1 | LocalTime
+      capacityTimeS2 | LocalTime
+      capacityTimeS3 | LocalTime
+         defenseRank | double
+defenseAvoidanceRank | double
+            numShots | int
+               shots | ArrayList<Shot>
+/*To Do foul counters here*/
+          yellowCard | boolean
+             redCard | boolean
+      activateTimeS2 | LocalTime
+      activateTimeS3 | LocalTime
+       climbDuration | LocalTime
+               climb | boolean
+          buddyClimb | boolean
+         wasAssisted | boolean
+             leveled | boolean
+              parked | boolean
+            disabled | boolean
+       incapacitated | boolean
+             climbRP | boolean
+             totalRP | int
+         totalPoints | int
+          driverRank | double
+     humanPlayerRank | double
+           dataNotes | String

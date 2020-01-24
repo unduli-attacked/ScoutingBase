@@ -11,6 +11,15 @@ public class Session {
     public int year;
     public String eventName;
     public String tbaEventKey;
+    public String spreadsheetID;
+    public String mainPitTab;
+    public String finalMainPitCol;
+    public String secondPitTab;
+    public String finalSecondPitCol;
+    public String dataTab;
+    public String finalDataCol;
+    public String noteTab;
+    public String finalNoteCol;
     public String directory;
     
     public ArrayList<Match> matches;
@@ -38,5 +47,19 @@ public class Session {
         
         this.numDataScouts = numDataScouts_;
         this.numNoteScouts = numNoteScouts_;
+    }
+    
+    public void setSheet(String spreadsheetID_, String mainPitTab_, String secondPitTab_, String dataTab_, String noteTab_,
+                         String finalMainPitCol_, String finalSecondPitCol_, String finalDataCol_, String finalNoteCol_){
+        this.spreadsheetID = spreadsheetID_;
+        this.mainPitTab = mainPitTab_;
+        this.secondPitTab = secondPitTab_;
+        this.dataTab = dataTab_;
+        this.noteTab = noteTab_;
+        
+        this.finalMainPitCol = finalMainPitCol_;
+        this.finalSecondPitCol = finalSecondPitCol_;
+        this.finalDataCol = finalDataCol_;
+        this.finalNoteCol = finalNoteCol_;
     }
 }

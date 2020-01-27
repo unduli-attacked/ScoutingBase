@@ -62,7 +62,7 @@ public class SheetsFunctions {
      * Prints the names and majors of students in a sample spreadsheet:
      * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
      */
-    public static List<Object> getData(String spreadsheetID_, String tab_, String row_, String finalCol_) throws IOException, GeneralSecurityException {
+    public static List<Object> getData(String spreadsheetID_, String tab_, int row_, String finalCol_) throws IOException, GeneralSecurityException {
         // Build a new authorized API client service.
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = spreadsheetID_;
@@ -83,6 +83,6 @@ public class SheetsFunctions {
     }
     
     public static List<Object> getHeaders(String spreadsheetID_, String tab_, String finalCol_) throws IOException, GeneralSecurityException {
-        return getData(spreadsheetID_, tab_, "1", finalCol_);
+        return getData(spreadsheetID_, tab_, 1, finalCol_);
     }
 }

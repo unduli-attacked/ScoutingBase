@@ -4,6 +4,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import base.Main;
+import base.Pit;
 import base.lib.DataClasses.*;
 
 public class Functions {
@@ -22,6 +24,15 @@ public class Functions {
             }
         }
 //        ReportFunctions.report("Shot at "+timeStamp_.format(DateTimeFormatter.ISO_LOCAL_TIME)+" not found.");
+        return null;
+    }
+    
+    public static Pit findPit(int teamNum_){
+        for(Pit pit : Main.currentSession.pits){
+            if(pit.teamNum == teamNum_){
+                return pit;
+            }
+        }
         return null;
     }
 }

@@ -132,4 +132,15 @@ public class DataClasses {
             this.bigNotes = other.bigNotes;
         }
     }
+    
+    public static class HumanPlayerPreferences{
+        public Pref loading;
+        public Pref collecting;
+        public Pref passing;
+        public Pref storing;
+        public Pref tracking;
+        public Pref other;
+        
+        public HumanPlayerPreferences(){}
+    }
 }

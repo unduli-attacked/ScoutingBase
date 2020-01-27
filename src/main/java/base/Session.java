@@ -11,6 +11,8 @@ public class Session {
     public int year;
     public String eventName;
     public String tbaEventKey;
+    public String directory;
+    
     public String spreadsheetID;
     public String mainPitTab;
     public String finalMainPitCol;
@@ -20,10 +22,10 @@ public class Session {
     public String finalDataCol;
     public String noteTab;
     public String finalNoteCol;
-    public String directory;
+    
     
     public ArrayList<Match> matches;
-    public ArrayList pits;
+    public ArrayList<Pit> pits;
     public ArrayList teams;
     public HashMap<String, PitScout> pitScouts;
     public HashMap<String, DataScout> standScouts;

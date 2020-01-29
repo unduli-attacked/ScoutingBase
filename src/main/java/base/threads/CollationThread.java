@@ -128,6 +128,39 @@ public class CollationThread extends Thread{
         return correctData;
     }
     
+    public static Object findScoutMean(DataScout[] scouts, ArrayList<Object> scoutData, String key, int matchNum){
+        HashMap<Object, Integer> data = new HashMap<>();
+        Object correctData = null;
+        
+        for(Object scoutPoint : scoutData){
+            if(data.get(scoutPoint)!=null){
+                data.put(scoutPoint, data.get(scoutPoint)+1);
+            }else{
+                data.put(scoutPoint, 1);
+            }
+        }
+        
+        int correctDataRank = 0;
+        for(Object point : data.keySet()){
+            if(data.get(point) > correctDataRank){
+                correctData = point;
+                correctDataRank = data.get(correctData);
+            }else if(data.get(point)==correctDataRank){
+                correctData = null;
+            }
+        }
+        if(correctData==null){
+            correctData = scoutData.get(0); //highest ranked
+        }
+        
+        //CHECK TBA
+        if(!checkTBA(key, correctData)){
+            correctData = getTBA(key, scouts, scoutData);
+        }
+        
+        return correctData;
+    }
+    
     public static ArrayList<Shot> checkShots(DataScout[] scouts, int matchNum, int numShots){
         ArrayList<Shot> finalShots = new ArrayList<>();
         ArrayList<ArrayList<Shot>> scoutData = new ArrayList<>();

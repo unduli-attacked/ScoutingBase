@@ -1,5 +1,6 @@
 package base.scouts;
 
+import base.Pit;
 import base.Session;
 
 import java.util.ArrayList;
@@ -7,17 +8,19 @@ import java.util.HashMap;
 
 public class PitScout{
     String name;
-//    ArrayList<Pit> pits;
+    String scoutID;
+    ArrayList<Pit> pits;
     public ArrayList<Integer> teamsAssigned;
     ArrayList<Integer> teamsScouted;
     
     
-    public PitScout(String name_){
+    public PitScout(String name_, String scoutID_) {
         this.name = name_;
+        this.scoutID = scoutID_;
     }
     
-    public String getName() {
-        return name;
+    public String getID() {
+        return scoutID;
     }
     
     /**
@@ -32,10 +35,9 @@ public class PitScout{
         }
     }
     
-    public boolean addPit(HashMap<String, Object> pit_){
-        this.teamsScouted.add((int)pit_.get("teamNum"));
-        //TODO send to Pit
-        return true;
+    public void addPit(Pit pit_){
+        this.teamsScouted.add(pit_.teamNum);
+        this.pits.add(pit_);
     }
     
     

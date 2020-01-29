@@ -53,20 +53,22 @@ public class PitCollectionThread extends Thread {
         }
         if(mainTemp!=null){
             if(Functions.findPit((int)mainTemp.get(TEAM_NUM.val))==null){
-                Main.currentSession.pits.add(addPit(mainTemp));
+                Pit pt = addPit(mainTemp);
+                Main.currentSession.pits.add(pt);
+                Main.currentSession.pitScouts.get(pt.scoutID).addPit(pt);
             }
             lastSavedRow++;
         }
         List<Object> secondTemp = null;
         try{
-            secondTemp = SheetsFunctions.getData(Main.currentSession.spreadsheetID, Main.currentSession.secondPitTab, )
+            secondTemp = SheetsFunctions.getData(Main.currentSession.spreadsheetID, Main.currentSession.secondPitTab, secondLastSavedRow, Main.currentSession.finalSecondPitCol);
         }catch (Exception e){
         
         }
         if(secondTemp!=null){
             Pit foundPit = Functions.findPit((int)secondTemp.get(ColumnMappings.ReScoutPit.TEAM_NUM.val));
             if(foundPit!=null){
-                foundPit.secondPits.put(LocalTime.parse(secondTemp.get(ColumnMappings.ReScoutPit.TIMESTAMP.val), DateTimeFormatter.ofPattern("MM/dd/uuuu kk:mm:ss")),
+                foundPit.secondPits.put(LocalTime.parse((String)secondTemp.get(ColumnMappings.ReScoutPit.TIMESTAMP.val), DateTimeFormatter.ofPattern("MM/dd/uuuu kk:mm:ss")),
                                     addSecondPit(secondTemp));
             }
         }

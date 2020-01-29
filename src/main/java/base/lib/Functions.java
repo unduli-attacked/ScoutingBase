@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import base.Main;
 import base.Pit;
 import base.lib.DataClasses.*;
+import base.scouts.PitScout;
 
 public class Functions {
     /**

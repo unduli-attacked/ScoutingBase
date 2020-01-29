@@ -27,9 +27,9 @@ public class Session {
     public ArrayList<Match> matches;
     public ArrayList<Pit> pits;
     public ArrayList teams;
-    public HashMap<String, PitScout> pitScouts;
-    public HashMap<String, DataScout> standScouts;
-    public HashMap<String, NoteScout> noteScouts;
+    public HashMap<String, PitScout> pitScouts; //scoutID, scout
+    public HashMap<String, DataScout> standScouts; //scoutName, scout
+    public HashMap<String, NoteScout> noteScouts; //scoutName, scout
     
     public int numDataScouts; // per team per match
     public int numNoteScouts; // per alliance

@@ -56,7 +56,7 @@ public class ColumnMappings {
         
     }
     
-    public enum SecondPit{
+    public enum ReScoutPit{
         TIMESTAMP(0),
         TEAM_NAME(1),
         TEAM_NUM(2),
@@ -74,10 +74,12 @@ public class ColumnMappings {
         A4(14),
         Q5(15),
         A5(16),
-        MORE(17);
+        MORE(17),
+        PHOTOS(18),
+        SCOUT_ID(19);
     
         public int val;
-        private SecondPit(int num_){
+        private ReScoutPit(int num_){
             this.val = num_;
         }
     

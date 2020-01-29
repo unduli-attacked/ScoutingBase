@@ -2,14 +2,19 @@ package base.threads;
 
 import base.Main;
 import base.Pit;
+import base.SecondPit;
 import base.lib.ColumnMappings;
 import base.lib.Enums;
 import base.lib.Enums.*;
 import base.lib.Functions;
 import base.lib.SheetsFunctions;
 import static base.lib.ColumnMappings.MainPit.*;
+import base.SecondPit;
+
 import com.google.api.services.sheets.v4.model.Sheet;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -40,15 +45,15 @@ public class PitCollectionThread extends Thread {
     
     @Override
     public void run(){
-        List<Object> temp = null;
+        List<Object> mainTemp = null;
         try{
-            temp = SheetsFunctions.getData(Main.currentSession.spreadsheetID, Main.currentSession.mainPitTab, lastSavedRow+1, Main.currentSession.finalMainPitCol);
+            mainTemp = SheetsFunctions.getData(Main.currentSession.spreadsheetID, Main.currentSession.mainPitTab, lastSavedRow+1, Main.currentSession.finalMainPitCol);
         }catch (Exception e){
         
         }
-        if(temp!=null){
-            if(Functions.findPit((int)temp.get(TEAM_NUM.val))==null){
-                Main.currentSession.pits.add(addPit(temp));
+        if(mainTemp!=null){
+            if(Functions.findPit((int)mainTemp.get(TEAM_NUM.val))==null){
+                Main.currentSession.pits.add(addPit(mainTemp));
             }
             lastSavedRow++;
         }
@@ -59,11 +64,34 @@ public class PitCollectionThread extends Thread {
         
         }
         if(secondTemp!=null){
-            if(Functions.findPit((int)secondTemp))
+            Pit foundPit = Functions.findPit((int)secondTemp.get(ColumnMappings.ReScoutPit.TEAM_NUM.val));
+            if(foundPit!=null){
+                foundPit.secondPits.put(LocalTime.parse(secondTemp.get(ColumnMappings.ReScoutPit.TIMESTAMP.val), DateTimeFormatter.ofPattern("MM/dd/uuuu kk:mm:ss")),
+                                    addSecondPit(secondTemp));
+            }
         }
         secondLastSavedRow++;
     }
     
+    
+    public SecondPit addSecondPit(List<Object> secondTemp){
+        SecondPit tempSecondPit = new SecondPit((int)secondTemp.get(ColumnMappings.ReScoutPit.TEAM_NUM.val),
+                                            (String)secondTemp.get(ColumnMappings.ReScoutPit.TEAM_NAME.val),
+                                            (String)secondTemp.get(ColumnMappings.ReScoutPit.SCOUT_ID.val),
+                                            (String)secondTemp.get(ColumnMappings.ReScoutPit.TIMESTAMP.val),
+                                            (String)secondTemp.get(ColumnMappings.ReScoutPit.INTERVIEWEE.val));
+        tempSecondPit.changes = (String)secondTemp.get(ColumnMappings.ReScoutPit.CHANGES.val);
+        tempSecondPit.issues = (String)secondTemp.get(ColumnMappings.ReScoutPit.ISSUES.val);
+        tempSecondPit.basicNotes = (String)secondTemp.get(ColumnMappings.ReScoutPit.NOTES.val);
+        tempSecondPit.images = (ArrayList<String>)Arrays.asList(((String)secondTemp.get(ColumnMappings.ReScoutPit.PHOTOS.val)).split(", "));
+        tempSecondPit.specificQuestions.put((String)secondTemp.get(ColumnMappings.ReScoutPit.Q1.val), (String)secondTemp.get(ColumnMappings.ReScoutPit.A1.val));
+        tempSecondPit.specificQuestions.put((String)secondTemp.get(ColumnMappings.ReScoutPit.Q2.val), (String)secondTemp.get(ColumnMappings.ReScoutPit.A2.val));
+        tempSecondPit.specificQuestions.put((String)secondTemp.get(ColumnMappings.ReScoutPit.Q3.val), (String)secondTemp.get(ColumnMappings.ReScoutPit.A3.val));
+        tempSecondPit.specificQuestions.put((String)secondTemp.get(ColumnMappings.ReScoutPit.Q4.val), (String)secondTemp.get(ColumnMappings.ReScoutPit.A4.val));
+        tempSecondPit.specificQuestions.put((String)secondTemp.get(ColumnMappings.ReScoutPit.Q5.val), (String)secondTemp.get(ColumnMappings.ReScoutPit.A5.val));
+        return tempSecondPit;
+    
+    }
     public Pit addPit(List<Object> temp){
         Pit tempPit = new Pit((int)temp.get(TEAM_NUM.val), (String)temp.get(TEAM_NAME.val),
                 (String)temp.get(SCOUT_ID.val), (String)temp.get(TIMESTAMP.val), (String)temp.get(INTERVIEWEE.val));

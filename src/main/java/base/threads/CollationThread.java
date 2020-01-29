@@ -23,15 +23,12 @@ public class CollationThread extends Thread{
     public void run(){
         for(Match match_ : Main.currentSession.matches){
             if(match_.dataRediness()){
-                HashMap[] temp = collate(match_, Main.currentSession.standScouts, Main.currentSession.noteScouts);
-                Main.currentSession.standScouts = temp[0];
-                Main.currentSession.noteScouts = temp[1];
-                
+                collate(match_, Main.currentSession.standScouts, Main.currentSession.noteScouts);
             }
         }
     }
     
-    public static HashMap[] collate(Match match_, HashMap<String, DataScout> dataScoutList, HashMap<String, NoteScout> noteScoutList){
+    public static void collate(Match match_, HashMap<String, DataScout> dataScoutList, HashMap<String, NoteScout> noteScoutList){
         DataScoutMatch finalData = new DataScoutMatch();
         DataScout[] scouts = new DataScout[match_.matchScouts.size()];
         for(int i=0; i<match_.matchScouts.size(); i++){
@@ -96,21 +93,6 @@ public class CollationThread extends Thread{
         }
     
         match_.passFinalData(finalData, finalNotes);
-        
-        HashMap[] toReturn = {new HashMap<String, DataScout>(), new HashMap<String, NoteScout>()};
-    
-        for(DataScout scout_ : scouts){
-            scout_.matches.add(match_);
-            toReturn[0].put(scout_.getName(), scout_);
-        }
-    
-        for(NoteScout scout_ : noteScouts){
-            scout_.matches.add(match_);
-            toReturn[1].put(scout_.getName(), scout_);
-        }
-        
-       
-        return toReturn;
     }
     
     public static Object checkData(DataScout[] scouts, String key, int matchNum){
@@ -139,63 +121,11 @@ public class CollationThread extends Thread{
         }
     
         //FIXME this is jank
-        Object[] confScouts = confScouts(scoutData);
-        boolean[] scoutsCorrect = (boolean[])confScouts[1];
-        Object finalData = confScouts[0];
-        
-        
-        if(!checkTBA(key, finalData)){
-            finalData = getTBA(key, scouts, scoutData);
-        }else{
-            scouts[0].calculateRank(key, scoutsCorrect[0]);
-            if(scoutsCorrect.length >= 2) scouts[1].calculateRank(key, scoutsCorrect[1]);
-            if(scoutsCorrect.length >= 3) scouts[2].calculateRank(key, scoutsCorrect[2]);
+        Object correctData = findScoutMean(scouts, scoutData, key, matchNum);
+        for(int i=0; i<scouts.length-1; i++){
+            scouts[i].calculateRank(key, scoutData.get(i).equals(correctData));
         }
-        return finalData;
-    }
-    
-    public static Object[] confScouts(ArrayList<Object> scoutData){
-        boolean[] scoutsCorrect = new boolean[scoutData.size()];
-    
-        Object finalData = null;
-    
-        if(scoutData.size()==3){
-            if(scoutData.get(0).equals(scoutData.get(1))&&scoutData.get(0).equals(scoutData.get(2))){
-                scoutsCorrect[0] = scoutsCorrect[1] = scoutsCorrect[2] = true;
-                finalData= scoutData.get(0);
-            }else if(scoutData.get(0).equals(scoutData.get(1))&&!scoutData.get(0).equals(scoutData.get(2))){
-                scoutsCorrect[0] = scoutsCorrect[1] = true;
-                scoutsCorrect[2] = false;
-                finalData= scoutData.get(0);
-            }else if(scoutData.get(0).equals(scoutData.get(2))&&!scoutData.get(0).equals(scoutData.get(1))){
-                scoutsCorrect[0] = scoutsCorrect[2] = true;
-                scoutsCorrect[1] = false;
-                finalData= scoutData.get(0);
-            }else if(scoutData.get(1).equals(scoutData.get(2))&&!scoutData.get(1).equals(scoutData.get(0))){
-                scoutsCorrect[2] = scoutsCorrect[1] = true;
-                scoutsCorrect[0] = false;
-                finalData= scoutData.get(1);
-            }else{
-                scoutsCorrect[0] = true;
-                scoutsCorrect[1] = scoutsCorrect[2] = false;
-                finalData = scoutData.get(0);
-            }
-        }else if(scoutData.size()==2){
-            if(scoutData.get(0).equals(scoutData.get(1))){
-                scoutsCorrect[0] = scoutsCorrect[1] = true;
-                finalData = scoutData.get(0);
-            }else{
-                scoutsCorrect[0] = true;
-                scoutsCorrect[1] = false;
-                finalData = scoutData.get(0);
-            }
-        }else{
-            scoutsCorrect[0] = true;
-            finalData = scoutData.get(0);
-        }
-        
-        Object[] toReturn = {finalData, scoutsCorrect};
-        return toReturn;
+        return correctData;
     }
     
     public static ArrayList<Shot> checkShots(DataScout[] scouts, int matchNum, int numShots){

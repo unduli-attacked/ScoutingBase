@@ -7,15 +7,16 @@ import base.lib.Enums;
 import base.lib.Functions;
 import base.scouts.DataScout;
 import base.scouts.NoteScout;
+import jdk.vm.ci.meta.Local;
+import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 
 import javax.xml.crypto.Data;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class CollationThread extends Thread{
 
@@ -164,77 +165,60 @@ public class CollationThread extends Thread{
     public static ArrayList<Shot> checkShots(DataScout[] scouts, int matchNum, int numShots){
         ArrayList<Shot> finalShots = new ArrayList<>();
         ArrayList<ArrayList<Shot>> scoutData = new ArrayList<>();
-        scoutData.add(scouts[0].matchData.get(scouts[0].matchesScouted.indexOf(matchNum)).shots);
-        if(scouts.length >=2){
-            scoutData.add(scouts[1].matchData.get(scouts[1].matchesScouted.indexOf(matchNum)).shots);
-            if(scouts.length >= 3){
-                scoutData.add(scouts[2].matchData.get(scouts[2].matchesScouted.indexOf(matchNum)).shots);
+        for(DataScout scout : scouts){
+            scoutData.add(scout.matchData.get(scout.matchesScouted.indexOf(matchNum)).shots);
+        }
+        ArrayList<ArrayList<LocalTime>> timeLines = new ArrayList<>();
+        for(int i=0; i<scoutData.size()-1; i++){
+            timeLines.add(i,new ArrayList<>());
+            for(int j=0; j<scoutData.get(i).size()-1; j++){
+                timeLines.get(i).add(j, scoutData.get(i).get(j).timeStamp);
             }
         }
-        
-        for(int i=0; i<=numShots; i++){
-            LocalTime shotTime = LocalTime.of(0,0);
-            ArrayList<Object> temp = new ArrayList<>();
-            Shot finalShot = null;
-            if (scoutData.get(0).size()>i) {
-                shotTime = scoutData.get(0).get(i).timeStamp;
-                temp.add(scoutData.get(0).get(i));
-                if(scoutData.size()>=2) {
-                    Shot tempShot = Functions.findShot(scoutData.get(1), shotTime, 2.0);
-                    if (tempShot != null) temp.add(tempShot);
-                    if(scoutData.size()>=3){
-                        tempShot = Functions.findShot(scoutData.get(2), shotTime, 2.0);
-                        if (tempShot!= null) temp.add(tempShot);
-                    }
-                }
-                //FIXME this is jank
-                Object[] confScouts = confScouts(temp);
-                boolean[] scoutsCorrect = (boolean[])confScouts[1];
-                finalShot = (Shot) confScouts[0];
-    
-                //TODO confirm that there's no way to check this on TBA
-    
-                scouts[0].calculateRank("shots", scoutsCorrect[0]);
-                if(scoutsCorrect.length >= 2){
-                    scouts[1].calculateRank("shots", scoutsCorrect[1]);
-                    if(scoutsCorrect.length >= 3){
-                        scouts[2].calculateRank("shots", scoutsCorrect[2]);
-                    }
-                }
-            }else if(scoutData.size()>=2 && scoutData.get(1).size()>i){
-                shotTime = scoutData.get(1).get(i).timeStamp;
-                temp.add(scoutData.get(1).get(i));
-                if(scoutData.size()>=3){
-                    Shot tempShot = Functions.findShot(scoutData.get(2), shotTime, 2.0);
-                    if (tempShot!= null) temp.add(tempShot);
-                }
-                //FIXME this is jank
-                Object[] confScouts = confScouts(temp);
-                boolean[] scoutsCorrect = (boolean[])confScouts[1];
-                finalShot = (Shot) confScouts[0];
-    
-                //TODO confirm that there's no way to check this on TBA
-    
-                scouts[1].calculateRank("shots", scoutsCorrect[1]);
-                if(scoutsCorrect.length >= 3){
-                    scouts[2].calculateRank("shots", scoutsCorrect[2]);
-                }
-                scouts[0].calculateRank("shots", false);
-            }else if (scoutData.size()>=3 && scoutData.get(2).size()>i){
-                scouts[2].calculateRank("shots", true);
-                finalShot = scoutData.get(2).get(i);
-                scouts[1].calculateRank("shots", false);
-                scouts[0].calculateRank("shots", false);
-            }else{
-                continue;
-            }
-    
-            finalShots.add(finalShot);
-        
+        boolean allSized = true;
+        for(ArrayList<LocalTime> timeLine : timeLines){
+            allSized = allSized && timeLine.size()==numShots;
+            Collections.sort(timeLine);
         }
-        Collections.sort(finalShots);
-        return finalShots;
+    }
+    
+    public static ArrayList<LocalTime> alignTimelines(ArrayList<ArrayList<LocalTime>> timeLines){
+        //TODO steal consolidate_timeline_action
+    }
+    
+    public static LocalTime consolidateTimes(ArrayList<LocalTime> times){
+        ArrayList<Float> floatTimes = new ArrayList<>();
+        for(LocalTime time : times){
+            floatTimes.add((float)time.getSecond()+ time.getMinute()*60);
+        }
+        SummaryStatistics stat = new SummaryStatistics();
+        for(float t : floatTimes){
+            stat.addValue(t);
+        }
+        double mean = stat.getMean();
+        double std = stat.getStandardDeviation();
+        if(std == 0 || floatTimes.contains((float)mean)){
+            return LocalTime.of(0, 0, Math.round((float)mean));
+        }
         
+        //STOLEN FROM CITRUS
+        ArrayList<Float[]> recipZScore = new ArrayList<>();
+        for(float t : floatTimes){
+            recipZScore.add(new Float[]{t, (float)Math.pow((1/((mean - t)/std)), 2)});
+        }
+        
+        ArrayList<Float> weightedTimes = new ArrayList<Float>();
+        for(Float[] score : recipZScore){
+            weightedTimes.add(score[0]*score[1]);
+        }
+        
+        float weightSum=0, recipSum=0;
+        for(int i=0; i<recipZScore.size()-1; i++){
+            weightSum +=weightedTimes.get(i);
+            recipSum += recipZScore.get(i)[1];
+        }
+        
+        return LocalTime.of(0, 0, Math.round(weightSum/recipSum));
     }
     
     

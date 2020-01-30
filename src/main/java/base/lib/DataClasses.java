@@ -33,8 +33,10 @@ public class DataClasses {
     
             toReturn = this.position.getX() == other_.position.getX()
                     || (Math.abs(this.position.getX() - other_.position.getX())<=10);
-            toReturn = this.position.getY() == other_.position.getY()
+            toReturn = toReturn && this.position.getY() == other_.position.getY()
                     || (Math.abs(this.position.getY() - other_.position.getY())<=10);
+            toReturn = toReturn && (Math.abs((this.timeStamp.getSecond()+this.timeStamp.getMinute()*60)
+                                            -(other_.timeStamp.getSecond()+other_.timeStamp.getMinute()*60))<=10); //assumes 10sec margin
             toReturn = toReturn && (this.scored == other_.scored);
             return toReturn;
         }

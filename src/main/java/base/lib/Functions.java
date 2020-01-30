@@ -36,4 +36,8 @@ public class Functions {
         }
         return null;
     }
+    
+    public static float compareLocalTime(LocalTime first, LocalTime second){
+        return (first.getSecond()+first.getMinute()*60)-(second.getSecond()+second.getMinute()*60);
+    }
 }

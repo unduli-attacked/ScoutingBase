@@ -11,6 +11,7 @@ import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 
 import java.time.LocalTime;
 import java.util.*;
+import java.util.function.Function;
 
 public class CollationThread extends Thread{
 
@@ -155,11 +156,16 @@ public class CollationThread extends Thread{
                 timeLines.get(i).add(j, scoutData.get(i).get(j).timeStamp);
             }
         }
-        boolean allSized = true;
-        for(ArrayList<LocalTime> timeLine : timeLines){
-            allSized = allSized && timeLine.size()==numShots;
-            Collections.sort(timeLine);
+        ArrayList<LocalTime> finalTimeLine = alignTimelines(timeLines, numShots);
+        for(LocalTime shotTime : finalTimeLine){
+            ArrayList<Object> shotList = new ArrayList<>();
+            for(ArrayList<Shot> scoutShots : scoutData){
+                shotList.add(Functions.findShot(scoutShots, shotTime, 5)); //todo determine if 5s is a good margin
+            }
+            finalShots.add((Shot)findScoutMean(scouts, shotList, "shot", matchNum));
         }
+        
+        return finalShots;
     }
     
     public static ArrayList<LocalTime> alignTimelines(ArrayList<ArrayList<LocalTime>> timeLines, int numShots){

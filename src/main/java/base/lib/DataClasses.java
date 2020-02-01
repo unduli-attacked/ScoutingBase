@@ -33,7 +33,7 @@ public class DataClasses {
     
             toReturn = this.position.getX() == other_.position.getX()
                     || (Math.abs(this.position.getX() - other_.position.getX())<=10);
-            toReturn = this.position.getY() == other_.position.getY()
+            toReturn = toReturn && this.position.getY() == other_.position.getY()
                     || (Math.abs(this.position.getY() - other_.position.getY())<=10);
             toReturn = toReturn && (this.scored == other_.scored);
             return toReturn;

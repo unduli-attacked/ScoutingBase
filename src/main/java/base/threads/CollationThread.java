@@ -9,13 +9,10 @@ import base.scouts.DataScout;
 import base.scouts.NoteScout;
 
 import javax.xml.crypto.Data;
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
+import java.awt.*;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
+import java.util.function.Function;
 
 public class CollationThread extends Thread{
 
@@ -23,15 +20,12 @@ public class CollationThread extends Thread{
     public void run(){
         for(Match match_ : Main.currentSession.matches){
             if(match_.dataRediness()){
-                HashMap[] temp = collate(match_, Main.currentSession.standScouts, Main.currentSession.noteScouts);
-                Main.currentSession.standScouts = temp[0];
-                Main.currentSession.noteScouts = temp[1];
-                
+                collate(match_, Main.currentSession.standScouts, Main.currentSession.noteScouts);
             }
         }
     }
     
-    public static HashMap[] collate(Match match_, HashMap<String, DataScout> dataScoutList, HashMap<String, NoteScout> noteScoutList){
+    public static void collate(Match match_, HashMap<String, DataScout> dataScoutList, HashMap<String, NoteScout> noteScoutList){
         DataScoutMatch finalData = new DataScoutMatch();
         DataScout[] scouts = new DataScout[match_.matchScouts.size()];
         for(int i=0; i<match_.matchScouts.size(); i++){
@@ -96,182 +90,288 @@ public class CollationThread extends Thread{
         }
     
         match_.passFinalData(finalData, finalNotes);
-        
-        HashMap[] toReturn = {new HashMap<String, DataScout>(), new HashMap<String, NoteScout>()};
-    
-        for(DataScout scout_ : scouts){
-            scout_.matches.add(match_);
-            toReturn[0].put(scout_.getName(), scout_);
-        }
-    
-        for(NoteScout scout_ : noteScouts){
-            scout_.matches.add(match_);
-            toReturn[1].put(scout_.getName(), scout_);
-        }
-        
-       
-        return toReturn;
     }
     
     public static Object checkData(DataScout[] scouts, String key, int matchNum){
         ArrayList<Object> scoutData = new ArrayList<>();
-        try {
-            scoutData.add(DataScoutMatch.class.getField(key).get(scouts[0].matchData.get(scouts[0].matchesScouted.indexOf(matchNum))));
-        }catch (Exception e){
-            System.out.println(e);
-            return null;
-        }
-        if(scouts.length>=2){
+        for(DataScout scout : scouts) {
             try {
-                scoutData.add(DataScoutMatch.class.getField(key).get(scouts[1].matchData.get(scouts[1].matchesScouted.indexOf(matchNum))));
-            }catch (Exception e){
+                scoutData.add(DataScoutMatch.class.getField(key).get(scout.matchData.get(scout.matchesScouted.indexOf(matchNum))));
+            } catch (Exception e) {
                 System.out.println(e);
                 return null;
-            }
-            if(scouts.length>=3){
-                try {
-                    scoutData.add(DataScoutMatch.class.getField(key).get(scouts[2].matchData.get(scouts[2].matchesScouted.indexOf(matchNum))));
-                }catch (Exception e){
-                    System.out.println(e);
-                    return null;
-                }
             }
         }
     
         //FIXME this is jank
-        Object[] confScouts = confScouts(scoutData);
-        boolean[] scoutsCorrect = (boolean[])confScouts[1];
-        Object finalData = confScouts[0];
-        
-        
-        if(!checkTBA(key, finalData)){
-            finalData = getTBA(key, scouts, scoutData);
-        }else{
-            scouts[0].calculateRank(key, scoutsCorrect[0]);
-            if(scoutsCorrect.length >= 2) scouts[1].calculateRank(key, scoutsCorrect[1]);
-            if(scoutsCorrect.length >= 3) scouts[2].calculateRank(key, scoutsCorrect[2]);
+        Object correctData = findScoutMean(scouts, scoutData, key, matchNum);
+        for(int i=0; i<scouts.length; i++){
+            scouts[i].calculateRank(key, scoutData.get(i).equals(correctData));
         }
-        return finalData;
+        return correctData;
     }
     
-    public static Object[] confScouts(ArrayList<Object> scoutData){
-        boolean[] scoutsCorrect = new boolean[scoutData.size()];
-    
-        Object finalData = null;
-    
-        if(scoutData.size()==3){
-            if(scoutData.get(0).equals(scoutData.get(1))&&scoutData.get(0).equals(scoutData.get(2))){
-                scoutsCorrect[0] = scoutsCorrect[1] = scoutsCorrect[2] = true;
-                finalData= scoutData.get(0);
-            }else if(scoutData.get(0).equals(scoutData.get(1))&&!scoutData.get(0).equals(scoutData.get(2))){
-                scoutsCorrect[0] = scoutsCorrect[1] = true;
-                scoutsCorrect[2] = false;
-                finalData= scoutData.get(0);
-            }else if(scoutData.get(0).equals(scoutData.get(2))&&!scoutData.get(0).equals(scoutData.get(1))){
-                scoutsCorrect[0] = scoutsCorrect[2] = true;
-                scoutsCorrect[1] = false;
-                finalData= scoutData.get(0);
-            }else if(scoutData.get(1).equals(scoutData.get(2))&&!scoutData.get(1).equals(scoutData.get(0))){
-                scoutsCorrect[2] = scoutsCorrect[1] = true;
-                scoutsCorrect[0] = false;
-                finalData= scoutData.get(1);
-            }else{
-                scoutsCorrect[0] = true;
-                scoutsCorrect[1] = scoutsCorrect[2] = false;
-                finalData = scoutData.get(0);
+    public static Object findScoutMean(DataScout[] scouts, ArrayList<Object> scoutData, String key, int matchNum){
+        HashMap<Object, Integer> data = new HashMap<>();
+        Object correctData = null;
+        
+        for(int i=0; i<scoutData.size(); i++){
+            boolean found = false;
+            for(Object k : data.keySet()){
+                if(k.equals(scoutData.get(i))){
+                    data.put(k, data.get(k)+1);
+                    found = true;
+                }
             }
-        }else if(scoutData.size()==2){
-            if(scoutData.get(0).equals(scoutData.get(1))){
-                scoutsCorrect[0] = scoutsCorrect[1] = true;
-                finalData = scoutData.get(0);
-            }else{
-                scoutsCorrect[0] = true;
-                scoutsCorrect[1] = false;
-                finalData = scoutData.get(0);
+            if(!found){
+                data.put(scoutData.get(i), 1);
             }
-        }else{
-            scoutsCorrect[0] = true;
-            finalData = scoutData.get(0);
         }
         
-        Object[] toReturn = {finalData, scoutsCorrect};
-        return toReturn;
+//        for(Object scoutPoint : scoutData){
+//            if(data.containsKey(scoutPoint)){
+//                data.put(scoutPoint, data.get(scoutPoint)+1);
+//            }else{
+//                data.put(scoutPoint, 1);
+//            }
+//        }
+        
+        int correctDataRank = 0;
+        for(Object point : data.keySet()){
+            if(data.get(point) > correctDataRank){
+                correctData = point;
+                correctDataRank = data.get(correctData);
+            }else if(data.get(point)==correctDataRank){
+                correctData = null;
+            }
+        }
+        if(correctData==null){
+            correctData = scoutData.get(0); //highest ranked
+        }
+        
+        //CHECK TBA
+        if(!checkTBA(key, correctData)){
+            correctData = getTBA(key, scouts, scoutData);
+        }
+        
+        return correctData;
     }
     
     public static ArrayList<Shot> checkShots(DataScout[] scouts, int matchNum, int numShots){
         ArrayList<Shot> finalShots = new ArrayList<>();
         ArrayList<ArrayList<Shot>> scoutData = new ArrayList<>();
-        scoutData.add(scouts[0].matchData.get(scouts[0].matchesScouted.indexOf(matchNum)).shots);
-        if(scouts.length >=2){
-            scoutData.add(scouts[1].matchData.get(scouts[1].matchesScouted.indexOf(matchNum)).shots);
-            if(scouts.length >= 3){
-                scoutData.add(scouts[2].matchData.get(scouts[2].matchesScouted.indexOf(matchNum)).shots);
+        for(DataScout scout : scouts){
+            scoutData.add(scout.matchData.get(scout.matchesScouted.indexOf(matchNum)).shots);
+        }
+        ArrayList<ArrayList<LocalTime>> timeLines = new ArrayList<>();
+        for(int i=0; i<scoutData.size(); i++){
+            timeLines.add(i,new ArrayList<>());
+            for(int j=0; j<scoutData.get(i).size(); j++){
+                timeLines.get(i).add(j, scoutData.get(i).get(j).timeStamp);
             }
         }
-        
-        for(int i=0; i<=numShots; i++){
-            LocalTime shotTime = LocalTime.of(0,0);
-            ArrayList<Object> temp = new ArrayList<>();
-            Shot finalShot = null;
-            if (scoutData.get(0).size()>i) {
-                shotTime = scoutData.get(0).get(i).timeStamp;
-                temp.add(scoutData.get(0).get(i));
-                if(scoutData.size()>=2) {
-                    Shot tempShot = Functions.findShot(scoutData.get(1), shotTime, 2.0);
-                    if (tempShot != null) temp.add(tempShot);
-                    if(scoutData.size()>=3){
-                        tempShot = Functions.findShot(scoutData.get(2), shotTime, 2.0);
-                        if (tempShot!= null) temp.add(tempShot);
-                    }
+        ArrayList<LocalTime> finalTimeLine = alignTimelines(timeLines, numShots, scouts);
+        for(LocalTime shotTime : finalTimeLine){
+            ArrayList<Shot> shotList = new ArrayList<>();
+            for(int scoutShots=0; scoutShots<scoutData.size(); scoutShots++){
+                Shot tempShot = Functions.findShot(scoutData.get(scoutShots), shotTime, 5);
+                if(tempShot!=null) {
+                    shotList.add(tempShot); //todo determine if 5s is a good margin
                 }
-                //FIXME this is jank
-                Object[] confScouts = confScouts(temp);
-                boolean[] scoutsCorrect = (boolean[])confScouts[1];
-                finalShot = (Shot) confScouts[0];
-    
-                //TODO confirm that there's no way to check this on TBA
-    
-                scouts[0].calculateRank("shots", scoutsCorrect[0]);
-                if(scoutsCorrect.length >= 2){
-                    scouts[1].calculateRank("shots", scoutsCorrect[1]);
-                    if(scoutsCorrect.length >= 3){
-                        scouts[2].calculateRank("shots", scoutsCorrect[2]);
-                    }
-                }
-            }else if(scoutData.size()>=2 && scoutData.get(1).size()>i){
-                shotTime = scoutData.get(1).get(i).timeStamp;
-                temp.add(scoutData.get(1).get(i));
-                if(scoutData.size()>=3){
-                    Shot tempShot = Functions.findShot(scoutData.get(2), shotTime, 2.0);
-                    if (tempShot!= null) temp.add(tempShot);
-                }
-                //FIXME this is jank
-                Object[] confScouts = confScouts(temp);
-                boolean[] scoutsCorrect = (boolean[])confScouts[1];
-                finalShot = (Shot) confScouts[0];
-    
-                //TODO confirm that there's no way to check this on TBA
-    
-                scouts[1].calculateRank("shots", scoutsCorrect[1]);
-                if(scoutsCorrect.length >= 3){
-                    scouts[2].calculateRank("shots", scoutsCorrect[2]);
-                }
-                scouts[0].calculateRank("shots", false);
-            }else if (scoutData.size()>=3 && scoutData.get(2).size()>i){
-                scouts[2].calculateRank("shots", true);
-                finalShot = scoutData.get(2).get(i);
-                scouts[1].calculateRank("shots", false);
-                scouts[0].calculateRank("shots", false);
-            }else{
-                continue;
             }
-    
-            finalShots.add(finalShot);
-        
+            finalShots.add(findShotMean(scouts, shotList, matchNum));
         }
-        Collections.sort(finalShots);
+        
         return finalShots;
+    }
+    
+    public static Shot findShotMean(DataScout[] scouts, ArrayList<Shot> scoutData, int matchNum){
+        HashMap<LocalTime, Integer> timeFrequency = new HashMap<>();
+        //Time mean
+        for(int i=0; i<scoutData.size(); i++){
+            boolean found = false;
+            for(LocalTime k : timeFrequency.keySet()){
+                if(k.equals(scoutData.get(i).timeStamp)){
+                    timeFrequency.put(k, timeFrequency.get(k)+1);
+                    found = true;
+                }
+            }
+            if(!found){
+                timeFrequency.put(scoutData.get(i).timeStamp, 1);
+            }
+        }
         
+        int timeMaxFreq = 0;
+        LocalTime correctTime = null;
+        for(LocalTime k : timeFrequency.keySet()){
+            if(timeFrequency.get(k) > timeMaxFreq){
+                correctTime = k;
+                timeMaxFreq = timeFrequency.get(k);
+            }else if(timeFrequency.get(k) == timeMaxFreq){
+                correctTime = null;
+            }
+        }
+        
+        if(correctTime==null){
+            correctTime = scoutData.get(0).timeStamp; //set to best scout
+        }
+        
+        //Type mean
+        HashMap<Enums.Goal, Integer> typeFrequency = new HashMap<>();
+        typeFrequency.put(Enums.Goal.MISS, 0);
+        typeFrequency.put(Enums.Goal.INNER, 0);
+        typeFrequency.put(Enums.Goal.OUTER, 0);
+        typeFrequency.put(Enums.Goal.LOWER, 0);
+        for(int i=0; i<scoutData.size(); i++){
+            typeFrequency.put(scoutData.get(i).scored, typeFrequency.get(scoutData.get(i).scored)+1);
+        }
+    
+        int typeMaxFreq = 0;
+        Enums.Goal correctType = null;
+        for(Enums.Goal k : typeFrequency.keySet()){
+            if(typeFrequency.get(k) > typeMaxFreq){
+                correctType = k;
+                typeMaxFreq = typeFrequency.get(k);
+            }else if(typeFrequency.get(k) == typeMaxFreq){
+                correctType = null;
+            }
+        }
+    
+        if(correctType==null){
+            correctType = scoutData.get(0).scored; //set to best scout
+        }
+        
+        
+        //Position mean
+        HashMap<Point, Integer> positionFrequency = new HashMap<>();
+        for(int i=0; i<scoutData.size(); i++){
+            boolean found = false;
+            for(Point k : positionFrequency.keySet()){
+                //fixme test margins
+                if((Math.abs(k.getX()-scoutData.get(i).position.getX())<=10)&&(Math.abs(k.getY()-scoutData.get(i).position.getY())<=10)){
+                    positionFrequency.put(k, positionFrequency.get(k)+1);
+                    found = true;
+                }
+            }
+            if(!found){
+                positionFrequency.put(scoutData.get(i).position, 1);
+            }
+        }
+    
+        int positionMaxFreq = 0;
+        Point correctPos = null;
+        for(Point k : positionFrequency.keySet()){
+            if(positionFrequency.get(k) > positionMaxFreq){
+                correctPos = k;
+                positionMaxFreq = positionFrequency.get(k);
+            }else if(positionFrequency.get(k) == positionMaxFreq){
+                correctPos = null;
+            }
+        }
+    
+        if(correctPos==null){
+            correctPos = scoutData.get(0).position; //set to best scout
+        }
+        
+        //todo TBA
+        
+        return new Shot(correctPos, correctType, correctTime);
+        
+    }
+    
+    public static ArrayList<LocalTime> alignTimelines(ArrayList<ArrayList<LocalTime>> timeLines, int numShots, DataScout[] scouts){
+        //Convert timelines to floats
+        ArrayList<ArrayList<Float>> floatTimeLines = new ArrayList<>();
+        for(int i=0; i<timeLines.size(); i++){
+            floatTimeLines.add(i, new ArrayList<>());
+            for(int j=0; j<timeLines.get(i).size(); j++) {
+                floatTimeLines.get(i).add(Functions.getFloatTime(timeLines.get(i).get(j)));
+            }
+        }
+        
+        ArrayList<ArrayList<Float>> correctLength = new ArrayList<>();
+        
+        for(int i=0; i<floatTimeLines.size(); i++){
+            if(numShots == floatTimeLines.get(i).size()){
+                correctLength.add(floatTimeLines.get(i));
+            }else{
+                correctLength.add(new ArrayList<>());
+                for(int j=0; j<numShots; j++){
+                    correctLength.get(i).add((float)254); //IMPORTANT the number 254 is a key to see what hasn't been set
+                }
+            }
+        }
+        
+        ArrayList<Float> correctTimeline = new ArrayList<>();
+        //get highest ranked scout with correct length
+        for(int i=0; i<floatTimeLines.size(); i++){
+            if(correctLength.contains(floatTimeLines.get(i))){
+                correctTimeline = floatTimeLines.get(i);
+                i=floatTimeLines.size()+1;
+            }
+        }
+        
+        for(int wrongTL=0; wrongTL<floatTimeLines.size(); wrongTL++){
+            if(!correctLength.contains(floatTimeLines.get(wrongTL))){
+                //timeline is actually wrong
+                // create a matrix that is wrongTimes x rightTimes
+                // this will be filled with the time difference between
+                // each wrong time and every right time
+                Float[][] times = new Float[floatTimeLines.get(wrongTL).size()][correctTimeline.size()];
+                
+                for(int i=0; i<floatTimeLines.get(wrongTL).size(); i++){
+                    for(int j=0; j<correctTimeline.size(); j++){
+                        times[i][j] = Math.abs(correctTimeline.get(j)-floatTimeLines.get(wrongTL).get(i));
+                    }
+                }
+                
+                while(Functions.getMin(times)[0][0]<200){
+                    Float[][] lowestIndex = Functions.getMin(times); // [y,x]
+                    correctLength.get(wrongTL).set(Math.round(lowestIndex[1][1]), floatTimeLines.get(wrongTL).get(Math.round(lowestIndex[1][0])));
+                    int lowestRow = Math.round(lowestIndex[1][0]);
+                    for(int col=0; col<times[lowestRow].length; col++){
+                        times[lowestRow][col] = (float)200;
+                    }
+                }
+                
+                for(int t=0; t<correctLength.get(wrongTL).size(); t++){
+                    if(correctLength.get(wrongTL).get(t)==254){
+                        correctLength.get(wrongTL).set(t, correctTimeline.get(t));
+                    }
+                }
+            }
+        }
+        ArrayList<LocalTime> finalTimeline = new ArrayList<>();
+        for(int indivT = 0; indivT<numShots; indivT++){
+            ArrayList<Float> potentialTimes = new ArrayList<>();
+            for(int sNum=0; sNum<correctLength.size(); sNum++){
+                potentialTimes.add(correctLength.get(sNum).get(indivT));
+            }
+            finalTimeline.add(consolidateFloatTimes(potentialTimes, scouts));
+            System.out.println("ksjfslkdf");
+        }
+        return finalTimeline;
+    }
+    
+    public static LocalTime consolidateTimes(ArrayList<LocalTime> times, DataScout[] scouts){
+        ArrayList<Float> floatTimes = new ArrayList<>();
+        for(LocalTime time : times){
+            floatTimes.add(Functions.getFloatTime(time));
+        }
+        return consolidateFloatTimes(floatTimes, scouts);
+    }
+    
+    public static LocalTime consolidateFloatTimes(ArrayList<Float> floatTimes, DataScout[] scouts){
+        ArrayList<Float> weights = new ArrayList<>();
+        for(int w=0; w<floatTimes.size(); w++){
+            weights.add((float)Math.abs(floatTimes.size()-w)+1);
+        }
+        ArrayList<Float> weightedTimes = new ArrayList<>();
+        for(int i=0; i<floatTimes.size(); i++){
+            weightedTimes.add(floatTimes.get(i)*weights.get(i));
+        }
+        float avTime = Functions.getSum(weightedTimes)/Functions.getSum(weights);
+        return Functions.getLocalTime(avTime);
     }
     
     

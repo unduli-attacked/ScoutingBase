@@ -1,5 +1,7 @@
 package base.lib;
 
+import java.awt.*;
+
 public class Enums {
     
     public enum Station{
@@ -115,6 +117,42 @@ public class Enums {
             this.basic = str_;
         }
     
+        @Override
+        public String toString(){
+            return basic;
+        }
+    }
+    
+    public enum Dot {
+        SUCCESS(Color.CYAN, "Success"), FAILURE(Color.RED, "Failure"),
+        NO_ATTEMPT(Color.GRAY, "Not Attempted"), RECOVERED(Color.PINK, "Recovered"),
+        WAS_LIFTED(Color.MAGENTA, "Was Lifted"), LEVEL_TEAM(Color.BLUE, "Leveled With Multiple Bots");
+        
+        public Color col;
+        String basic;
+        Dot(Color col_, String basic_){
+            this.col = col_;
+            this.basic = basic_;
+        }
+        
+        public Dot getDot(Color color){
+            if(color.equals(Color.CYAN)){
+                return SUCCESS;
+            }else if(color.equals(Color.RED)){
+                return FAILURE;
+            }else if(color.equals(Color.GRAY)){
+                return NO_ATTEMPT;
+            }else if(color.equals(Color.PINK)){
+                return RECOVERED;
+            }else if(color.equals(Color.MAGENTA)){
+                return WAS_LIFTED;
+            }else if(color.equals(Color.BLUE)){
+                return LEVEL_TEAM;
+            }else{
+                return null;
+            }
+        }
+        
         @Override
         public String toString(){
             return basic;

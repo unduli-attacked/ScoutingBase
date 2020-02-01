@@ -49,7 +49,7 @@ public class DataScout implements Comparable{
     public int compareTo(Object o) {
         int compareRank = (int)Math.floor(((DataScout)o).getRank());
         int rank = (int)Math.floor(this.getRank());
-        //FIXME this needs to be tested idk what im do
+        
         return compareRank - rank;
         
     }

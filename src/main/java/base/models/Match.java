@@ -9,7 +9,7 @@ import base.models.NoteScout;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Match {
+public class Match implements Comparable{
     
     //MAJOR IDENTIFIERS
     public final int matchNum;
@@ -60,6 +60,15 @@ public class Match {
     public void passFinalData(DataScoutMatch finalData_, String bigNotes_) throws ClassCastException{
         this.matchData = finalData_;
         this.bigNotes = bigNotes_;
+    }
+    
+    @Override
+    public int compareTo(Object o) {
+        int compareRank = (int)Math.floor(((Match)o).matchNum);
+        int rank = (int)Math.floor(this.matchNum);
+        //FIXME this needs to be tested idk what im do
+        return rank - compareRank; //ascending
+        
     }
     
 }

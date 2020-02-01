@@ -9,6 +9,7 @@ import base.scouts.DataScout;
 import base.scouts.NoteScout;
 
 import javax.xml.crypto.Data;
+import java.awt.*;
 import java.time.LocalTime;
 import java.util.*;
 import java.util.function.Function;
@@ -171,17 +172,110 @@ public class CollationThread extends Thread{
         }
         ArrayList<LocalTime> finalTimeLine = alignTimelines(timeLines, numShots, scouts);
         for(LocalTime shotTime : finalTimeLine){
-            ArrayList<Object> shotList = new ArrayList<>();
-            for(ArrayList<Shot> scoutShots : scoutData){
-                shotList.add(Functions.findShot(scoutShots, shotTime, 15)); //todo determine if 5s is a good margin
+            ArrayList<Shot> shotList = new ArrayList<>();
+            for(int scoutShots=0; scoutShots<scoutData.size(); scoutShots++){
+                Shot tempShot = Functions.findShot(scoutData.get(scoutShots), shotTime, 5);
+                if(tempShot!=null) {
+                    shotList.add(tempShot); //todo determine if 5s is a good margin
+                }
             }
-            finalShots.add((Shot)findScoutMean(scouts, shotList, "shot", matchNum));
+            finalShots.add(findShotMean(scouts, shotList, matchNum));
         }
         
         return finalShots;
     }
     
     public static Shot findShotMean(DataScout[] scouts, ArrayList<Shot> scoutData, int matchNum){
+        HashMap<LocalTime, Integer> timeFrequency = new HashMap<>();
+        //Time mean
+        for(int i=0; i<scoutData.size(); i++){
+            boolean found = false;
+            for(LocalTime k : timeFrequency.keySet()){
+                if(k.equals(scoutData.get(i).timeStamp)){
+                    timeFrequency.put(k, timeFrequency.get(k)+1);
+                    found = true;
+                }
+            }
+            if(!found){
+                timeFrequency.put(scoutData.get(i).timeStamp, 1);
+            }
+        }
+        
+        int timeMaxFreq = 0;
+        LocalTime correctTime = null;
+        for(LocalTime k : timeFrequency.keySet()){
+            if(timeFrequency.get(k) > timeMaxFreq){
+                correctTime = k;
+                timeMaxFreq = timeFrequency.get(k);
+            }else if(timeFrequency.get(k) == timeMaxFreq){
+                correctTime = null;
+            }
+        }
+        
+        if(correctTime==null){
+            correctTime = scoutData.get(0).timeStamp; //set to best scout
+        }
+        
+        //Type mean
+        HashMap<Enums.Goal, Integer> typeFrequency = new HashMap<>();
+        typeFrequency.put(Enums.Goal.MISS, 0);
+        typeFrequency.put(Enums.Goal.INNER, 0);
+        typeFrequency.put(Enums.Goal.OUTER, 0);
+        typeFrequency.put(Enums.Goal.LOWER, 0);
+        for(int i=0; i<scoutData.size(); i++){
+            typeFrequency.put(scoutData.get(i).scored, typeFrequency.get(scoutData.get(i).scored)+1);
+        }
+    
+        int typeMaxFreq = 0;
+        Enums.Goal correctType = null;
+        for(Enums.Goal k : typeFrequency.keySet()){
+            if(typeFrequency.get(k) > typeMaxFreq){
+                correctType = k;
+                typeMaxFreq = typeFrequency.get(k);
+            }else if(typeFrequency.get(k) == typeMaxFreq){
+                correctType = null;
+            }
+        }
+    
+        if(correctType==null){
+            correctType = scoutData.get(0).scored; //set to best scout
+        }
+        
+        
+        //Position mean
+        HashMap<Point, Integer> positionFrequency = new HashMap<>();
+        for(int i=0; i<scoutData.size(); i++){
+            boolean found = false;
+            for(Point k : positionFrequency.keySet()){
+                //fixme test margins
+                if((Math.abs(k.getX()-scoutData.get(i).position.getX())<=10)&&(Math.abs(k.getY()-scoutData.get(i).position.getY())<=10)){
+                    positionFrequency.put(k, positionFrequency.get(k)+1);
+                    found = true;
+                }
+            }
+            if(!found){
+                positionFrequency.put(scoutData.get(i).position, 1);
+            }
+        }
+    
+        int positionMaxFreq = 0;
+        Point correctPos = null;
+        for(Point k : positionFrequency.keySet()){
+            if(positionFrequency.get(k) > positionMaxFreq){
+                correctPos = k;
+                positionMaxFreq = positionFrequency.get(k);
+            }else if(positionFrequency.get(k) == positionMaxFreq){
+                correctPos = null;
+            }
+        }
+    
+        if(correctPos==null){
+            correctPos = scoutData.get(0).position; //set to best scout
+        }
+        
+        //todo TBA
+        
+        return new Shot(correctPos, correctType, correctTime);
         
     }
     

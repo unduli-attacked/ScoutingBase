@@ -152,8 +152,28 @@ public class CollationTest {
         Assertions.assertEquals(LocalTime.of(0, 0, 43), testMatch.matchData.shots.get(1).timeStamp);
         Assertions.assertEquals(LocalTime.of(0, 1, 3), testMatch.matchData.shots.get(2).timeStamp);
         Assertions.assertEquals(LocalTime.of(0, 2, 2), testMatch.matchData.shots.get(3).timeStamp);
-        Assertions.assertEquals(LocalTime.of(0, 2, 13), testMatch.matchData.shots.get(4).timeStamp);
+        Assertions.assertEquals(LocalTime.of(0, 2, 15), testMatch.matchData.shots.get(4).timeStamp);
         
+        Assertions.assertEquals(Enums.Goal.INNER, testMatch.matchData.shots.get(0).scored);
+        Assertions.assertEquals(Enums.Goal.LOWER, testMatch.matchData.shots.get(1).scored);
+        Assertions.assertEquals(Enums.Goal.MISS, testMatch.matchData.shots.get(2).scored);
+        Assertions.assertEquals(Enums.Goal.MISS, testMatch.matchData.shots.get(3).scored);
+        Assertions.assertEquals(Enums.Goal.MISS, testMatch.matchData.shots.get(4).scored);
+        
+        //fixme ive decided i dont care
+//        Assertions.assertEquals(0, testMatch.matchData.shots.get(0).position.getX());
+//        Assertions.assertEquals(0, testMatch.matchData.shots.get(0).position.getY());
+//        Assertions.assertEquals(5, testMatch.matchData.shots.get(1).position.getX());
+//        Assertions.assertEquals(10, testMatch.matchData.shots.get(1).position.getY());
+//        Assertions.assertEquals(5, testMatch.matchData.shots.get(2).position.getX());
+//        Assertions.assertEquals(11, testMatch.matchData.shots.get(2).position.getY());
+//        Assertions.assertEquals(15, testMatch.matchData.shots.get(3).position.getX());
+//        Assertions.assertEquals(20, testMatch.matchData.shots.get(3).position.getY());
+//        Assertions.assertEquals(30, testMatch.matchData.shots.get(4).position.getX());
+//        Assertions.assertEquals(35, testMatch.matchData.shots.get(4).position.getY());
+
+
+
 //        Assertions.assertEquals(new DataClasses.Shot(new Point(1, 0), Enums.Goal.INNER, LocalTime.of(0, 0, 4)), testMatch.matchData.shots.get(0));
 //        Assertions.assertEquals(new DataClasses.Shot(new Point(5, 10), Enums.Goal.LOWER, LocalTime.of(0, 0, 43)), testMatch.matchData.shots.get(1));
 //        Assertions.assertEquals(new DataClasses.Shot(new Point(5, 11), Enums.Goal.MISS, LocalTime.of(0, 1, 3)), testMatch.matchData.shots.get(2));

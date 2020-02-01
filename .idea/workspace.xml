@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="004edafe-1625-4c7c-b11a-713e9f5ce831" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/lib/DataClasses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/lib/DataClasses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/lib/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/lib/Functions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/CollationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CollationTest.java" afterDir="false" />
     </list>
@@ -67,11 +64,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/CollationTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="148" selection-start-line="148" selection-end-line="148" />
+            <state relative-caret-position="72">
+              <caret line="171" column="82" selection-start-line="171" selection-start-column="82" selection-end-line="171" selection-end-column="82" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,13 +76,26 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="184" column="8" selection-start-line="184" selection-start-column="8" selection-end-line="184" selection-end-column="8" />
+            <state relative-caret-position="176">
+              <caret line="184" selection-start-line="184" selection-end-line="184" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/util/Objects.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="124">
+              <caret line="371" column="29" selection-start-line="371" selection-start-column="29" selection-end-line="371" selection-end-column="29" />
+              <folding>
+                <element signature="e#13877#13878#0" expanded="true" />
+                <element signature="e#13945#13946#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,7 +131,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/base/lib/DataClasses.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
+            <state relative-caret-position="560">
               <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -187,10 +197,10 @@
         <option value="$PROJECT_DIR$/src/main/java/base/Session.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/threads/PitCollectionThread.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/test/java/CollationTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/lib/Functions.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/lib/DataClasses.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java" />
+        <option value="$PROJECT_DIR$/src/test/java/CollationTest.java" />
       </list>
     </option>
   </component>
@@ -403,39 +413,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 17h 49m 15s.xml">
+    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 19h 38m 20s.xml">
       <configuration name="CollationTest.DataCollationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 17h 50m 25s.xml">
+    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 19h 39m 59s.xml">
       <configuration name="CollationTest.DataCollationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 17h 55m 49s.xml">
+    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 19h 40m 17s.xml">
       <configuration name="CollationTest.DataCollationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 17h 56m 13s.xml">
+    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 19h 42m 47s.xml">
       <configuration name="CollationTest.DataCollationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 18h 19m 46s.xml">
+    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 19h 43m 23s.xml">
       <configuration name="CollationTest.DataCollationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 18h 27m 59s.xml">
+    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 19h 43m 33s.xml">
       <configuration name="CollationTest.DataCollationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 18h 28m 48s.xml">
+    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 19h 47m 18s.xml">
       <configuration name="CollationTest.DataCollationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 18h 29m 47s.xml">
+    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 19h 47m 57s.xml">
       <configuration name="CollationTest.DataCollationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 18h 43m 37s.xml">
+    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 19h 50m 03s.xml">
       <configuration name="CollationTest.DataCollationTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 18h 44m 34s.xml">
+    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 19h 50m 20s.xml">
       <configuration name="CollationTest.DataCollationTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160010000" />
+    <option name="totallyTimeSpent" value="162847000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -459,8 +469,8 @@
       <window_info id="Favorites" order="5" sideWeight="0.50328225" side_tool="true" weight="0.21447721" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32892805" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34361234" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.17450683" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34294385" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.37632778" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49932975" weight="0.42584434" />
@@ -525,34 +535,16 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/CollationTest.java</url>
-          <line>148</line>
-          <properties />
-          <option name="timeStamp" value="74" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java</url>
-          <line>258</line>
-          <properties />
-          <option name="timeStamp" value="75" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java</url>
-          <line>180</line>
+          <line>184</line>
           <properties />
           <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java</url>
-          <line>177</line>
+          <line>181</line>
           <properties />
           <option name="timeStamp" value="90" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java</url>
-          <line>146</line>
-          <properties />
-          <option name="timeStamp" value="108" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -803,8 +795,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/base/lib/DataClasses.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
+        <state relative-caret-position="560">
           <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/util/Objects.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="371" column="29" selection-start-line="371" selection-start-column="29" selection-end-line="371" selection-end-column="29" />
+          <folding>
+            <element signature="e#13877#13878#0" expanded="true" />
+            <element signature="e#13945#13946#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="184" selection-start-line="184" selection-end-line="184" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -813,18 +826,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/CollationTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="148" selection-start-line="148" selection-end-line="148" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="184" column="8" selection-start-line="184" selection-start-column="8" selection-end-line="184" selection-end-column="8" />
+        <state relative-caret-position="72">
+          <caret line="171" column="82" selection-start-line="171" selection-start-column="82" selection-end-line="171" selection-end-column="82" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

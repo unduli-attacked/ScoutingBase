@@ -7,8 +7,8 @@ import base.lib.Enums;
 import base.lib.Functions;
 import base.scouts.DataScout;
 import base.scouts.NoteScout;
-import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 
+import javax.xml.crypto.Data;
 import java.time.LocalTime;
 import java.util.*;
 import java.util.function.Function;
@@ -114,13 +114,26 @@ public class CollationThread extends Thread{
         HashMap<Object, Integer> data = new HashMap<>();
         Object correctData = null;
         
-        for(Object scoutPoint : scoutData){
-            if(data.get(scoutPoint)!=null){
-                data.put(scoutPoint, data.get(scoutPoint)+1);
-            }else{
-                data.put(scoutPoint, 1);
+        for(int i=0; i<scoutData.size(); i++){
+            boolean found = false;
+            for(Object k : data.keySet()){
+                if(k.equals(scoutData.get(i))){
+                    data.put(k, data.get(k)+1);
+                    found = true;
+                }
+            }
+            if(!found){
+                data.put(scoutData.get(i), 1);
             }
         }
+        
+//        for(Object scoutPoint : scoutData){
+//            if(data.containsKey(scoutPoint)){
+//                data.put(scoutPoint, data.get(scoutPoint)+1);
+//            }else{
+//                data.put(scoutPoint, 1);
+//            }
+//        }
         
         int correctDataRank = 0;
         for(Object point : data.keySet()){
@@ -156,11 +169,11 @@ public class CollationThread extends Thread{
                 timeLines.get(i).add(j, scoutData.get(i).get(j).timeStamp);
             }
         }
-        ArrayList<LocalTime> finalTimeLine = alignTimelines(timeLines, numShots);
+        ArrayList<LocalTime> finalTimeLine = alignTimelines(timeLines, numShots, scouts);
         for(LocalTime shotTime : finalTimeLine){
             ArrayList<Object> shotList = new ArrayList<>();
             for(ArrayList<Shot> scoutShots : scoutData){
-                shotList.add(Functions.findShot(scoutShots, shotTime, 5)); //todo determine if 5s is a good margin
+                shotList.add(Functions.findShot(scoutShots, shotTime, 15)); //todo determine if 5s is a good margin
             }
             finalShots.add((Shot)findScoutMean(scouts, shotList, "shot", matchNum));
         }
@@ -168,29 +181,39 @@ public class CollationThread extends Thread{
         return finalShots;
     }
     
-    public static ArrayList<LocalTime> alignTimelines(ArrayList<ArrayList<LocalTime>> timeLines, int numShots){
+    public static Shot findShotMean(DataScout[] scouts, ArrayList<Shot> scoutData, int matchNum){
+        
+    }
+    
+    public static ArrayList<LocalTime> alignTimelines(ArrayList<ArrayList<LocalTime>> timeLines, int numShots, DataScout[] scouts){
         //Convert timelines to floats
         ArrayList<ArrayList<Float>> floatTimeLines = new ArrayList<>();
         for(int i=0; i<timeLines.size(); i++){
             floatTimeLines.add(i, new ArrayList<>());
             for(int j=0; j<timeLines.get(i).size(); j++) {
-                floatTimeLines.get(i).add(j, Functions.getFloatTime(timeLines.get(i).get(j)));
+                floatTimeLines.get(i).add(Functions.getFloatTime(timeLines.get(i).get(j)));
             }
         }
         
         ArrayList<ArrayList<Float>> correctLength = new ArrayList<>();
+        
         for(int i=0; i<floatTimeLines.size(); i++){
             if(numShots == floatTimeLines.get(i).size()){
-                correctLength.add(i, floatTimeLines.get(i));
+                correctLength.add(floatTimeLines.get(i));
+            }else{
+                correctLength.add(new ArrayList<>());
+                for(int j=0; j<numShots; j++){
+                    correctLength.get(i).add((float)254); //IMPORTANT the number 254 is a key to see what hasn't been set
+                }
             }
         }
         
         ArrayList<Float> correctTimeline = new ArrayList<>();
-        //get highest ranked scout with correct length TODO implement mean
+        //get highest ranked scout with correct length
         for(int i=0; i<floatTimeLines.size(); i++){
             if(correctLength.contains(floatTimeLines.get(i))){
                 correctTimeline = floatTimeLines.get(i);
-                break; //FIXME test that this yeets out of for loop
+                i=floatTimeLines.size()+1;
             }
         }
         
@@ -210,10 +233,16 @@ public class CollationThread extends Thread{
                 
                 while(Functions.getMin(times)[0][0]<200){
                     Float[][] lowestIndex = Functions.getMin(times); // [y,x]
-                    correctLength.get(wrongTL).add(Math.round(lowestIndex[1][1]), floatTimeLines.get(wrongTL).get(Math.round(lowestIndex[1][0])));
+                    correctLength.get(wrongTL).set(Math.round(lowestIndex[1][1]), floatTimeLines.get(wrongTL).get(Math.round(lowestIndex[1][0])));
                     int lowestRow = Math.round(lowestIndex[1][0]);
                     for(int col=0; col<times[lowestRow].length; col++){
                         times[lowestRow][col] = (float)200;
+                    }
+                }
+                
+                for(int t=0; t<correctLength.get(wrongTL).size(); t++){
+                    if(correctLength.get(wrongTL).get(t)==254){
+                        correctLength.get(wrongTL).set(t, correctTimeline.get(t));
                     }
                 }
             }
@@ -224,48 +253,31 @@ public class CollationThread extends Thread{
             for(int sNum=0; sNum<correctLength.size(); sNum++){
                 potentialTimes.add(correctLength.get(sNum).get(indivT));
             }
-            finalTimeline.add(consolidateFloatTimes(potentialTimes));
+            finalTimeline.add(consolidateFloatTimes(potentialTimes, scouts));
+            System.out.println("ksjfslkdf");
         }
         return finalTimeline;
     }
     
-    public static LocalTime consolidateTimes(ArrayList<LocalTime> times){
+    public static LocalTime consolidateTimes(ArrayList<LocalTime> times, DataScout[] scouts){
         ArrayList<Float> floatTimes = new ArrayList<>();
         for(LocalTime time : times){
             floatTimes.add(Functions.getFloatTime(time));
         }
-        return consolidateFloatTimes(floatTimes);
+        return consolidateFloatTimes(floatTimes, scouts);
     }
     
-    public static LocalTime consolidateFloatTimes(ArrayList<Float> floatTimes){
-        SummaryStatistics stat = new SummaryStatistics();
-        for(float t : floatTimes){
-            stat.addValue(t);
+    public static LocalTime consolidateFloatTimes(ArrayList<Float> floatTimes, DataScout[] scouts){
+        ArrayList<Float> weights = new ArrayList<>();
+        for(int w=0; w<floatTimes.size(); w++){
+            weights.add((float)Math.abs(floatTimes.size()-w)+1);
         }
-        double mean = stat.getMean();
-        double std = stat.getStandardDeviation();
-        if(std == 0 || floatTimes.contains((float)mean)){
-            return LocalTime.of(0, 0, Math.round((float)mean));
+        ArrayList<Float> weightedTimes = new ArrayList<>();
+        for(int i=0; i<floatTimes.size(); i++){
+            weightedTimes.add(floatTimes.get(i)*weights.get(i));
         }
-        
-        //STOLEN FROM CITRUS
-        ArrayList<Float[]> recipZScore = new ArrayList<>();
-        for(float t : floatTimes){
-            recipZScore.add(new Float[]{t, (float)Math.pow((1/((mean - t)/std)), 2)});
-        }
-        
-        ArrayList<Float> weightedTimes = new ArrayList<Float>();
-        for(Float[] score : recipZScore){
-            weightedTimes.add(score[0]*score[1]);
-        }
-        
-        float weightSum=0, recipSum=0;
-        for(int i=0; i<recipZScore.size()-1; i++){
-            weightSum +=weightedTimes.get(i);
-            recipSum += recipZScore.get(i)[1];
-        }
-        
-        return LocalTime.of(0, 0, Math.round(weightSum/recipSum));
+        float avTime = Functions.getSum(weightedTimes)/Functions.getSum(weights);
+        return Functions.getLocalTime(avTime);
     }
     
     

@@ -18,11 +18,13 @@ public class Functions {
      * @return desired shot
      */
     public static Shot findShot(ArrayList<Shot> shots_, LocalTime timeStamp_, double margin){
+        float floatStamp = getFloatTime(timeStamp_);
         for(Shot shot_ : shots_){
-            if(shot_.timeStamp.equals(timeStamp_) ||
-                    (shot_.timeStamp.isAfter(timeStamp_.minusSeconds((long) margin))&&shot_.timeStamp.isBefore(timeStamp_.plusSeconds((long) margin)))){
+            float floatShot = getFloatTime(shot_.timeStamp);
+            if(floatShot==floatStamp || (Math.abs(floatStamp-floatShot)<=margin)){
                 return shot_;
             }
+            
         }
 //        ReportFunctions.report("Shot at "+timeStamp_.format(DateTimeFormatter.ISO_LOCAL_TIME)+" not found.");
         return null;
@@ -52,7 +54,8 @@ public class Functions {
      * @return
      */
     public static float getFloatTime(LocalTime obTime){
-        return obTime.getSecond()+obTime.getMinute()*60;
+        float temp = obTime.getSecond()+obTime.getMinute()*60;
+        return temp;
     }
     
     /**
@@ -86,5 +89,14 @@ public class Functions {
             }
         }
         return new Float[][]{{min},{(float)y,(float)x}};
+    }
+    
+    public static float getSum(ArrayList<Float> ls){
+        float sum = 0;
+        for(float fl : ls){
+            sum += fl;
+        }
+        return sum;
+        
     }
 }

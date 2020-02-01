@@ -1,10 +1,6 @@
-package base.scouts;
-
-import base.Pit;
-import base.Session;
+package base.models;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class PitScout{
     String name;

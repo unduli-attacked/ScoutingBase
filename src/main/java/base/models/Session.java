@@ -1,8 +1,4 @@
-package base;
-
-import base.scouts.DataScout;
-import base.scouts.NoteScout;
-import base.scouts.PitScout;
+package base.models;
 
 import java.util.ArrayList;
 import java.util.HashMap;

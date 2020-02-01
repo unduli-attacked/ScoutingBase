@@ -1,18 +1,16 @@
 package base.threads;
 
 import base.Main;
-import base.Match;
+import base.models.Match;
 import base.lib.DataClasses.*;
 import base.lib.Enums;
 import base.lib.Functions;
-import base.scouts.DataScout;
-import base.scouts.NoteScout;
+import base.models.DataScout;
+import base.models.NoteScout;
 
-import javax.xml.crypto.Data;
 import java.awt.*;
 import java.time.LocalTime;
 import java.util.*;
-import java.util.function.Function;
 
 public class CollationThread extends Thread{
 

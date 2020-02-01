@@ -1,8 +1,8 @@
-import base.Match;
+import base.models.Match;
 import base.lib.DataClasses;
 import base.lib.Enums;
-import base.scouts.DataScout;
-import base.scouts.NoteScout;
+import base.models.DataScout;
+import base.models.NoteScout;
 import base.threads.CollationThread;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

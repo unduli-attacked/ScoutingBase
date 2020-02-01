@@ -1,12 +1,11 @@
-package base;
+package base.models;
 
+import base.Main;
 import base.lib.DataClasses.*;
 import base.lib.Enums.*;
-import base.scouts.DataScout;
-import base.scouts.NoteScout;
+import base.models.DataScout;
+import base.models.NoteScout;
 
-import java.awt.*;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 

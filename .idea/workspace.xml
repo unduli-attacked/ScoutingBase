@@ -2,7 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="004edafe-1625-4c7c-b11a-713e9f5ce831" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/base/models/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/Pit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/Pit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/SecondPit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/SecondPit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/lib/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/lib/Functions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/scouts/DataScout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/DataScout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/scouts/NoteScout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/NoteScout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/scouts/PitScout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/PitScout.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/threads/PitCollectionThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/threads/PitCollectionThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/CollationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CollationTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -64,11 +75,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/CollationTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="171" column="82" selection-start-line="171" selection-start-column="82" selection-end-line="171" selection-end-column="82" />
+            <state relative-caret-position="304">
+              <caret line="162" column="39" selection-start-line="162" selection-start-column="39" selection-end-line="162" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -80,7 +91,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="176">
-              <caret line="184" selection-start-line="184" selection-end-line="184" />
+              <caret line="182" selection-start-line="182" selection-end-line="182" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -102,10 +113,25 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/time/LocalTime.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Session.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-540">
-              <caret line="321" column="30" selection-start-line="321" selection-start-column="30" selection-end-line="321" selection-end-column="30" />
+            <state relative-caret-position="100">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Team.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -114,16 +140,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/base/lib/Functions.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="69">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -133,6 +150,42 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="560">
               <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Match.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Pit.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/base/models/SecondPit.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-7">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -201,6 +254,7 @@
         <option value="$PROJECT_DIR$/src/main/java/base/lib/DataClasses.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java" />
         <option value="$PROJECT_DIR$/src/test/java/CollationTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/base/models/Team.java" />
       </list>
     </option>
   </component>
@@ -267,7 +321,7 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="base" type="462c0819:PsiDirectoryNode" />
-              <item name="scouts" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ScoutingBase2020" type="b2602c69:ProjectViewProjectNode" />
@@ -277,21 +331,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="base" type="462c0819:PsiDirectoryNode" />
               <item name="threads" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ScoutingBase2020" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ScoutingBase2020" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ScoutingBase2020" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ScoutingBase2020" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="layouts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ScoutingBase2020" type="b2602c69:ProjectViewProjectNode" />
@@ -413,12 +452,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 19h 38m 20s.xml">
-      <configuration name="CollationTest.DataCollationTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 19h 39m 59s.xml">
-      <configuration name="CollationTest.DataCollationTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 19h 40m 17s.xml">
       <configuration name="CollationTest.DataCollationTest" configurationId="JUnit" />
     </history-entry>
@@ -443,9 +476,15 @@
     <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 19h 50m 20s.xml">
       <configuration name="CollationTest.DataCollationTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 19h 55m 29s.xml">
+      <configuration name="CollationTest.DataCollationTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CollationTest_DataCollationTest - 2020.01.31 at 19h 56m 22s.xml">
+      <configuration name="CollationTest.DataCollationTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="162847000" />
+    <option name="totallyTimeSpent" value="163780000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -461,7 +500,7 @@
     <editor active="true" />
     <layout>
       <window_info anchor="top" id="Structure" order="0" sideWeight="0.31903484" side_tool="true" weight="0.37936267" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6809651" visible="true" weight="0.21447721" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6809651" visible="true" weight="0.21447721" />
       <window_info id="Designer" order="1" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -469,7 +508,7 @@
       <window_info id="Favorites" order="5" sideWeight="0.50328225" side_tool="true" weight="0.21447721" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32892805" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34294385" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34294385" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.37632778" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -536,13 +575,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java</url>
-          <line>184</line>
+          <line>182</line>
           <properties />
           <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java</url>
-          <line>181</line>
+          <line>179</line>
           <properties />
           <option name="timeStamp" value="90" />
         </line-breakpoint>
@@ -620,7 +659,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/scouts/NoteScout.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/models/NoteScout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
           <caret line="13" column="63" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
@@ -658,7 +697,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/scouts/DataScout.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/models/DataScout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="15" column="63" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
@@ -675,50 +714,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/Match.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="23" column="66" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/SecondPit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/Pit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="53" column="12" selection-start-line="53" selection-start-column="12" selection-end-line="53" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/base/lib/SheetsFunctions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="85" column="46" selection-start-line="85" selection-start-column="46" selection-end-line="85" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/Session.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="31" column="49" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -738,7 +737,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/scouts/PitScout.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/models/PitScout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
@@ -789,7 +788,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/base/lib/Functions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
@@ -817,7 +816,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
-          <caret line="184" selection-start-line="184" selection-end-line="184" />
+          <caret line="182" selection-start-line="182" selection-end-line="182" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -826,8 +825,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/CollationTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="171" column="82" selection-start-line="171" selection-start-column="82" selection-end-line="171" selection-end-column="82" />
+        <state relative-caret-position="304">
+          <caret line="162" column="39" selection-start-line="162" selection-start-column="39" selection-end-line="162" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Match.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Pit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/models/SecondPit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Session.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Team.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -1,13 +1,11 @@
 package base.lib;
 
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import base.Main;
-import base.Pit;
+import base.models.Pit;
 import base.lib.DataClasses.*;
-import base.scouts.PitScout;
 
 public class Functions {
     /**

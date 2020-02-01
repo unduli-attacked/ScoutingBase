@@ -1,12 +1,8 @@
-package base.scouts;
+package base.models;
 
-import base.Match;
-import base.Session;
 import base.lib.DataClasses.*;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class DataScout implements Comparable{
     String name;

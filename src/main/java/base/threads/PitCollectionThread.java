@@ -1,17 +1,14 @@
 package base.threads;
 
 import base.Main;
-import base.Pit;
-import base.SecondPit;
+import base.models.Pit;
+import base.models.SecondPit;
 import base.lib.ColumnMappings;
 import base.lib.Enums;
 import base.lib.Enums.*;
 import base.lib.Functions;
 import base.lib.SheetsFunctions;
 import static base.lib.ColumnMappings.MainPit.*;
-import base.SecondPit;
-
-import com.google.api.services.sheets.v4.model.Sheet;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;

@@ -1,11 +1,8 @@
-package base.scouts;
+package base.models;
 
-import base.Match;
-import base.Session;
 import base.lib.DataClasses.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class NoteScout {
     public String name;

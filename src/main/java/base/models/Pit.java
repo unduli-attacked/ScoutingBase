@@ -1,4 +1,4 @@
-package base;
+package base.models;
 
 import base.lib.DataClasses;
 import base.lib.Enums.*;

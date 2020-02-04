@@ -124,9 +124,10 @@ public class Enums {
     }
     
     public enum Dot {
-        SUCCESS(Color.CYAN, "Success"), FAILURE(Color.RED, "Failure"),
+        SUCCESS(Color.GREEN, "Success"), FAILURE(Color.RED, "Failure"),
         NO_ATTEMPT(Color.GRAY, "Not Attempted"), RECOVERED(Color.PINK, "Recovered"),
-        WAS_LIFTED(Color.MAGENTA, "Was Lifted"), LEVEL_TEAM(Color.BLUE, "Leveled With Multiple Bots");
+        WAS_LIFTED(Color.MAGENTA, "Was Lifted"), LEVEL_SELF(Color.CYAN, "Leveled alone"),
+        LEVEL_TEAM(Color.BLUE, "Leveled With Multiple Bots");
         
         public Color col;
         String basic;
@@ -136,7 +137,7 @@ public class Enums {
         }
         
         public Dot getDot(Color color){
-            if(color.equals(Color.CYAN)){
+            if(color.equals(Color.GREEN)){
                 return SUCCESS;
             }else if(color.equals(Color.RED)){
                 return FAILURE;
@@ -148,6 +149,8 @@ public class Enums {
                 return WAS_LIFTED;
             }else if(color.equals(Color.BLUE)){
                 return LEVEL_TEAM;
+            }else if (color.equals(Color.CYAN)){
+                return LEVEL_SELF;
             }else{
                 return null;
             }

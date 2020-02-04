@@ -1,5 +1,6 @@
 package base.models;
 
+import base.Main;
 import base.lib.DataClasses.*;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class NoteScout {
     
     public NoteScout(String name_){
         this.name = name_;
+        Main.currentSession.noteScouts.put(this.name, this);
     }
     
     public String getName() {

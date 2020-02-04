@@ -35,6 +35,7 @@ public class CollationThread extends Thread{
         finalData.teamNum = (int) checkData(scouts, "teamNum", match_.matchNum);
         finalData.absent = (boolean) checkData(scouts, "absent", match_.matchNum);
         finalData.startingPosition = (double) checkData(scouts, "startingPosition", match_.matchNum);
+        finalData.moved = (boolean) checkData(scouts, "moved", match_.matchNum);
         finalData.capacityTimeS1 = (LocalTime) checkData(scouts, "capacityTimeS1", match_.matchNum);
         finalData.capacityTimeS2 = (LocalTime) checkData(scouts, "capacityTimeS2", match_.matchNum);
         finalData.capacityTimeS3 = (LocalTime) checkData(scouts, "capacityTimeS3", match_.matchNum);

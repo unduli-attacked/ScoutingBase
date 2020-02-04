@@ -1,5 +1,6 @@
 package base.models;
 
+import base.Main;
 import base.lib.DataClasses;
 import base.lib.Enums.*;
 
@@ -60,5 +61,6 @@ public class Pit {
         this.scoutID = scoutEmail_.split("@")[0]; //Get the first part of the email
         this.timeScouted = LocalTime.parse(timeScouted_, DateTimeFormatter.ofPattern("MM/dd/uuuu kk:mm:ss")); //TODO test me s3nd help
         this.interviewee = interviewee_;
+        Main.currentSession.pits.add(this);
     }
 }

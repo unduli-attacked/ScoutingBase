@@ -18,8 +18,8 @@ public class Match implements Comparable{
     private boolean isColl = false;
     
     //RAW DATA
-     public ArrayList<String> matchScouts = new ArrayList<>();
-     public ArrayList<String> noteScouts = new ArrayList<>();
+     public ArrayList<DataScout> matchScouts = new ArrayList<>(); //if something breaks, it's bc this was strings
+     public ArrayList<NoteScout> noteScouts = new ArrayList<>();
     public HashMap<String, Object> matchBreakdown = new HashMap<>();
     
     //FINAL DATA
@@ -32,14 +32,15 @@ public class Match implements Comparable{
         this.matchNum = matchNum_;
         this.teamNum = teamNum_;
         this.allPos = alliancePosition_;
+        Main.currentSession.matches.add(this);
     }
     
     public void addDataScout(DataScout scout_){
-        this.matchScouts.add(scout_.getName());
+        this.matchScouts.add(scout_);
     }
 
     public void addNoteScout(NoteScout scout_) {
-        this.noteScouts.add(scout_.getName());
+        this.noteScouts.add(scout_);
     }
     
     public void addTBAData(HashMap<String, Object> matchBreakdown_){

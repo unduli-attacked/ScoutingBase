@@ -22,7 +22,7 @@ public class Session {
     
     public ArrayList<Match> matches;
     public ArrayList<Pit> pits;
-    public ArrayList teams;
+    public ArrayList<Team> teams;
     public HashMap<String, PitScout> pitScouts; //scoutID, scout
     public HashMap<String, DataScout> standScouts; //scoutName, scout
     public HashMap<String, NoteScout> noteScouts; //scoutName, scout

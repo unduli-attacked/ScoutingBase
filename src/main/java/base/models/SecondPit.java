@@ -1,5 +1,7 @@
 package base.models;
 
+import base.Main;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

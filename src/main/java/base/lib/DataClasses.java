@@ -52,6 +52,7 @@ public class DataClasses {
         public int teamNum;
         public boolean absent;
         public double startingPosition;
+        public boolean moved;
         public LocalTime capacityTimeS1;
         public LocalTime capacityTimeS2;
         public LocalTime capacityTimeS3;

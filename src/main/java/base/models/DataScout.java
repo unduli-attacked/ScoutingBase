@@ -1,5 +1,6 @@
 package base.models;
 
+import base.Main;
 import base.lib.DataClasses.*;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class DataScout implements Comparable{
     
     public DataScout(String name_){
         this.name = name_;
+        Main.currentSession.standScouts.put(this.name, this);
     }
     
     public String getName() {

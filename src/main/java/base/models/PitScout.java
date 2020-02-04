@@ -1,5 +1,7 @@
 package base.models;
 
+import base.Main;
+
 import java.util.ArrayList;
 
 public class PitScout{
@@ -13,6 +15,7 @@ public class PitScout{
     public PitScout(String name_, String scoutID_) {
         this.name = name_;
         this.scoutID = scoutID_;
+        Main.currentSession.pitScouts.put(this.scoutID, this);
     }
     
     public String getID() {

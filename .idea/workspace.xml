@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="004edafe-1625-4c7c-b11a-713e9f5ce831" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/lib/DataClasses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/lib/DataClasses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/lib/Enums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/lib/Enums.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/DataScout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/DataScout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/NoteScout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/NoteScout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/Pit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/Pit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/PitScout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/PitScout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/SecondPit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/SecondPit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java" afterDir="false" />
-    </list>
+    <list default="true" id="004edafe-1625-4c7c-b11a-713e9f5ce831" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -79,10 +66,13 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Team.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="444">
-                  <caret line="202" column="52" selection-start-line="202" selection-start-column="52" selection-end-line="202" selection-end-column="52" />
+                <state relative-caret-position="204">
+                  <caret line="107" column="4" lean-forward="true" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="4" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="method#addMatch#0;class#Team#0" />
+                    <element signature="method#addPit#0;class#Team#0" />
+                    <element signature="method#addSecondPit#0;class#Team#0" />
                   </folding>
                 </state>
               </provider>
@@ -192,7 +182,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Team.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="20">
+                <state relative-caret-position="620">
                   <caret line="98" column="41" selection-start-line="98" selection-start-column="41" selection-end-line="98" selection-end-column="41" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -525,7 +515,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="171485000" />
+    <option name="totallyTimeSpent" value="172169000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -903,10 +893,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Team.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="202" column="52" selection-start-line="202" selection-start-column="52" selection-end-line="202" selection-end-column="52" />
+        <state relative-caret-position="204">
+          <caret line="107" column="4" lean-forward="true" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#addMatch#0;class#Team#0" />
+            <element signature="method#addPit#0;class#Team#0" />
+            <element signature="method#addSecondPit#0;class#Team#0" />
           </folding>
         </state>
       </provider>

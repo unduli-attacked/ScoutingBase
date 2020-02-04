@@ -202,4 +202,14 @@ public class Team {
         this.totalScoring.put(match_, tempTotalScore);
         this.autoScoring.put(match_, tempAutoScore);
     }
+    
+    public void addPit(Pit pit_){
+        this.mainPit = pit_;
+        this.pitScouts.add(Main.currentSession.pitScouts.get(pit_.scoutID));
+    }
+    
+    public void addSecondPit(SecondPit pit_){
+        this.secondPits.add(pit_);
+        this.pitScouts.add(Main.currentSession.pitScouts.get(pit_.scoutID));
+    }
 }

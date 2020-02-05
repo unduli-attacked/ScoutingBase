@@ -4,8 +4,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 import base.Main;
+import base.models.Match;
 import base.models.Pit;
 import base.lib.DataClasses.*;
+import base.models.SecondPit;
 
 public class Functions {
     /**
@@ -40,6 +42,21 @@ public class Functions {
             }
         }
         return null;
+    }
+    
+    /**
+     * finds an existing Match data classes for a team
+     * @param teamNum_ the team number
+     * @return the team's matches, or null if none found
+     */
+    public static ArrayList<Match> findMatch(int teamNum_){
+        ArrayList<Match> temp = new ArrayList<>();
+        for(Match match : Main.currentSession.matches){
+            if(match.teamNum == teamNum_){
+                temp.add(match);
+            }
+        }
+        return temp;
     }
     
     public static float compareLocalTime(LocalTime first, LocalTime second){

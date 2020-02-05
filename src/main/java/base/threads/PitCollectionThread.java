@@ -158,6 +158,8 @@ public class PitCollectionThread extends Thread {
         tempPit.autoPref = getStrat(new String[]{(String)temp.get(AUTO_PREF.val)}).get(0);
         tempPit.stratNotes = (String)temp.get(STRAT_NOTES.val);
         tempPit.imageLink = (ArrayList<String>)Arrays.asList(((String)temp.get(PHOTOS.val)).split(", "));
+        
+        tempPit.dataFilled = true;
         return tempPit;
     }
     

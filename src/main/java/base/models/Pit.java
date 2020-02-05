@@ -16,6 +16,7 @@ public class Pit {
     public String scoutID;
     public LocalTime timeScouted;
     public String interviewee;
+    public boolean dataFilled = false;
     
     //TECHNICAL
     public double practialWeight;
@@ -62,5 +63,16 @@ public class Pit {
         this.timeScouted = LocalTime.parse(timeScouted_, DateTimeFormatter.ofPattern("MM/dd/uuuu kk:mm:ss")); //TODO test me s3nd help
         this.interviewee = interviewee_;
         Main.currentSession.pits.add(this);
+    }
+    
+    @Override
+    public boolean equals(Object o){
+        if(o.getClass() != Pit.class){
+            return false;
+        }
+        return ((Pit) o).teamNum == this.teamNum
+                && ((Pit) o).teamName.equals(this.teamName)
+                && ((Pit) o).scoutID.equals(this.scoutID)
+                && ((Pit) o).timeScouted.equals(this.timeScouted);
     }
 }

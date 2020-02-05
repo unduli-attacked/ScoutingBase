@@ -12,7 +12,7 @@ import java.awt.*;
 import java.time.LocalTime;
 import java.util.*;
 
-public class CollationThread extends Thread{
+public class MatchCollationThread extends Thread{
 
     @Override
     public void run(){

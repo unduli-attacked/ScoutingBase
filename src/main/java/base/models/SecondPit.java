@@ -30,4 +30,16 @@ public class SecondPit {
         this.timeScouted = LocalTime.parse(timeScouted_, DateTimeFormatter.ofPattern("MM/dd/uuuu kk:mm:ss")); //TODO test me s3nd help
         this.interviewee = interviewee_;
     }
+    
+    @Override
+    public boolean equals(Object o){
+        if(o.getClass() != SecondPit.class){
+            return false;
+        }
+        
+        return ((SecondPit) o).teamName.equals(this.teamName)
+                && ((SecondPit) o).teamNum == this.teamNum
+                && ((SecondPit) o).scoutID.equals(this.scoutID)
+                && ((SecondPit) o).timeScouted.equals(this.timeScouted);
+    }
 }

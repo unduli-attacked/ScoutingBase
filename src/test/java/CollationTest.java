@@ -3,7 +3,7 @@ import base.lib.DataClasses;
 import base.lib.Enums;
 import base.models.DataScout;
 import base.models.NoteScout;
-import base.threads.CollationThread;
+import base.threads.MatchCollationThread;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -134,7 +134,7 @@ public class CollationTest {
         noteScoutHashMap.put(testNoteScout1.getName(), testNoteScout1);
         noteScoutHashMap.put(testNoteScout2.getName(), testNoteScout2);
     
-        CollationThread.collate(testMatch, dataScoutHashMap, noteScoutHashMap);
+        MatchCollationThread.collate(testMatch, dataScoutHashMap, noteScoutHashMap);
         
         //TODO check ranks later
 //        Assertions.assertEquals(123, testScout1.getRank());

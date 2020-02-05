@@ -206,6 +206,9 @@ public class Team {
     public void addPit(Pit pit_){
         this.mainPit = pit_;
         this.pitScouts.add(Main.currentSession.pitScouts.get(pit_.scoutID));
+        for(SecondPit pit : pit_.secondPits.values()){
+            this.addSecondPit(pit);
+        }
     }
     
     public void addSecondPit(SecondPit pit_){

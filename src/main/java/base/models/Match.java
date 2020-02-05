@@ -52,15 +52,10 @@ public class Match implements Comparable{
             && (noteScouts.size() >= Main.currentSession.numNoteScouts);
     }
     
-    /**
-     * Pass data correlated by the correlation thread to the Match class
-     * @param finalData_
-     *      String is the Match.java variable name
-     *      Object is it's value
-     */
-    public void passFinalData(DataScoutMatch finalData_, String bigNotes_) throws ClassCastException{
+    public void passFinalData(DataScoutMatch finalData_, String bigNotes_){
         this.matchData = finalData_;
         this.bigNotes = bigNotes_;
+        this.isColl = true;
     }
     
     @Override
@@ -70,6 +65,13 @@ public class Match implements Comparable{
         //FIXME this needs to be tested idk what im do
         return rank - compareRank; //ascending
         
+    }
+    
+    @Override
+    public boolean equals(Object o){
+        return ((Match) o).teamNum==this.teamNum
+                && ((Match) o).matchNum == this.matchNum
+                && ((Match) o).allPos.equals(this.allPos);
     }
     
 }

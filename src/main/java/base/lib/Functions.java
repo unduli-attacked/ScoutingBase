@@ -8,6 +8,7 @@ import base.models.Match;
 import base.models.Pit;
 import base.lib.DataClasses.*;
 import base.models.SecondPit;
+import base.models.Team;
 
 public class Functions {
     /**
@@ -26,7 +27,20 @@ public class Functions {
             }
             
         }
-//        ReportFunctions.report("Shot at "+timeStamp_.format(DateTimeFormatter.ISO_LOCAL_TIME)+" not found.");
+        return null;
+    }
+    
+    /**
+     * finds a Team for the current Session based on their number
+     * @param teamNum_ the team number
+     * @return the correct team, or null if it doesn't exist
+     */
+    public static Team findTeam(int teamNum_){
+        for(Team team_ : Main.currentSession.teams){
+            if(team_.teamNum==teamNum_){
+                return team_;
+            }
+        }
         return null;
     }
     
@@ -59,6 +73,12 @@ public class Functions {
         return temp;
     }
     
+    /**
+     * compares two local times
+     * @param first later time
+     * @param second earlier time
+     * @return the difference (first - second)
+     */
     public static float compareLocalTime(LocalTime first, LocalTime second){
         return (first.getSecond()+first.getMinute()*60)-(second.getSecond()+second.getMinute()*60);
     }
@@ -106,6 +126,11 @@ public class Functions {
         return new Float[][]{{min},{(float)y,(float)x}};
     }
     
+    /**
+     * get the sum of an array list of floats
+     * @param ls the arraylist
+     * @return the sum of the items in the arraylist
+     */
     public static float getSum(ArrayList<Float> ls){
         float sum = 0;
         for(float fl : ls){

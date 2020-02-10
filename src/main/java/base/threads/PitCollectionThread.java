@@ -8,8 +8,11 @@ import base.lib.Enums;
 import base.lib.Enums.*;
 import base.lib.Functions;
 import base.lib.SheetsFunctions;
+import base.models.Session;
+
 import static base.lib.ColumnMappings.MainPit.*;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -51,7 +54,7 @@ public class PitCollectionThread extends Thread {
         if(mainTemp!=null){
             if(Functions.findPit((int)mainTemp.get(TEAM_NUM.val))==null){
                 Pit pt = addPit(mainTemp);
-                Main.currentSession.pits.add(pt);
+                Main.currentSession.pits.put(pt.teamNum, pt);
                 Main.currentSession.pitScouts.get(pt.scoutID).addPit(pt);
             }
             lastSavedRow++;
@@ -65,7 +68,7 @@ public class PitCollectionThread extends Thread {
         if(secondTemp!=null){
             Pit foundPit = Functions.findPit((int)secondTemp.get(ColumnMappings.ReScoutPit.TEAM_NUM.val));
             if(foundPit!=null){
-                foundPit.secondPits.put(LocalTime.parse((String)secondTemp.get(ColumnMappings.ReScoutPit.TIMESTAMP.val), DateTimeFormatter.ofPattern("MM/dd/uuuu kk:mm:ss")),
+                foundPit.secondPits.put(LocalDateTime.parse((String)secondTemp.get(ColumnMappings.ReScoutPit.TIMESTAMP.val), DateTimeFormatter.ofPattern("MM/dd/uuuu kk:mm:ss")),
                                     addSecondPit(secondTemp));
             }
         }
@@ -91,19 +94,22 @@ public class PitCollectionThread extends Thread {
         return tempSecondPit;
     
     }
-    public Pit addPit(List<Object> temp){
-        Pit tempPit = new Pit((int)temp.get(TEAM_NUM.val), (String)temp.get(TEAM_NAME.val),
-                (String)temp.get(SCOUT_ID.val), (String)temp.get(TIMESTAMP.val), (String)temp.get(INTERVIEWEE.val));
-        tempPit.practialWeight = (double)temp.get(PRAC_WEIGHT.val);
-        tempPit.officialWeight = (double)temp.get(OFF_WEIGHT.val);
-        tempPit.dtLength = (double)temp.get(DT_LEN.val);
-        tempPit.dtWidth = (double)temp.get(DT_WIDTH.val);
-        tempPit.height = (double)temp.get(HEIGHT.val);
-        tempPit.sideExtend = (double)temp.get(EX_SIDE.val);
-        tempPit.teleUpExtend = (double)temp.get(EX_TELE.val);
-        tempPit.climbUpExtend = (double)temp.get(EX_CLIMB.val);
+    public static Pit addPit(List<Object> temp){
+        return addPit(temp, Main.currentSession);
+    }
+    public static Pit addPit(List<Object> temp, Session session_){
+        Pit tempPit = new Pit(Integer.valueOf((String)temp.get(TEAM_NUM.val)), (String)temp.get(TEAM_NAME.val),
+                (String)temp.get(SCOUT_ID.val), (String)temp.get(TIMESTAMP.val), (String)temp.get(INTERVIEWEE.val), session_);
+        tempPit.practialWeight = Double.valueOf((String)temp.get(PRAC_WEIGHT.val));
+        tempPit.officialWeight = Double.valueOf((String)temp.get(OFF_WEIGHT.val));
+        tempPit.dtLength = Double.valueOf((String)temp.get(DT_LEN.val));
+        tempPit.dtWidth = Double.valueOf((String)temp.get(DT_WIDTH.val));
+        tempPit.height = Double.valueOf((String)temp.get(HEIGHT.val));
+        tempPit.sideExtend = Double.valueOf((String)temp.get(EX_SIDE.val));
+        tempPit.teleUpExtend = Double.valueOf((String)temp.get(EX_TELE.val));
+        tempPit.climbUpExtend = Double.valueOf((String)temp.get(EX_CLIMB.val));
         tempPit.bumperCoverage = (String)temp.get(COVERAGE.val);
-        tempPit.maxCells = (int)temp.get(CAPACITY.val);
+        tempPit.maxCells = Integer.valueOf((String)temp.get(CAPACITY.val));
         switch((String)temp.get(INTAKE.val)){
             case "Floor":
                 tempPit.intake = Enums.Pickup.FLOOR;
@@ -157,13 +163,13 @@ public class PitCollectionThread extends Thread {
         tempPit.teleopPref = getStrat(new String[]{(String)temp.get(TELE_PREF.val)}).get(0);
         tempPit.autoPref = getStrat(new String[]{(String)temp.get(AUTO_PREF.val)}).get(0);
         tempPit.stratNotes = (String)temp.get(STRAT_NOTES.val);
-        tempPit.imageLink = (ArrayList<String>)Arrays.asList(((String)temp.get(PHOTOS.val)).split(", "));
+        tempPit.imageLink = new ArrayList<String>(Arrays.asList(((String)temp.get(PHOTOS.val)).split(", ")));
         
         tempPit.dataFilled = true;
         return tempPit;
     }
     
-    public ArrayList<Enums.Target> getTarget(String[] input){
+    public static ArrayList<Enums.Target> getTarget(String[] input){
         ArrayList<Target> toReturn = new ArrayList<>();
         for(String str : input){
             switch (str){
@@ -187,7 +193,7 @@ public class PitCollectionThread extends Thread {
         return toReturn;
     }
     
-    public ArrayList<Strat> getStrat(String[] input){
+    public static ArrayList<Strat> getStrat(String[] input){
         ArrayList<Strat> toReturn = new ArrayList<>();
         for(String str : input){
             switch(str){
@@ -222,7 +228,7 @@ public class PitCollectionThread extends Thread {
         return toReturn;
     }
     
-    public Pref getPref(String input){
+    public static Pref getPref(String input){
         switch (input){
             case "Primary":
                 return Pref.PRIMARY;
@@ -237,7 +243,7 @@ public class PitCollectionThread extends Thread {
         }
     }
     
-    public ArrayList<Zone> getZone(String[] input){
+    public static ArrayList<Zone> getZone(String[] input){
         ArrayList<Zone> toReturn = new ArrayList<>();
         for(String str : input){
             switch (str){

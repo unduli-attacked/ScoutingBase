@@ -5,7 +5,7 @@ import base.lib.DataClasses.*;
 
 import java.util.ArrayList;
 
-public class DataScout implements Comparable{
+public class DataScout implements Comparable, Saveable{
     String name;
     double rank; //FIXME this is currently calculated the dumb way. what if it wasnt
     public ArrayList<Match> matches =  new ArrayList<>();
@@ -93,5 +93,25 @@ public class DataScout implements Comparable{
                         break;
             }
         }
+    }
+    
+    /**
+     * Used in saving raw data
+     *
+     * @return the file name WITHOUT directory or extension (ex. M14Blue1)
+     */
+    @Override
+    public String getFileName() {
+        return "DATA_"+this.getName();
+    }
+    
+    /**
+     * Used in saving raw data
+     *
+     * @return the raw directory WITHOUT slashes (ex. rawMatches)
+     */
+    @Override
+    public String getRawDirName() {
+        return "rawScouts";
     }
 }

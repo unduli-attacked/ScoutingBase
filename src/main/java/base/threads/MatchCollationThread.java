@@ -16,7 +16,7 @@ public class MatchCollationThread extends Thread{
 
     @Override
     public void run(){
-        for(Match match_ : Main.currentSession.matches){
+        for(Match match_ : Main.currentSession.matches.values()){
             if(match_.dataRediness()){
                 collate(match_, Main.currentSession.standScouts, Main.currentSession.noteScouts);
             }

@@ -18,7 +18,7 @@ public class TeamCollationThread extends Thread{
     
     @Override
     public void run(){
-        for(Team t : Main.currentSession.teams){
+        for(Team t : Main.currentSession.teams.values()){
             ArrayList<Match> tempMatches = Functions.findMatch(t.teamNum);
             for(Match m : tempMatches){
                 if(!t.matchesScouted.contains(m)){

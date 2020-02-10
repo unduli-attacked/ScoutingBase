@@ -4,11 +4,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 import base.Main;
-import base.models.Match;
-import base.models.Pit;
+import base.models.*;
 import base.lib.DataClasses.*;
-import base.models.SecondPit;
-import base.models.Team;
 
 public class Functions {
     /**
@@ -31,46 +28,73 @@ public class Functions {
     }
     
     /**
-     * finds a Team for the current Session based on their number
+     * finds a Team for a session based on their number
      * @param teamNum_ the team number
+     * @param session_ the session to search in
      * @return the correct team, or null if it doesn't exist
      */
-    public static Team findTeam(int teamNum_){
-        for(Team team_ : Main.currentSession.teams){
+    public static Team findTeam(int teamNum_, Session session_){
+        for(Team team_ : session_.teams.values()){
             if(team_.teamNum==teamNum_){
                 return team_;
             }
         }
         return null;
     }
+    /**
+     * finds a Team for the current Session based on their number
+     * @param teamNum_ the team number
+     * @return the correct team, or null if it doesn't exist
+     */
+    public static Team findTeam(int teamNum_){
+        return findTeam(teamNum_, Main.currentSession);
+    }
     
     /**
      * finds an existing Pit data class for a team
      * @param teamNum_ the team number
+     * @param session_ the session to search in
      * @return the team's pit, or null if not found
      */
-    public static Pit findPit(int teamNum_){
-        for(Pit pit : Main.currentSession.pits){
+    public static Pit findPit(int teamNum_, Session session_){
+        for(Pit pit : session_.pits.values()){
             if(pit.teamNum == teamNum_){
                 return pit;
             }
         }
         return null;
     }
+    /**
+     * finds an existing Pit data class for a team in the current session
+     * @param teamNum_ the team number
+     * @return the team's pit, or null if not found
+     */
+    public static Pit findPit(int teamNum_){
+        return findPit(teamNum_, Main.currentSession);
+    }
     
     /**
-     * finds an existing Match data classes for a team
+     * finds existing Match data classes for a team
      * @param teamNum_ the team number
+     * @param session_ the session to search in
      * @return the team's matches, or null if none found
      */
-    public static ArrayList<Match> findMatch(int teamNum_){
+    public static ArrayList<Match> findMatch(int teamNum_, Session session_){
         ArrayList<Match> temp = new ArrayList<>();
-        for(Match match : Main.currentSession.matches){
+        for(Match match : session_.matches.values()){
             if(match.teamNum == teamNum_){
                 temp.add(match);
             }
         }
         return temp;
+    }
+    /**
+     * finds existing Match data classes for a team in teh current session
+     * @param teamNum_ the team number
+     * @return the team's matches, or null if none found
+     */
+    public static ArrayList<Match> findMatch(int teamNum_){
+        return findMatch(teamNum_, Main.currentSession);
     }
     
     /**

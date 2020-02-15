@@ -5,24 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="004edafe-1625-4c7c-b11a-713e9f5ce831" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/base/lib/FileSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/base/models/Saveable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/SavingTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/lib/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/lib/Functions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/DataScout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/DataScout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/NoteScout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/NoteScout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/Pit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/Pit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/PitScout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/PitScout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/SecondPit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/SecondPit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/Saveable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/Saveable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/base/models/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/threads/PitCollectionThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/threads/PitCollectionThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/threads/TeamCollationThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/threads/TeamCollationThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/SavingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SavingTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tokens/StoredCredential" beforeDir="false" afterPath="$PROJECT_DIR$/tokens/StoredCredential" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -89,23 +77,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.7828418">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Session.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="500">
-                  <caret line="48" column="39" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/SavingTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="58">
-                  <caret line="21" column="66" lean-forward="true" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="66" />
+                <state relative-caret-position="374">
+                  <caret line="46" column="51" selection-start-line="46" selection-start-column="51" selection-end-line="46" selection-end-column="51" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -114,13 +90,41 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java">
+            <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Session.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="103">
-                  <caret line="18" column="63" selection-start-line="18" selection-start-column="63" selection-end-line="18" selection-end-column="63" />
+                <state relative-caret-position="165">
+                  <caret line="79" column="23" selection-start-line="79" selection-start-column="23" selection-end-line="79" selection-end-column="23" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="540">
+                  <caret line="27" column="59" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test2020/rawData/rawPits/PRIMARY_5940.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-60" />
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/io/FileReader.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="131">
+                  <caret line="74" column="18" selection-start-line="74" selection-start-column="18" selection-end-line="74" selection-end-column="18" />
                 </state>
               </provider>
             </entry>
@@ -128,11 +132,38 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Saveable.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="98">
-                  <caret line="32" selection-start-line="32" selection-end-line="32" />
+                <state relative-caret-position="148">
+                  <caret line="42" selection-start-line="42" selection-end-line="42" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.6/1b9adea7bbe0b251818f42fde0bd2988d7e5f20a/gson-2.8.6-sources.jar!/com/google/gson/Gson.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-262">
+                  <caret line="432" column="28" selection-start-line="432" selection-start-column="28" selection-end-line="432" selection-end-column="28" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/build.gradle">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="40">
+                  <caret line="2" column="48" selection-start-line="2" selection-start-column="48" selection-end-line="2" selection-end-column="48" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/io/File.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="105">
+                  <caret line="1023" selection-start-line="1023" selection-end-line="1023" />
                 </state>
               </provider>
             </entry>
@@ -150,42 +181,6 @@
                     <element signature="method#getStrat#0;class#PitCollectionThread#0" />
                     <element signature="method#getPref#0;class#PitCollectionThread#0" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/base/threads/TeamCollationThread.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="103">
-                  <caret line="20" column="55" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Pit.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="58">
-                  <caret line="60" column="12" selection-start-line="60" selection-start-column="12" selection-end-line="60" selection-end-column="12" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#1777#1803#0" expanded="true" />
-                    <element signature="e#3501#3502#0" expanded="true" />
-                    <element signature="e#3708#3709#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/time/format/DateTimeFormatter.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-8092">
-                  <caret line="510" column="19" selection-start-line="510" selection-start-column="19" selection-end-line="510" selection-end-column="19" />
                 </state>
               </provider>
             </entry>
@@ -233,8 +228,9 @@
       <find>compare</find>
       <find>correctTimeline</find>
       <find>format</find>
-      <find>Main</find>
       <find>,</find>
+      <find>toJson</find>
+      <find>Main</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -274,7 +270,6 @@
         <option value="$PROJECT_DIR$/src/main/java/base/threads/CollationThread.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/lib/Enums.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/lib/DataClasses.java" />
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/base/models/PitScout.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/models/DataScout.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/models/NoteScout.java" />
@@ -285,11 +280,12 @@
         <option value="$PROJECT_DIR$/src/main/java/base/lib/Functions.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/threads/TeamCollationThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java" />
-        <option value="$PROJECT_DIR$/src/main/java/base/models/Session.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/models/Pit.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/threads/PitCollectionThread.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/models/Saveable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/base/models/Session.java" />
         <option value="$PROJECT_DIR$/src/test/java/SavingTest.java" />
       </list>
     </option>
@@ -316,24 +312,6 @@
             <path>
               <item name="ScoutingBase2020" type="b2602c69:ProjectViewProjectNode" />
               <item name="ScoutingBase2020" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="ScoutingBase2020" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ScoutingBase2020" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="main_storage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ScoutingBase2020" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ScoutingBase2020" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="main_storage" type="462c0819:PsiDirectoryNode" />
-              <item name="test2020" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ScoutingBase2020" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ScoutingBase2020" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="main_storage" type="462c0819:PsiDirectoryNode" />
-              <item name="test2020" type="462c0819:PsiDirectoryNode" />
-              <item name="rawData" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ScoutingBase2020" type="b2602c69:ProjectViewProjectNode" />
@@ -403,25 +381,30 @@
             </path>
             <path>
               <item name="ScoutingBase2020" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ScoutingBase2020" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="test2020" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ScoutingBase2020" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ScoutingBase2020" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="test2020" type="462c0819:PsiDirectoryNode" />
+              <item name="rawData" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ScoutingBase2020" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ScoutingBase2020" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="test2020" type="462c0819:PsiDirectoryNode" />
+              <item name="rawData" type="462c0819:PsiDirectoryNode" />
+              <item name="rawPits" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ScoutingBase2020" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
             <path>
               <item name="ScoutingBase2020" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
               <item name="&lt; 11 &gt;" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="ScoutingBase2020" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 11 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="java.base" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ScoutingBase2020" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 11 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="java.base" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -446,6 +429,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jocel\Documents\GitHub\ScoutingBase2020" />
       <recent name="C:\Users\jocel\Documents\GitHub\ScoutingBase2020\main_storage\test2020\rawData" />
     </key>
   </component>
@@ -541,44 +525,44 @@
       <workItem from="1580244903228" duration="2435000" />
       <workItem from="1580261319024" duration="40000" />
       <workItem from="1580261378918" duration="3326000" />
-      <workItem from="1581197475553" duration="19404000" />
+      <workItem from="1581197475553" duration="25888000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.09 at 16h 59m 32s.xml">
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.14 at 19h 34m 13s.xml">
       <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.09 at 16h 59m 57s.xml">
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.14 at 19h 37m 42s.xml">
       <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.09 at 17h 14m 44s.xml">
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.14 at 19h 39m 48s.xml">
       <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.09 at 17h 24m 45s.xml">
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.14 at 19h 40m 50s.xml">
       <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.09 at 17h 30m 18s.xml">
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.14 at 19h 41m 21s.xml">
       <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.09 at 17h 30m 51s.xml">
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.14 at 19h 42m 04s.xml">
       <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.09 at 17h 36m 12s.xml">
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.14 at 19h 43m 02s.xml">
       <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.09 at 17h 39m 23s.xml">
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.14 at 19h 45m 48s.xml">
       <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.09 at 17h 42m 12s.xml">
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.14 at 19h 49m 41s.xml">
       <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.09 at 17h 46m 24s.xml">
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.14 at 19h 50m 03s.xml">
       <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="208589000" />
+    <option name="totallyTimeSpent" value="215073000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -604,12 +588,12 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32892805" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.34294385" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.46130502" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.04552352" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49932975" weight="0.42584434" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.3045326" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.04552352" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.30349013" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.5675266" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067025" side_tool="true" weight="0.32892805" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32473445" />
@@ -671,12 +655,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/SavingTest.java</url>
-          <line>30</line>
-          <properties />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/models/Saveable.java</url>
           <line>29</line>
           <properties />
@@ -687,6 +665,18 @@
           <line>32</line>
           <properties />
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/base/models/Saveable.java</url>
+          <line>39</line>
+          <properties />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/base/models/Saveable.java</url>
+          <line>42</line>
+          <properties />
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -830,13 +820,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="23" column="73" lean-forward="true" selection-start-line="23" selection-start-column="73" selection-end-line="23" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/base/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="467">
@@ -966,30 +949,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Session.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="48" column="39" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/CollationTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1022,8 +985,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Pit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="60" column="12" selection-start-line="60" selection-start-column="12" selection-end-line="60" selection-end-column="12" />
+        <state relative-caret-position="104">
+          <caret line="66" column="39" selection-start-line="66" selection-start-column="39" selection-end-line="66" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1777#1803#0" expanded="true" />
@@ -1048,10 +1011,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/io/File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="1023" selection-start-line="1023" selection-end-line="1023" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="48" selection-start-line="2" selection-start-column="48" selection-end-line="2" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/io/FileInputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="210" column="24" selection-start-line="210" selection-start-column="24" selection-end-line="210" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/io/FileReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="74" column="18" selection-start-line="74" selection-start-column="18" selection-end-line="74" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.6/1b9adea7bbe0b251818f42fde0bd2988d7e5f20a/gson-2.8.6-sources.jar!/com/google/gson/TypeAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="126" column="23" selection-start-line="126" selection-start-column="23" selection-end-line="126" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.6/1b9adea7bbe0b251818f42fde0bd2988d7e5f20a/gson-2.8.6-sources.jar!/com/google/gson/Gson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-262">
+          <caret line="432" column="28" selection-start-line="432" selection-start-column="28" selection-end-line="432" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Saveable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        <state relative-caret-position="148">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test2020/rawData/rawPits/PRIMARY_5940.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-60" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="27" column="59" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Session.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="79" column="23" selection-start-line="79" selection-start-column="23" selection-end-line="79" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1060,8 +1090,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/SavingTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="21" column="66" lean-forward="true" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="66" />
+        <state relative-caret-position="374">
+          <caret line="46" column="51" selection-start-line="46" selection-start-column="51" selection-end-line="46" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

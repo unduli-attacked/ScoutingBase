@@ -24,8 +24,14 @@ public class SavingFunctions {
     
     public static <T> T recoverSaveable(File file_, Class<T> class_){
         try{
+            System.out.println(file_.getPath());
+            System.out.println(new FileReader(file_).read());
+            System.out.println(gson.fromJson(new FileReader(file_), class_));
             return gson.fromJson(new FileReader(file_), class_);
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }

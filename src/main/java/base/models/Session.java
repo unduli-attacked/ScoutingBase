@@ -74,7 +74,10 @@ public class Session {
     public boolean saveSession(){
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
         try {
-            gson.toJson(this, new FileWriter("/mainStorage/sessions/"+this.tbaEventKey+".json"));
+            FileWriter fr = new FileWriter("/mainStorage/sessions/"+this.tbaEventKey+".json");
+            gson.toJson(this, fr);
+            fr.flush();
+            fr.close();
             return true;
         } catch (IOException e) {
             e.printStackTrace();

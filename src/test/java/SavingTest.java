@@ -32,7 +32,7 @@ public class SavingTest {
         testSesh.pits.put(testPit.teamNum, testPit);
         testPit.saveRaw(testSesh);
         
-        Pit test2ElectricBoogaloo = SavingFunctions.recoverSaveable(new File(testSesh.directory+ FileSystem.RAW_PITS), Pit.class);
+        Pit test2ElectricBoogaloo = SavingFunctions.recoverSaveable(new File(testSesh.directory+ FileSystem.RAW_PITS+testPit.getFileName()+".json"), Pit.class);
     
         Assertions.assertEquals(testPit.teamNum, test2ElectricBoogaloo.teamNum);
         Assertions.assertEquals(testPit.timeScouted, test2ElectricBoogaloo.timeScouted);
@@ -44,6 +44,6 @@ public class SavingTest {
     
     @Test
     public void FullSaveTest(){
-    
+        //TODO waiting on spreadsheet data from app
     }
 }

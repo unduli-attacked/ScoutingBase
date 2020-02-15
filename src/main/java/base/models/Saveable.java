@@ -34,8 +34,12 @@ public interface Saveable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        fl.setWritable(true);
         try {
-            gson.toJson(this, new FileWriter(fl));
+            FileWriter fr = new FileWriter(fl);
+            gson.toJson(this, fr);
+            fr.flush();
+            fr.close();
             return true;
         } catch (IOException e) {
             e.printStackTrace();

@@ -10,7 +10,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Team {
+public class Team implements Saveable{
     //BASIC ID
     public int teamNum;
     public String teamName;
@@ -109,7 +109,7 @@ public class Team {
     public Team(int teamNum_, String teamName_){
         this.teamNum = teamNum_;
         this.teamName = teamName_;
-        Main.currentSession.teams.add(this);
+        Main.currentSession.teams.put(this.teamNum, this);
     }
     
     public void addMatch(Match match_){
@@ -214,5 +214,25 @@ public class Team {
     public void addSecondPit(SecondPit pit_){
         this.secondPits.add(pit_);
         this.pitScouts.add(Main.currentSession.pitScouts.get(pit_.scoutID));
+    }
+    
+    /**
+     * Used in saving raw data
+     *
+     * @return the file name WITHOUT directory or extension (ex. M14Blue1)
+     */
+    @Override
+    public String getFileName() {
+        return this.teamNum+"_"+this.teamName;
+    }
+    
+    /**
+     * Used in saving raw data
+     *
+     * @return the raw directory WITHOUT slashes (ex. rawMatches)
+     */
+    @Override
+    public String getRawDirName() {
+        return "rawTeams";
     }
 }

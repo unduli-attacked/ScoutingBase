@@ -9,7 +9,7 @@ import base.models.NoteScout;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Match implements Comparable{
+public class Match implements Comparable, Saveable{
     
     //MAJOR IDENTIFIERS
     public final int matchNum;
@@ -32,7 +32,7 @@ public class Match implements Comparable{
         this.matchNum = matchNum_;
         this.teamNum = teamNum_;
         this.allPos = alliancePosition_;
-        Main.currentSession.matches.add(this);
+        Main.currentSession.matches.put(this.getFileName(), this);
     }
     
     public void addDataScout(DataScout scout_){
@@ -74,4 +74,23 @@ public class Match implements Comparable{
                 && ((Match) o).allPos.equals(this.allPos);
     }
     
+    /**
+     * Used in saving raw data
+     *
+     * @return the file name WITHOUT directory or extension (ex. M14Blue1)
+     */
+    @Override
+    public String getFileName() {
+        return "M"+this.matchNum+"_"+this.allPos.toString();
+    }
+    
+    /**
+     * Used in saving raw data
+     *
+     * @return the raw directory WITHOUT slashes (ex. rawMatches)
+     */
+    @Override
+    public String getRawDirName() {
+        return "rawMatches";
+    }
 }

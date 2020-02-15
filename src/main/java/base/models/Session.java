@@ -1,6 +1,16 @@
 package base.models;
 
+import base.lib.FileSystem;
+import base.lib.Functions;
+import base.lib.SavingFunctions;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class Session {
@@ -20,9 +30,9 @@ public class Session {
     public String finalNoteCol;
     
     
-    public ArrayList<Match> matches;
-    public ArrayList<Pit> pits;
-    public ArrayList<Team> teams;
+    public HashMap<String, Match> matches; //fileName, match
+    public HashMap<Integer, Pit> pits; //teamNum, pit
+    public HashMap<Integer, Team> teams; //teamnum, Team
     public HashMap<String, PitScout> pitScouts; //scoutID, scout
     public HashMap<String, DataScout> standScouts; //scoutName, scout
     public HashMap<String, NoteScout> noteScouts; //scoutName, scout
@@ -36,9 +46,9 @@ public class Session {
         this.tbaEventKey = tbaEventKey_;
         this.directory = directory_;
         
-        this.matches = new ArrayList<>();
-        this.pits = new ArrayList();
-        this.teams = new ArrayList();
+        this.matches = new HashMap<>();
+        this.pits = new HashMap<>();
+        this.teams = new HashMap<>();
         this.pitScouts = new HashMap<>();
         this.standScouts = new HashMap<>();
         this.noteScouts = new HashMap<>();
@@ -59,5 +69,94 @@ public class Session {
         this.finalSecondPitCol = finalSecondPitCol_;
         this.finalDataCol = finalDataCol_;
         this.finalNoteCol = finalNoteCol_;
+    }
+    
+    public boolean saveSession(){
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        try {
+            FileWriter fr = new FileWriter("/mainStorage/sessions/"+this.tbaEventKey+".json");
+            gson.toJson(this, fr);
+            fr.flush();
+            fr.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public void saveAll(){
+        this.saveSession();
+        SavingFunctions.saveSaveables(this.matches.values());
+        SavingFunctions.saveSaveables(this.pits.values());
+        SavingFunctions.saveSaveables(this.teams.values());
+        SavingFunctions.saveSaveables(this.pitScouts.values());
+        SavingFunctions.saveSaveables(this.standScouts.values());
+        SavingFunctions.saveSaveables(this.noteScouts.values());
+    }
+    
+    public void recoverScouts(){
+        File scouts = new File(this.directory+ FileSystem.RAW_SCOUTS);
+        if(scouts.isDirectory() && scouts.listFiles()!=null) {
+            for (File scoutJson_ : scouts.listFiles()) {
+                if(scoutJson_.getName().startsWith("PIT")){
+                    PitScout tempPScout = SavingFunctions.recoverSaveable(scoutJson_, PitScout.class);
+                    if (tempPScout!=null)this.pitScouts.put(tempPScout.getID(), tempPScout);
+                }else if(scoutJson_.getName().startsWith("DATA")){
+                    DataScout tempDScout = SavingFunctions.recoverSaveable(scoutJson_, DataScout.class);
+                    if (tempDScout!=null)this.standScouts.put(tempDScout.getName(), tempDScout);
+                }else if(scoutJson_.getName().startsWith("NOTE")){
+                    NoteScout tempNScout = SavingFunctions.recoverSaveable(scoutJson_, NoteScout.class);
+                    if (tempNScout!=null) this.noteScouts.put(tempNScout.name, tempNScout);
+                }
+            }
+        }
+    }
+    
+    public void recoverMatches(){
+        File matches  = new File(this.directory+FileSystem.RAW_MATCHES);
+        if(matches.isDirectory() && matches.listFiles()!=null){
+            for(File matchJson_ : matches.listFiles()){
+                Match tempMatch = SavingFunctions.recoverSaveable(matchJson_, Match.class);
+                if (tempMatch!=null)this.matches.put(tempMatch.getFileName(), tempMatch);
+            }
+        }
+    }
+    
+    public void recoverPits(){
+        File pits  = new File(this.directory+FileSystem.RAW_PITS);
+        if(pits.isDirectory() && pits.listFiles()!=null) {
+            for(File pitJson_ : pits.listFiles()){
+                if(pitJson_.getName().startsWith("PRIMARY")){
+                    Pit tempP = SavingFunctions.recoverSaveable(pitJson_, Pit.class);
+                    if(tempP!=null)this.pits.put(tempP.teamNum, tempP);
+                }
+            }
+        
+            for(File pitJson_ : pits.listFiles()){
+                if(pitJson_.getName().startsWith("SECOND")){
+                    SecondPit tempSecondP = SavingFunctions.recoverSaveable(pitJson_, SecondPit.class);
+                    if(tempSecondP!=null){
+                        Pit connecPit = Functions.findPit(tempSecondP.teamNum, this);
+                        if(connecPit!=null){
+                            if(!connecPit.secondPits.containsValue(tempSecondP)){
+                                connecPit.secondPits.put(tempSecondP.timeScouted, tempSecondP);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    
+    }
+    
+    public void recoverTeams(){
+        File rawTeams = new File(this.directory+FileSystem.RAW_TEAMS);
+        if(rawTeams.isDirectory() && rawTeams.listFiles()!=null){
+            for(File tem : rawTeams.listFiles()){
+                Team tempTem = SavingFunctions.recoverSaveable(tem, Team.class);
+                if(tempTem!=null) this.teams.put(tempTem.teamNum, tempTem);
+            }
+        }
     }
 }

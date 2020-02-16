@@ -40,7 +40,7 @@ public class Session {
     public int numDataScouts; // per team per match
     public int numNoteScouts; // per alliance
     
-    public Session(int year_, String eventName_, String tbaEventKey_, String directory_, int numDataScouts_, int numNoteScouts_){
+    public Session(int year_, String eventName_, String tbaEventKey_, String directory_, int numDataScouts_, int numNoteScouts_) throws IOException {
         this.year = year_;
         this.eventName = eventName_;
         this.tbaEventKey = tbaEventKey_;
@@ -55,6 +55,9 @@ public class Session {
         
         this.numDataScouts = numDataScouts_;
         this.numNoteScouts = numNoteScouts_;
+        
+        this.genDirectories();
+        this.genTeams();
     }
     
     public void setSheet(String spreadsheetID_, String mainPitTab_, String secondPitTab_, String dataTab_, String noteTab_,
@@ -158,5 +161,21 @@ public class Session {
                 if(tempTem!=null) this.teams.put(tempTem.teamNum, tempTem);
             }
         }
+    }
+    
+    public void genDirectories() throws IOException {
+        new File(this.directory+FileSystem.RAW_DATA).mkdir();
+        new File(this.directory+FileSystem.RAW_SCOUTS).mkdir();
+        new File(this.directory+FileSystem.RAW_MATCHES).mkdir();
+        new File(this.directory+FileSystem.RAW_PITS).mkdir();
+        new File(this.directory+FileSystem.RAW_TEAMS).mkdir();
+        new File(this.directory+FileSystem.FINAL_DATA).mkdir();
+        new File(this.directory+FileSystem.PDF_TEAMS).mkdir();
+        new File(this.directory+FileSystem.PDF_PIT_NOTES).mkdir();
+        new File(this.directory+FileSystem.PDF_MATCH_NOTES).mkdir();
+    }
+    
+    public void genTeams() throws IOException{
+        //TODO team file
     }
 }

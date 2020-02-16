@@ -12,6 +12,8 @@ import java.io.IOException;
 
 public class NewSession extends Application implements ControlInterface{
     
+    Stage stage;
+    
     @Override
     public void start(Stage primaryStage) throws IOException {
         VBox root = (VBox) new FXMLLoader().load(new FileInputStream("src/main/resources/layouts/LAYOUT.fxml"));
@@ -22,5 +24,17 @@ public class NewSession extends Application implements ControlInterface{
         primaryStage.setTitle("BREAD 2020 Scouting Base");
         primaryStage.setScene(scene);
         primaryStage.show();
+        
+        this.stage = primaryStage;
+    }
+    
+    @Override
+    public void initialize() {
+    
+    }
+    
+    @Override
+    public Stage getStage() {
+        return this.stage;
     }
 }

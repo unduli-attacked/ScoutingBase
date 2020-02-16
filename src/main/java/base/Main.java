@@ -1,8 +1,14 @@
 package base;
 
 import base.controllers.ControlInterface;
+import base.controllers.Entry;
+import base.lib.FileSystem;
+import base.lib.SavingFunctions;
 import base.lib.SheetsFunctions;
 import base.models.Session;
+import base.threads.MatchCollationThread;
+import base.threads.PitCollectionThread;
+import base.threads.TeamCollationThread;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,24 +21,30 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main extends Application implements ControlInterface {
+public class Main{
     public static String eventName = "";
     public static Session currentSession;
-    public static ArrayList<Session> recoveredSessions;
+    public static ArrayList<Session> recoveredSessions = new ArrayList<>();
+    public static MatchCollationThread matchCollationThread;
+    public static PitCollectionThread pitCollectionThread;
+    public static TeamCollationThread teamCollationThread;
     
-    @Override
-    public void start(Stage stage) throws IOException {
-        VBox root = (VBox) new FXMLLoader().load(new FileInputStream("src/main/resources/layouts/Entry.fxml"));
     
-        // Create the Scene
-        Scene scene = new Scene(root);
+    public static void main(String args[]) throws IOException {
         
-        stage.setTitle("BREAD 2020 Scouting Base");
-        stage.setScene(scene);
-        stage.show();
-    }
-    public static void main(String args[]){
-        launch();
+        new File("main_storage/").mkdir();
+        new File("main_storage/sessions/").mkdir();
+        new File("main_storage/admins/").mkdir();
+        
+        File sessions = new File("main_storage/sessions/");
+        if(sessions.isDirectory() && sessions.listFiles()!=null){
+            for(File fl : sessions.listFiles()){
+                recoveredSessions.add(SavingFunctions.recoverFullSession(fl));
+            }
+        }
+    
+    
+        Application.launch(Entry.class, args);
     }
     
     public Main(){}

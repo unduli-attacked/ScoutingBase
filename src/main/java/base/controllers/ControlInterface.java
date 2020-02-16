@@ -26,4 +26,10 @@ public interface ControlInterface {
         stage.show();
         return stage;
     }
+    
+    default void initialize(){
+    
+    }
+    
+    Stage getStage();
 }

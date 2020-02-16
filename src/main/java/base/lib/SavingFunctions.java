@@ -37,7 +37,7 @@ public class SavingFunctions {
         }
     }
     
-    public static Session recoverFullSession(File sessionJson_) throws FileNotFoundException {
+    public static Session recoverFullSession(File sessionJson_) throws IOException {
         Session session;
         try {
             session = gson.fromJson(new FileReader(sessionJson_), Session.class);
@@ -53,6 +53,8 @@ public class SavingFunctions {
         session.recoverPits();
         
         session.recoverTeams();
+        
+        session.genDirectories();
         
         return session;
     }

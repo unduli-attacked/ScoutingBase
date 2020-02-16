@@ -12,6 +12,8 @@ import java.io.IOException;
 
 public class TeamPage extends Application implements ControlInterface {
     
+    Stage stage;
+    
     @Override
     public void start(Stage primaryStage) throws IOException {
         VBox root = (VBox) new FXMLLoader().load(new FileInputStream("src/main/resources/layouts/LAYOUT.fxml"));
@@ -22,5 +24,11 @@ public class TeamPage extends Application implements ControlInterface {
         primaryStage.setTitle("BREAD 2020 Scouting Base");
         primaryStage.setScene(scene);
         primaryStage.show();
+        this.stage = primaryStage;
+    }
+    
+    @Override
+    public Stage getStage() {
+        return stage;
     }
 }

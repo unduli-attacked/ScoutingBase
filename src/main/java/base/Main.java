@@ -1,37 +1,39 @@
 package base;
 
+import base.controllers.ControlInterface;
 import base.lib.SheetsFunctions;
 import base.models.Session;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main extends Application {
+public class Main extends Application implements ControlInterface {
     public static String eventName = "";
     public static Session currentSession;
     public static ArrayList<Session> recoveredSessions;
     
     @Override
-    public void start(Stage stage) {
-        stage.setTitle("BREAD Scouting Base");
+    public void start(Stage stage) throws IOException {
+        VBox root = (VBox) new FXMLLoader().load(new FileInputStream("src/main/resources/layouts/Entry.fxml"));
+    
+        // Create the Scene
+        Scene scene = new Scene(root);
+        
+        stage.setTitle("BREAD 2020 Scouting Base");
+        stage.setScene(scene);
         stage.show();
     }
     public static void main(String args[]){
-        currentSession = new Session(2020, "testEvent", "na", "\\testEvent\\", 2, 1);
-        currentSession.spreadsheetID = "1b2jZZsnmQ71mW3oEc0Sr2sQ3aDmlQOeIyL8Uws0gnNk";
-        currentSession.mainPitTab = "Main Pit Data";
-        currentSession.finalMainPitCol = "AN";
-        List<Object> testPull = new ArrayList<>();
-        try {
-            testPull = SheetsFunctions.getHeaders(currentSession.spreadsheetID, currentSession.mainPitTab, currentSession.finalMainPitCol);
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        for(Object o : testPull){
-            System.out.println(o);
-        }
-        launch(args);
+        launch();
     }
+    
+    public Main(){}
 }

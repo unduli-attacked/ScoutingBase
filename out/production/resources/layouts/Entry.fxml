@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="base.Main" style="
+      -fx-background-color: #82181E;
+      -fx-base: #82181e;
+      -fx-color:#97484C;
+      -fx-light-text-color: rgb(255,255,255);
+      -fx-mid-text-color: rgb(100, 100, 100);
+      -fx-dark-text-color: rgb(20, 20, 20);
+      -fx-control-inner-background:#CF6369;
+      -fx-control-inner-background-alt:#4F0E11;
+      -fx-selection-bar-non-focused: #4F0E11;
+      -fx-accent: #cf6369;">
+   <children>
+      <AnchorPane fx:id="Entry" prefHeight="402.0" prefWidth="600.0">
+         <children>
+            <Label alignment="TOP_CENTER" layoutX="143.0" layoutY="14.0" text="Team 5940 BREAD" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Button layoutX="121.0" layoutY="180.0" mnemonicParsing="false" stylesheets="@breadTheme.css" text="New Session" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="353.0" layoutY="219.0" mnemonicParsing="false" text="Go">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <MenuButton layoutX="313.0" layoutY="180.0" mnemonicParsing="false" text="Select Session">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </MenuButton>
+            <Label alignment="TOP_CENTER" layoutX="134.0" layoutY="68.0" text="2020 Scouting Base" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

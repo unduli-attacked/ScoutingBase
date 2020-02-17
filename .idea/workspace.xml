@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="004edafe-1625-4c7c-b11a-713e9f5ce831" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/controllers/NewSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/controllers/NewSession.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/base/controllers/TeamSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/controllers/TeamSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/layouts/SessionLaunch.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/layouts/SessionLaunch.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/layouts/NewSession.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/layouts/NewSession.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/layouts/TeamSearch.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/layouts/TeamSearch.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -85,15 +86,14 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Session.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="244">
-                  <caret line="59" column="24" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
+                <state relative-caret-position="184">
+                  <caret line="76" column="32" lean-forward="true" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#setSheet#0;class#Session#0" />
-                    <element signature="method#saveSession#0;class#Session#0" />
                     <element signature="method#saveAll#0;class#Session#0" />
                     <element signature="method#recoverScouts#0;class#Session#0" />
                     <element signature="method#recoverMatches#0;class#Session#0" />
@@ -128,11 +128,21 @@
               <provider editor-type-id="JavaFX-Scene-Builder" />
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/resources/layouts/TeamSearch.fxml">
-              <provider selected="true" editor-type-id="text-editor">
+              <provider editor-type-id="text-editor">
                 <state relative-caret-position="340">
                   <caret line="20" column="64" selection-start-line="20" selection-start-column="64" selection-end-line="20" selection-end-column="64" />
+                </state>
+              </provider>
+              <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/resources/layouts/NewSession.fxml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="326">
+                  <caret line="34" column="64" selection-start-line="34" selection-start-column="64" selection-end-line="34" selection-end-column="64" />
                 </state>
               </provider>
               <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -142,7 +152,7 @@
             <entry file="file://$PROJECT_DIR$/src/main/java/base/controllers/NewSession.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="358">
-                  <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+                  <caret line="56" column="4" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="4" />
                 </state>
               </provider>
             </entry>
@@ -177,26 +187,17 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/13/d407d8267c270f775482a3e05fef7d857b824b47/javafx-graphics-13-sources.jar!/com/sun/javafx/application/LauncherImpl.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="42">
-                  <caret line="194" selection-start-line="194" selection-end-line="194" />
-                </state>
-              </provider>
-            </entry>
-          </file>
         </leaf>
       </split-first>
       <split-second>
         <leaf>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/base/controllers/TeamSearch.java">
+            <entry file="file://$PROJECT_DIR$/src/main/java/base/controllers/NewSession.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="420">
-                  <caret line="53" column="39" lean-forward="true" selection-start-line="53" selection-start-column="39" selection-end-line="53" selection-end-column="39" />
+                <state relative-caret-position="404">
+                  <caret line="109" column="10" selection-start-line="109" selection-start-column="10" selection-end-line="109" selection-end-column="10" />
                   <folding>
-                    <element signature="e#1700#1701#0" expanded="true" />
+                    <element signature="e#3558#3559#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -248,7 +249,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/base/scouts/MatchScout.java" />
         <option value="$PROJECT_DIR$/src/main/resources/TBAMatchHashMapLayout.txt" />
         <option value="$PROJECT_DIR$/src/main/resources/NoteMatchHashMapLayout" />
         <option value="$PROJECT_DIR$/src/main/resources/MatchHashMapLayout.txt" />
@@ -290,15 +290,16 @@
         <option value="$PROJECT_DIR$/src/main/resources/layouts/TemplateTwoElectricBoogaloo.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/layouts/Entry.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java" />
-        <option value="$PROJECT_DIR$/src/main/java/base/controllers/NewSession.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/controllers/ControlInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/controllers/Entry.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/models/Session.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/controllers/SessionLaunch.java" />
         <option value="$PROJECT_DIR$/src/main/resources/layouts/SessionLaunch.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/layouts/TeamSearch.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/base/controllers/TeamSearch.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/layouts/TeamSearch.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/layouts/NewSession.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/base/controllers/NewSession.java" />
       </list>
     </option>
   </component>
@@ -558,7 +559,7 @@
       <workItem from="1580261319024" duration="40000" />
       <workItem from="1580261378918" duration="3326000" />
       <workItem from="1581197475553" duration="40254000" />
-      <workItem from="1581819465081" duration="13511000" />
+      <workItem from="1581819465081" duration="19023000" />
     </task>
     <servers />
   </component>
@@ -595,7 +596,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="242950000" />
+    <option name="totallyTimeSpent" value="248462000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -723,17 +724,6 @@
     <SUITE FILE_PATH="coverage/ScoutingBase2020$SavingTest_SingleSaveTest.ic" NAME="SavingTest.SingleSaveTest Coverage Results" MODIFIED="1581295716747" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/util/Objects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="371" column="29" selection-start-line="371" selection-start-column="29" selection-end-line="371" selection-end-column="29" />
-          <folding>
-            <element signature="e#13877#13878#0" expanded="true" />
-            <element signature="e#13945#13946#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.desktop/java/awt/Color.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -1090,13 +1080,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/controllers/NewSession.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/base/controllers/Entry.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-96">
@@ -1118,24 +1101,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Session.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="59" column="24" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#setSheet#0;class#Session#0" />
-            <element signature="method#saveSession#0;class#Session#0" />
-            <element signature="method#saveAll#0;class#Session#0" />
-            <element signature="method#recoverScouts#0;class#Session#0" />
-            <element signature="method#recoverMatches#0;class#Session#0" />
-            <element signature="method#recoverPits#0;class#Session#0" />
-            <element signature="method#recoverTeams#0;class#Session#0" />
-            <element signature="method#genDirectories#0;class#Session#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/base/controllers/SessionLaunch.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
@@ -1151,20 +1116,52 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/layouts/TeamSearch.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/controllers/TeamSearch.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/layouts/TeamSearch.fxml">
+      <provider editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="64" selection-start-line="20" selection-start-column="64" selection-end-line="20" selection-end-column="64" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/layouts/NewSession.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="34" column="64" selection-start-line="34" selection-start-column="64" selection-end-line="34" selection-end-column="64" />
+        </state>
+      </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/controllers/TeamSearch.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Session.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="53" column="39" lean-forward="true" selection-start-line="53" selection-start-column="39" selection-end-line="53" selection-end-column="39" />
+        <state relative-caret-position="184">
+          <caret line="76" column="32" lean-forward="true" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
           <folding>
-            <element signature="e#1700#1701#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#setSheet#0;class#Session#0" />
+            <element signature="method#saveAll#0;class#Session#0" />
+            <element signature="method#recoverScouts#0;class#Session#0" />
+            <element signature="method#recoverMatches#0;class#Session#0" />
+            <element signature="method#recoverPits#0;class#Session#0" />
+            <element signature="method#recoverTeams#0;class#Session#0" />
+            <element signature="method#genDirectories#0;class#Session#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/controllers/NewSession.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="109" column="10" selection-start-line="109" selection-start-column="10" selection-end-line="109" selection-end-column="10" />
+          <folding>
+            <element signature="e#3558#3559#0" expanded="true" />
           </folding>
         </state>
       </provider>

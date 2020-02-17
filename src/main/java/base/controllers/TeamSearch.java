@@ -29,7 +29,7 @@ public class TeamSearch extends Application implements ControlInterface {
         Scene scene = new Scene(root);
         
         primaryStage.setTitle("BREAD 2020 Scouting Base");
-        primaryStage.setScene(scene); 
+        primaryStage.setScene(scene);
         primaryStage.show();
         this.stage = primaryStage;
     }

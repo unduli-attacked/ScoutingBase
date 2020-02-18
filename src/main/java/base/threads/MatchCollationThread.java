@@ -27,7 +27,7 @@ public class MatchCollationThread extends Thread{
         DataScoutMatch finalData = new DataScoutMatch();
         DataScout[] scouts = new DataScout[match_.matchScouts.size()];
         for(int i=0; i<match_.matchScouts.size(); i++){
-            scouts[i] = dataScoutList.get(match_.matchScouts.get(i));
+            scouts[i] = dataScoutList.get(match_.matchScouts.get(i).getName());
         }
         Arrays.sort(scouts);
         finalData.matchNum =  (int) checkData(scouts, "matchNum", match_.matchNum);
@@ -79,7 +79,7 @@ public class MatchCollationThread extends Thread{
     
         NoteScout[] noteScouts = new NoteScout[match_.noteScouts.size()];
         for(int i=0; i<match_.noteScouts.size(); i++){
-            noteScouts[i] = noteScoutList.get(match_.noteScouts.get(i));
+            noteScouts[i] = noteScoutList.get(match_.noteScouts.get(i).getName());
         }
     
         String finalNotes = "";

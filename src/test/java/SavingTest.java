@@ -18,7 +18,7 @@ import java.util.List;
 public class SavingTest {
     
     @Test
-    public void SingleSaveTest(){
+    public void SingleSaveTest() throws IOException {
         Session testSesh = new Session(2020, "Test", "test2020", "test2020/", 3, 3);
         List<Object> slkdfj = new ArrayList<>();
         try {
@@ -32,6 +32,9 @@ public class SavingTest {
         testSesh.pits.put(testPit.teamNum, testPit);
         testPit.saveRaw(testSesh);
         
+        testSesh.saveSession();
+        Session resultSesh = SavingFunctions.recoverFullSession(new File("main_storage/sessions/MAINtest2020.json"));
+        
         Pit test2ElectricBoogaloo = SavingFunctions.recoverSaveable(new File(testSesh.directory+ FileSystem.RAW_PITS+testPit.getFileName()+".json"), Pit.class);
     
         Assertions.assertEquals(testPit.teamNum, test2ElectricBoogaloo.teamNum);
@@ -40,6 +43,8 @@ public class SavingTest {
         Assertions.assertEquals(testPit.controlPanel, test2ElectricBoogaloo.controlPanel);
         Assertions.assertEquals(testPit.teleopPref, test2ElectricBoogaloo.teleopPref);
         Assertions.assertEquals(testPit, test2ElectricBoogaloo);
+        
+        Assertions.assertEquals(testSesh.eventName, resultSesh.eventName);
     }
     
     @Test

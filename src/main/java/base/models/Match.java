@@ -28,11 +28,18 @@ public class Match implements Comparable, Saveable{
     public String bigNotes;
     
     
+    public Match (int matchNum_, int teamNum_, Station alliancePosition_, Session currentSession_){
+        this.matchNum = matchNum_;
+        this.teamNum = teamNum_;
+        this.allPos = alliancePosition_;
+        currentSession_.matches.put(this.getFileName(), this);
+    }
+    
     public Match (int matchNum_, int teamNum_, Station alliancePosition_){
         this.matchNum = matchNum_;
         this.teamNum = teamNum_;
         this.allPos = alliancePosition_;
-        Main.currentSession.matches.put(this.getFileName(), this);
+        Main. currentSession.matches.put(this.getFileName(), this);
     }
     
     public void addDataScout(DataScout scout_){

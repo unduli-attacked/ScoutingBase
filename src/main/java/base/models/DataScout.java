@@ -12,9 +12,13 @@ public class DataScout implements Comparable, Saveable{
     public ArrayList<DataScoutMatch> matchData = new ArrayList<>();
     public ArrayList<Integer> matchesScouted = new ArrayList<>();
     
-    public DataScout(String name_){
+    public DataScout(String name_, Session session_){
         this.name = name_;
-        Main.currentSession.standScouts.put(this.name, this);
+        session_.standScouts.put(this.name, this);
+    }
+    
+    public DataScout(String name_){
+        new DataScout(name_, Main.currentSession);
     }
     
     public String getName() {

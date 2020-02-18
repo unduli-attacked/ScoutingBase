@@ -6,6 +6,7 @@ import base.threads.MatchCollationThread;
 import base.threads.PitCollectionThread;
 import base.threads.TeamCollationThread;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,27 +15,24 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class SessionLaunch extends Application implements ControlInterface{
-    
-    Stage stage;
     @FXML Label sessionName;
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-        VBox root = (VBox) new FXMLLoader().load(new FileInputStream("src/main/resources/layouts/SessionLaunch.fxml"));
         
         // Create the Scene
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(FXMLLoader.load(this.getClass().getResource("/fxml/SessionLaunch.fxml")));
         
         primaryStage.setTitle("BREAD 2020 Scouting Base");
         primaryStage.setScene(scene);
         primaryStage.show();
-        this.stage = primaryStage;
     }
     
     @Override
@@ -61,27 +59,20 @@ public class SessionLaunch extends Application implements ControlInterface{
     }
     
     @FXML
-    public void handleReturnEntry(){
+    public void handleReturnEntry(ActionEvent event){
         try {
-            FxFunctions.changePage(new Entry(), this);
+            FxFunctions.changePage(new Entry(), event);
         } catch (Exception e) {
-            System.out.println("Page change failed at handleReturnEntry.");
-            e.printStackTrace();
+            FxFunctions.pageChangeFail(e, "handleRE");
         }
     }
     
     @FXML
-    public void handleTeamSearch(){
+    public void handleTeamSearch(ActionEvent event){
         try {
-            FxFunctions.changePage(new TeamSearch(), this);
+            FxFunctions.changePage(new TeamSearch(), event);
         } catch (Exception e) {
-            System.out.println("Page change failed at handleTeamSearch");
-            e.printStackTrace();
+            FxFunctions.pageChangeFail(e, "handleTeamSearch");
         }
-    }
-    
-    @Override
-    public Stage getStage() {
-        return this.stage;
     }
 }

@@ -4,8 +4,10 @@ import base.Main;
 import base.lib.FxFunctions;
 import base.models.Session;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -18,8 +20,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class NewSession extends Application implements ControlInterface{
-    
-    Stage stage;
     
     @FXML
     TextField year;
@@ -40,16 +40,14 @@ public class NewSession extends Application implements ControlInterface{
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-        VBox root = (VBox) new FXMLLoader().load(new FileInputStream("src/main/resources/layouts/LAYOUT.fxml"));
+        
         
         // Create the Scene
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(FXMLLoader.load(this.getClass().getResource("/fxml/NewSession.fxml")));
         
         primaryStage.setTitle("BREAD 2020 Scouting Base");
         primaryStage.setScene(scene);
         primaryStage.show();
-        
-        this.stage = primaryStage;
     }
     
     @Override
@@ -58,65 +56,58 @@ public class NewSession extends Application implements ControlInterface{
     }
     
     @FXML
-    public void handleReturnEntry(){
+    public void handleReturnEntry(ActionEvent event){
         try {
-            FxFunctions.changePage(new Entry(), this);
+            FxFunctions.changePage(new Entry(), event);
         } catch (Exception e) {
-            System.out.println("Page change failed at handleReturnEntry.");
-            e.printStackTrace();
+            FxFunctions.pageChangeFail(e, "handleReturnEntry");
         }
     }
     
     @FXML
-    public void handleSubmit() throws IOException {
+    public void handleSubmit(ActionEvent event) throws IOException {
         //validate
         int year_, numData_, numNote_;
         String dir_;
         try {
-            year_ = Integer.valueOf((String) year.getCharacters());
+            year_ = Integer.valueOf(year.getCharacters().toString());
         }catch (NumberFormatException e){
             year.setText("INVALID");
             return;
         }
         
         try{
-            numData_ = Integer.valueOf((String) numData.getCharacters());
+            numData_ = Integer.valueOf(numData.getCharacters().toString());
         }catch (NumberFormatException e){
             numData.setText("INVALID");
             return;
         }
         
         try{
-            numNote_ = Integer.valueOf((String) numData.getCharacters());
+            numNote_ = Integer.valueOf((numData.getCharacters().toString()));
         }catch (NumberFormatException e){
             numData.setText("INVALID");
             return;
         }
         
-        dir_ = (String) dir.getCharacters();
+        dir_ = dir.getCharacters().toString();
         if(dir_.charAt(dir_.length()-1) != '/'){
             if(dir_.charAt(dir_.length()-1) == '\\'){
                 dir_ = dir_.substring(0, dir_.length()-1);
             }
             dir_=dir_+"/";
         }
-        Session tempSesh = new Session(year_, (String) name.getCharacters(), (String) eventKey.getCharacters(), dir_, numData_, numNote_);
-        tempSesh.setSheet((String) sheetID.getCharacters(), (String) mainPitTab.getCharacters(), (String) secondPitTab.getCharacters(),
-                (String) dataTab.getCharacters(), (String) noteTab.getCharacters(), (String) finalMainCol.getCharacters(), (String) finalSecondCol.getCharacters(),
-                (String) finalDataCol.getCharacters(), (String) finalNoteCol.getCharacters());
+        Session tempSesh = new Session(year_, name.getCharacters().toString(), eventKey.getCharacters().toString(), dir_, numData_, numNote_);
+        tempSesh.setSheet(sheetID.getCharacters().toString(), mainPitTab.getCharacters().toString(), secondPitTab.getCharacters().toString(),
+                dataTab.getCharacters().toString(), noteTab.getCharacters().toString(), finalMainCol.getCharacters().toString(), finalSecondCol.getCharacters().toString(),
+                finalDataCol.getCharacters().toString(), finalNoteCol.getCharacters().toString());
         Main.recoveredSessions.add(tempSesh);
         tempSesh.saveSession();
     
         try {
-            FxFunctions.changePage(new Entry(), this);
+            FxFunctions.changePage(new Entry(), event);
         } catch (Exception e) {
-            System.out.println("Page change failed at handleSubmit.");
-            e.printStackTrace();
+            FxFunctions.pageChangeFail(e, "handleSubmit");
         }
-    }
-    
-    @Override
-    public Stage getStage() {
-        return this.stage;
     }
 }

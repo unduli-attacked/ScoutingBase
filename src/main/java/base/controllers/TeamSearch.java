@@ -4,6 +4,7 @@ import base.lib.Functions;
 import base.lib.FxFunctions;
 import base.models.Team;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,30 +18,25 @@ import java.io.IOException;
 
 public class TeamSearch extends Application implements ControlInterface {
     
-    Stage stage;
     @FXML
     TextField teamNum;
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-        VBox root = (VBox) new FXMLLoader().load(new FileInputStream("src/main/resources/layouts/TeamSearch.fxml"));
         
         // Create the Scene
-        Scene scene = new Scene(root);
-        
+        Scene scene = new Scene(FXMLLoader.load(this.getClass().getResource("/fxml/TeamSearch.fxml")));
         primaryStage.setTitle("BREAD 2020 Scouting Base");
         primaryStage.setScene(scene);
         primaryStage.show();
-        this.stage = primaryStage;
     }
     
     @FXML
-    public void handleReturnLaunch(){
+    public void handleReturnLaunch(ActionEvent event){
         try {
-            FxFunctions.changePage(new SessionLaunch(), this);
+            FxFunctions.changePage(new SessionLaunch(), event);
         } catch (Exception e) {
-            System.out.println("Page change failed at handleReturnLaunch.");
-            e.printStackTrace();
+            FxFunctions.pageChangeFail(e, "handleReturnLaunch");
         }
     }
     
@@ -53,10 +49,5 @@ public class TeamSearch extends Application implements ControlInterface {
         }catch(NumberFormatException e){
             teamNum.setText("INVALID");
         }
-    }
-    
-    @Override
-    public Stage getStage() {
-        return this.stage;
     }
 }

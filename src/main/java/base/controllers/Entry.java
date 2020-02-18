@@ -19,22 +19,19 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Entry extends Application implements ControlInterface{
-    
-    Stage stage;
     @FXML
     ChoiceBox<Session> sessionSelect;
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-        VBox root = (VBox) new FXMLLoader().load(new FileInputStream("src/main/resources/layouts/Entry.fxml"));
-    
+        System.out.println("breakpoint");
         // Create the Scene
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(FXMLLoader.load(this.getClass().getResource("/fxml/Entry.fxml")));
     
         primaryStage.setTitle("BREAD 2020 Scouting Base");
         primaryStage.setScene(scene);
         primaryStage.show();
-        this.stage = primaryStage;
+        System.out.println("breakpoint");
     }
     
     @Override
@@ -44,13 +41,13 @@ public class Entry extends Application implements ControlInterface{
         }
     }
     
+    
     @FXML
     public void handleNewSession(ActionEvent event){
         try {
-            FxFunctions.changePage(new NewSession(), this);
+            FxFunctions.changePage(new NewSession(), event);
         } catch (Exception e) {
-            System.out.println("Page change failed at handleNewSession.");
-            e.printStackTrace();
+            FxFunctions.pageChangeFail(e, "handleNewSession");
         }
     }
     
@@ -58,15 +55,10 @@ public class Entry extends Application implements ControlInterface{
     public void handleGo(ActionEvent event){
         Main.currentSession = (Session) sessionSelect.getValue();
         try{
-            FxFunctions.changePage(new SessionLaunch(), this);
+            FxFunctions.changePage(new SessionLaunch(), event);
         }catch(Exception e){
-            System.out.println("Page change failed at handleGo. ");
-            e.printStackTrace();
+            FxFunctions.pageChangeFail(e, "handleGo");
         }
     }
     
-    @Override
-    public Stage getStage() {
-        return this.stage;
-    }
 }

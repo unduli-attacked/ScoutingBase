@@ -1,5 +1,6 @@
 package base.controllers;
 
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -30,6 +31,4 @@ public interface ControlInterface {
     default void initialize(){
     
     }
-    
-    Stage getStage();
 }

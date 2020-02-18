@@ -11,9 +11,13 @@ public class NoteScout implements Saveable{
     public ArrayList<NoteScoutMatch> matchData = new ArrayList<>();
     public ArrayList<Integer> matchesScouted = new ArrayList<>();
     
-    public NoteScout(String name_){
+    public NoteScout(String name_, Session session_){
         this.name = name_;
-        Main.currentSession.noteScouts.put(this.name, this);
+        session_.noteScouts.put(this.name, this);
+    }
+    
+    public NoteScout(String name_){
+        new NoteScout(name_, Main.currentSession);
     }
     
     public String getName() {

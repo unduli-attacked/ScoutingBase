@@ -75,17 +75,9 @@ public class Session {
     }
     
     public boolean saveSession(){
-        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-        try {
-            FileWriter fr = new FileWriter("/mainStorage/sessions/"+this.tbaEventKey+".json");
-            gson.toJson(this, fr);
-            fr.flush();
-            fr.close();
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
+            File fl = new File("main_storage/sessions/MAIN"+this.tbaEventKey+".json");
+            System.out.println(fl.getAbsolutePath());
+            return SavingFunctions.save(fl, this);
     }
     
     public void saveAll(){
@@ -164,18 +156,23 @@ public class Session {
     }
     
     public void genDirectories() throws IOException {
-        new File(this.directory+FileSystem.RAW_DATA).mkdir();
-        new File(this.directory+FileSystem.RAW_SCOUTS).mkdir();
-        new File(this.directory+FileSystem.RAW_MATCHES).mkdir();
-        new File(this.directory+FileSystem.RAW_PITS).mkdir();
-        new File(this.directory+FileSystem.RAW_TEAMS).mkdir();
-        new File(this.directory+FileSystem.FINAL_DATA).mkdir();
-        new File(this.directory+FileSystem.PDF_TEAMS).mkdir();
-        new File(this.directory+FileSystem.PDF_PIT_NOTES).mkdir();
-        new File(this.directory+FileSystem.PDF_MATCH_NOTES).mkdir();
+        new File(this.directory+FileSystem.RAW_DATA).mkdirs();
+        new File(this.directory+FileSystem.RAW_SCOUTS).mkdirs();
+        new File(this.directory+FileSystem.RAW_MATCHES).mkdirs();
+        new File(this.directory+FileSystem.RAW_PITS).mkdirs();
+        new File(this.directory+FileSystem.RAW_TEAMS).mkdirs();
+        new File(this.directory+FileSystem.FINAL_DATA).mkdirs();
+        new File(this.directory+FileSystem.PDF_TEAMS).mkdirs();
+        new File(this.directory+FileSystem.PDF_PIT_NOTES).mkdirs();
+        new File(this.directory+FileSystem.PDF_MATCH_NOTES).mkdirs();
     }
     
     public void genTeams() throws IOException{
         //TODO team file
+    }
+    
+    @Override
+    public String toString(){
+        return this.eventName;
     }
 }

@@ -1,5 +1,6 @@
 package base.models;
 
+import base.lib.SavingFunctions;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -27,23 +28,7 @@ public interface Saveable {
      * @return true if success, false if exception
      */
     default boolean saveRaw(Session currentSession_){
-        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
         File fl = new File(currentSession_.directory+"/rawData/"+this.getRawDirName()+"/"+this.getFileName()+".json");
-        try {
-            fl.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        fl.setWritable(true);
-        try {
-            FileWriter fr = new FileWriter(fl);
-            gson.toJson(this, fr);
-            fr.flush();
-            fr.close();
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
+        return SavingFunctions.save(fl, this);
     }
 }

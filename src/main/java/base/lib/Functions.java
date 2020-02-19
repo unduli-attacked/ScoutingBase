@@ -4,7 +4,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 import base.Main;
-import base.models.Pit;
+import base.models.*;
 import base.lib.DataClasses.*;
 
 public class Functions {
@@ -24,24 +24,85 @@ public class Functions {
             }
             
         }
-//        ReportFunctions.report("Shot at "+timeStamp_.format(DateTimeFormatter.ISO_LOCAL_TIME)+" not found.");
         return null;
+    }
+    
+    /**
+     * finds a Team for a session based on their number
+     * @param teamNum_ the team number
+     * @param session_ the session to search in
+     * @return the correct team, or null if it doesn't exist
+     */
+    public static Team findTeam(int teamNum_, Session session_){
+        for(Team team_ : session_.teams.values()){
+            if(team_.teamNum==teamNum_){
+                return team_;
+            }
+        }
+        return null;
+    }
+    /**
+     * finds a Team for the current Session based on their number
+     * @param teamNum_ the team number
+     * @return the correct team, or null if it doesn't exist
+     */
+    public static Team findTeam(int teamNum_){
+        return findTeam(teamNum_, Main.currentSession);
     }
     
     /**
      * finds an existing Pit data class for a team
      * @param teamNum_ the team number
+     * @param session_ the session to search in
      * @return the team's pit, or null if not found
      */
-    public static Pit findPit(int teamNum_){
-        for(Pit pit : Main.currentSession.pits){
+    public static Pit findPit(int teamNum_, Session session_){
+        for(Pit pit : session_.pits.values()){
             if(pit.teamNum == teamNum_){
                 return pit;
             }
         }
         return null;
     }
+    /**
+     * finds an existing Pit data class for a team in the current session
+     * @param teamNum_ the team number
+     * @return the team's pit, or null if not found
+     */
+    public static Pit findPit(int teamNum_){
+        return findPit(teamNum_, Main.currentSession);
+    }
     
+    /**
+     * finds existing Match data classes for a team
+     * @param teamNum_ the team number
+     * @param session_ the session to search in
+     * @return the team's matches, or null if none found
+     */
+    public static ArrayList<Match> findMatch(int teamNum_, Session session_){
+        ArrayList<Match> temp = new ArrayList<>();
+        for(Match match : session_.matches.values()){
+            if(match.teamNum == teamNum_){
+                temp.add(match);
+            }
+        }
+        return temp;
+    }
+    /**
+     * finds existing Match data classes for a team in teh current session
+     * @param teamNum_ the team number
+     * @return the team's matches, or null if none found
+     */
+    public static ArrayList<Match> findMatch(int teamNum_){
+        return findMatch(teamNum_, Main.currentSession);
+    }
+    
+    /**
+     * compares two local times
+     * @param first later time
+     * @param second earlier time
+     * @return the difference (first - second)
+     */
     public static float compareLocalTime(LocalTime first, LocalTime second){
         return (first.getSecond()+first.getMinute()*60)-(second.getSecond()+second.getMinute()*60);
     }
@@ -89,6 +150,11 @@ public class Functions {
         return new Float[][]{{min},{(float)y,(float)x}};
     }
     
+    /**
+     * get the sum of an array list of floats
+     * @param ls the arraylist
+     * @return the sum of the items in the arraylist
+     */
     public static float getSum(ArrayList<Float> ls){
         float sum = 0;
         for(float fl : ls){

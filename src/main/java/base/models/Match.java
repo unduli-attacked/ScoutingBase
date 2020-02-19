@@ -9,7 +9,7 @@ import base.models.NoteScout;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Match implements Comparable{
+public class Match implements Comparable, Saveable{
     
     //MAJOR IDENTIFIERS
     public final int matchNum;
@@ -28,11 +28,18 @@ public class Match implements Comparable{
     public String bigNotes;
     
     
+    public Match (int matchNum_, int teamNum_, Station alliancePosition_, Session currentSession_){
+        this.matchNum = matchNum_;
+        this.teamNum = teamNum_;
+        this.allPos = alliancePosition_;
+        currentSession_.matches.put(this.getFileName(), this);
+    }
+    
     public Match (int matchNum_, int teamNum_, Station alliancePosition_){
         this.matchNum = matchNum_;
         this.teamNum = teamNum_;
         this.allPos = alliancePosition_;
-        Main.currentSession.matches.add(this);
+        Main. currentSession.matches.put(this.getFileName(), this);
     }
     
     public void addDataScout(DataScout scout_){
@@ -52,15 +59,10 @@ public class Match implements Comparable{
             && (noteScouts.size() >= Main.currentSession.numNoteScouts);
     }
     
-    /**
-     * Pass data correlated by the correlation thread to the Match class
-     * @param finalData_
-     *      String is the Match.java variable name
-     *      Object is it's value
-     */
-    public void passFinalData(DataScoutMatch finalData_, String bigNotes_) throws ClassCastException{
+    public void passFinalData(DataScoutMatch finalData_, String bigNotes_){
         this.matchData = finalData_;
         this.bigNotes = bigNotes_;
+        this.isColl = true;
     }
     
     @Override
@@ -72,4 +74,30 @@ public class Match implements Comparable{
         
     }
     
+    @Override
+    public boolean equals(Object o){
+        return ((Match) o).teamNum==this.teamNum
+                && ((Match) o).matchNum == this.matchNum
+                && ((Match) o).allPos.equals(this.allPos);
+    }
+    
+    /**
+     * Used in saving raw data
+     *
+     * @return the file name WITHOUT directory or extension (ex. M14Blue1)
+     */
+    @Override
+    public String getFileName() {
+        return "M"+this.matchNum+"_"+this.allPos.toString();
+    }
+    
+    /**
+     * Used in saving raw data
+     *
+     * @return the raw directory WITHOUT slashes (ex. rawMatches)
+     */
+    @Override
+    public String getRawDirName() {
+        return "rawMatches";
+    }
 }

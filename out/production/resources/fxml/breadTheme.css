@@ -1,0 +1,15 @@
+.root{
+    -fx-background-color: #82181E;
+    -fx-base: #82181e;
+    -fx-color:#97484C;
+    -fx-light-text-color: rgb(220, 220, 220);
+    -fx-mid-text-color: rgb(100, 100, 100);
+    -fx-dark-text-color: rgb(20, 20, 20);
+    -fx-control-inner-background:#CF6369;
+    -fx-control-inner-background-alt:#4F0E11;
+    -fx-accent: #cf6369;
+}
+
+.text-input {
+    -fx-prompt-text-fill: -fx-control-inner-background;
+}

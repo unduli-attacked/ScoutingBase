@@ -3,11 +3,13 @@ import base.lib.DataClasses;
 import base.lib.Enums;
 import base.models.DataScout;
 import base.models.NoteScout;
-import base.threads.CollationThread;
+import base.models.Session;
+import base.threads.MatchCollationThread;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
+import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,13 +18,14 @@ import java.util.HashMap;
 public class CollationTest {
     
     @Test
-    public void DataCollationTest(){
-        Match testMatch = new Match(10, 5940, Enums.Station.BLUE_1);
-        DataScout testScout1 = new DataScout("Test Scout 1");
-        DataScout testScout2 = new DataScout("Test Scout 2");
-        DataScout testScout3 = new DataScout("Test Scout 3");
-        NoteScout testNoteScout1 = new NoteScout("Test Note Scout 1");
-        NoteScout testNoteScout2 = new NoteScout("Test Note Scout 2");
+    public void DataCollationTest() throws IOException {
+        Session testSesh = new Session(2020, "Test", "test2020", "test2020/", 3, 3);
+        Match testMatch = new Match(10, 5940, Enums.Station.BLUE_1, testSesh);
+        DataScout testScout1 = new DataScout("Test Scout 1", testSesh);
+        DataScout testScout2 = new DataScout("Test Scout 2", testSesh);
+        DataScout testScout3 = new DataScout("Test Scout 3", testSesh);
+        NoteScout testNoteScout1 = new NoteScout("Test Note Scout 1", testSesh);
+        NoteScout testNoteScout2 = new NoteScout("Test Note Scout 2", testSesh);
     
         DataClasses.DataScoutMatch data = new DataClasses.DataScoutMatch();
         testScout1.setRank(100);
@@ -134,7 +137,7 @@ public class CollationTest {
         noteScoutHashMap.put(testNoteScout1.getName(), testNoteScout1);
         noteScoutHashMap.put(testNoteScout2.getName(), testNoteScout2);
     
-        CollationThread.collate(testMatch, dataScoutHashMap, noteScoutHashMap);
+        MatchCollationThread.collate(testMatch, dataScoutHashMap, noteScoutHashMap);
         
         //TODO check ranks later
 //        Assertions.assertEquals(123, testScout1.getRank());

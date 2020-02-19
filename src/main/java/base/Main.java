@@ -1,37 +1,51 @@
 package base;
 
+import base.controllers.ControlInterface;
+import base.controllers.Entry;
+import base.lib.FileSystem;
+import base.lib.SavingFunctions;
 import base.lib.SheetsFunctions;
 import base.models.Session;
+import base.threads.MatchCollationThread;
+import base.threads.PitCollectionThread;
+import base.threads.TeamCollationThread;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main extends Application {
+public class Main{
     public static String eventName = "";
     public static Session currentSession;
-    public static ArrayList<Session> recoveredSessions;
+    public static ArrayList<Session> recoveredSessions = new ArrayList<>();
+    public static MatchCollationThread matchCollationThread;
+    public static PitCollectionThread pitCollectionThread;
+    public static TeamCollationThread teamCollationThread;
     
-    @Override
-    public void start(Stage stage) {
-        stage.setTitle("BREAD Scouting Base");
-        stage.show();
-    }
-    public static void main(String args[]){
-        currentSession = new Session(2020, "testEvent", "na", "\\testEvent\\", 2, 1);
-        currentSession.spreadsheetID = "1b2jZZsnmQ71mW3oEc0Sr2sQ3aDmlQOeIyL8Uws0gnNk";
-        currentSession.mainPitTab = "Main Pit Data";
-        currentSession.finalMainPitCol = "AN";
-        List<Object> testPull = new ArrayList<>();
-        try {
-            testPull = SheetsFunctions.getHeaders(currentSession.spreadsheetID, currentSession.mainPitTab, currentSession.finalMainPitCol);
-        }catch(Exception e){
-            System.out.println(e);
+    
+    public static void main(String args[]) throws IOException {
+        
+        new File("main_storage/").mkdir();
+        new File("main_storage/sessions/").mkdir();
+        new File("main_storage/admins/").mkdir();
+        
+        File sessions = new File("main_storage/sessions/");
+        if(sessions.isDirectory() && sessions.listFiles()!=null){
+            for(File fl : sessions.listFiles()){
+                recoveredSessions.add(SavingFunctions.recoverFullSession(fl));
+            }
         }
-        for(Object o : testPull){
-            System.out.println(o);
-        }
-        launch(args);
+    
+    
+        Application.launch(Entry.class, args);
     }
+    
+    public Main(){}
 }

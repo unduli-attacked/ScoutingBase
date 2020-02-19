@@ -1,0 +1,76 @@
+{
+  "teamNum": 5940,
+  "teamName": "BREAD",
+  "scoutID": "jmchugo20",
+  "timeScouted": {
+    "date": {
+      "year": 2020,
+      "month": 1,
+      "day": 30
+    },
+    "time": {
+      "hour": 9,
+      "minute": 41,
+      "second": 53,
+      "nano": 0
+    }
+  },
+  "interviewee": "Areeba",
+  "dataFilled": true,
+  "practialWeight": 2.0,
+  "officialWeight": 1.0,
+  "dtLength": 20.0,
+  "dtWidth": 5.0,
+  "height": 30.0,
+  "sideExtend": 2.0,
+  "teleUpExtend": 1.0,
+  "climbUpExtend": 20.0,
+  "bumperCoverage": "Completley covered",
+  "maxCells": 4,
+  "intake": "FLOOR",
+  "canClimb": false,
+  "climbDescrip": "",
+  "canBuddy": true,
+  "visionPickup": [
+    "OUTER",
+    "LOWER"
+  ],
+  "visionAngle": [
+    "With partial targets"
+  ],
+  "shootAnywhere": false,
+  "controlPanel": "NEITHER",
+  "issues": "Yes",
+  "techNotes": "No",
+  "autoStrategies": [
+    "AUTOLINE"
+  ],
+  "autoScore": true,
+  "teleopStrategies": [
+    "OTHER"
+  ],
+  "hpPreferences": {
+    "loading": "PRIMARY",
+    "collecting": "PREFERRED",
+    "passing": "OKAY",
+    "storing": "UNCOMFORTABLE",
+    "tracking": "NO",
+    "other": "NO"
+  },
+  "travelArea": [
+    "TRENCH"
+  ],
+  "shotArea": [
+    "NONE"
+  ],
+  "collectArea": [
+    "NONE"
+  ],
+  "teleopPref": "LOW",
+  "autoPref": "DEFENSE",
+  "stratNotes": "",
+  "imageLink": [
+    "https://drive.google.com/open?id\u003d10mtW9pAiZcg_PSbP9XmBaN4Z-UN-Jbx_"
+  ],
+  "secondPits": {}
+}

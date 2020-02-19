@@ -29,95 +29,19 @@ public class Functions {
     }
     
     /**
-<<<<<<< Updated upstream
      * finds an existing Pit data class for a team
-=======
-     * finds a BaseTeam for a session based on their number
-     * @param teamNum_ the team number
-     * @param session_ the session to search in
-     * @return the correct team, or null if it doesn't exist
-     */
-    public static BaseTeam findTeam(int teamNum_, Session session_){
-        for(BaseTeam baseTeam_ : session_.teams.values()){
-            if(baseTeam_.teamNum==teamNum_){
-                return baseTeam_;
-            }
-        }
-        return null;
-    }
-    /**
-     * finds a BaseTeam for the current Session based on their number
-     * @param teamNum_ the team number
-     * @return the correct team, or null if it doesn't exist
-     */
-    public static BaseTeam findTeam(int teamNum_){
-        return findTeam(teamNum_, Main.currentSession);
-    }
-    
-    /**
-     * finds an existing BasePit data class for a team
->>>>>>> Stashed changes
      * @param teamNum_ the team number
      * @return the team's pit, or null if not found
      */
-<<<<<<< Updated upstream
     public static Pit findPit(int teamNum_){
         for(Pit pit : Main.currentSession.pits){
             if(pit.teamNum == teamNum_){
                 return pit;
-=======
-    public static BasePit findPit(int teamNum_, Session session_){
-        for(BasePit basePit : session_.pits.values()){
-            if(basePit.teamNum == teamNum_){
-                return basePit;
->>>>>>> Stashed changes
             }
         }
         return null;
     }
-<<<<<<< Updated upstream
     
-=======
-    /**
-     * finds an existing BasePit data class for a team in the current session
-     * @param teamNum_ the team number
-     * @return the team's pit, or null if not found
-     */
-    public static BasePit findPit(int teamNum_){
-        return findPit(teamNum_, Main.currentSession);
-    }
-    
-    /**
-     * finds existing BaseMatch data classes for a team
-     * @param teamNum_ the team number
-     * @param session_ the session to search in
-     * @return the team's baseMatches, or null if none found
-     */
-    public static ArrayList<BaseMatch> findMatch(int teamNum_, Session session_){
-        ArrayList<BaseMatch> temp = new ArrayList<>();
-        for(BaseMatch baseMatch : session_.matches.values()){
-            if(baseMatch.teamNum == teamNum_){
-                temp.add(baseMatch);
-            }
-        }
-        return temp;
-    }
-    /**
-     * finds existing BaseMatch data classes for a team in teh current session
-     * @param teamNum_ the team number
-     * @return the team's baseMatches, or null if none found
-     */
-    public static ArrayList<BaseMatch> findMatch(int teamNum_){
-        return findMatch(teamNum_, Main.currentSession);
-    }
-    
-    /**
-     * compares two local times
-     * @param first later time
-     * @param second earlier time
-     * @return the difference (first - second)
-     */
->>>>>>> Stashed changes
     public static float compareLocalTime(LocalTime first, LocalTime second){
         return (first.getSecond()+first.getMinute()*60)-(second.getSecond()+second.getMinute()*60);
     }

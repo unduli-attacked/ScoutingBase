@@ -3,15 +3,13 @@ package base.models;
 import base.Main;
 import base.lib.DataClasses.*;
 import base.lib.Enums.*;
+import base.models.DataScout;
+import base.models.NoteScout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-<<<<<<< Updated upstream:src/main/java/base/models/Match.java
 public class Match implements Comparable{
-=======
-public class BaseMatch implements Comparable, Saveable{
->>>>>>> Stashed changes:src/main/java/base/models/BaseMatch.java
     
     //MAJOR IDENTIFIERS
     public final int matchNum;
@@ -30,18 +28,7 @@ public class BaseMatch implements Comparable, Saveable{
     public String bigNotes;
     
     
-<<<<<<< Updated upstream:src/main/java/base/models/Match.java
     public Match (int matchNum_, int teamNum_, Station alliancePosition_){
-=======
-    public BaseMatch(int matchNum_, int teamNum_, Station alliancePosition_, Session currentSession_){
-        this.matchNum = matchNum_;
-        this.teamNum = teamNum_;
-        this.allPos = alliancePosition_;
-        currentSession_.matches.put(this.getFileName(), this);
-    }
-    
-    public BaseMatch(int matchNum_, int teamNum_, Station alliancePosition_){
->>>>>>> Stashed changes:src/main/java/base/models/BaseMatch.java
         this.matchNum = matchNum_;
         this.teamNum = teamNum_;
         this.allPos = alliancePosition_;
@@ -78,40 +65,11 @@ public class BaseMatch implements Comparable, Saveable{
     
     @Override
     public int compareTo(Object o) {
-        int compareRank = (int)Math.floor(((BaseMatch)o).matchNum);
+        int compareRank = (int)Math.floor(((Match)o).matchNum);
         int rank = (int)Math.floor(this.matchNum);
         //FIXME this needs to be tested idk what im do
         return rank - compareRank; //ascending
         
     }
     
-<<<<<<< Updated upstream:src/main/java/base/models/Match.java
-=======
-    @Override
-    public boolean equals(Object o){
-        return ((BaseMatch) o).teamNum==this.teamNum
-                && ((BaseMatch) o).matchNum == this.matchNum
-                && ((BaseMatch) o).allPos.equals(this.allPos);
-    }
-    
-    /**
-     * Used in saving raw data
-     *
-     * @return the file name WITHOUT directory or extension (ex. M14Blue1)
-     */
-    @Override
-    public String getFileName() {
-        return "M"+this.matchNum+"_"+this.allPos.toString();
-    }
-    
-    /**
-     * Used in saving raw data
-     *
-     * @return the raw directory WITHOUT slashes (ex. rawMatches)
-     */
-    @Override
-    public String getRawDirName() {
-        return "rawMatches";
-    }
->>>>>>> Stashed changes:src/main/java/base/models/BaseMatch.java
 }

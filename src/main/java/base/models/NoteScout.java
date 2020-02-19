@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class NoteScout {
     public String name;
-    public ArrayList<BaseMatch> baseMatches = new ArrayList<>();
+    public ArrayList<Match> matches = new ArrayList<>();
     public ArrayList<NoteScoutMatch> matchData = new ArrayList<>();
     public ArrayList<Integer> matchesScouted = new ArrayList<>();
     
@@ -21,7 +21,7 @@ public class NoteScout {
     }
     
     /**
-     * adds a match of notes to the note scout. does NOT add it to any BaseMatch
+     * adds a match of notes to the note scout. does NOT add it to any Match
      * @param match_  a NOTE SCOUT match hashmap
      */
     public void addMatch(NoteScoutMatch match_){

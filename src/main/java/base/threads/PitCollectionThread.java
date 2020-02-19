@@ -1,7 +1,7 @@
 package base.threads;
 
 import base.Main;
-import base.models.BasePit;
+import base.models.Pit;
 import base.models.SecondPit;
 import base.lib.ColumnMappings;
 import base.lib.Enums;
@@ -10,11 +10,7 @@ import base.lib.Functions;
 import base.lib.SheetsFunctions;
 import static base.lib.ColumnMappings.MainPit.*;
 
-<<<<<<< Updated upstream
 import java.time.LocalTime;
-=======
-import java.time.LocalDateTime;
->>>>>>> Stashed changes
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,13 +50,8 @@ public class PitCollectionThread extends Thread {
         }
         if(mainTemp!=null){
             if(Functions.findPit((int)mainTemp.get(TEAM_NUM.val))==null){
-<<<<<<< Updated upstream
                 Pit pt = addPit(mainTemp);
                 Main.currentSession.pits.add(pt);
-=======
-                BasePit pt = addPit(mainTemp);
-                Main.currentSession.pits.put(pt.teamNum, pt);
->>>>>>> Stashed changes
                 Main.currentSession.pitScouts.get(pt.scoutID).addPit(pt);
             }
             lastSavedRow++;
@@ -72,15 +63,9 @@ public class PitCollectionThread extends Thread {
         
         }
         if(secondTemp!=null){
-<<<<<<< Updated upstream
             Pit foundPit = Functions.findPit((int)secondTemp.get(ColumnMappings.ReScoutPit.TEAM_NUM.val));
             if(foundPit!=null){
                 foundPit.secondPits.put(LocalTime.parse((String)secondTemp.get(ColumnMappings.ReScoutPit.TIMESTAMP.val), DateTimeFormatter.ofPattern("MM/dd/uuuu kk:mm:ss")),
-=======
-            BasePit foundBasePit = Functions.findPit((int)secondTemp.get(ColumnMappings.ReScoutPit.TEAM_NUM.val));
-            if(foundBasePit !=null){
-                foundBasePit.secondPits.put(LocalDateTime.parse((String)secondTemp.get(ColumnMappings.ReScoutPit.TIMESTAMP.val), DateTimeFormatter.ofPattern("MM/dd/uuuu kk:mm:ss")),
->>>>>>> Stashed changes
                                     addSecondPit(secondTemp));
             }
         }
@@ -106,7 +91,6 @@ public class PitCollectionThread extends Thread {
         return tempSecondPit;
     
     }
-<<<<<<< Updated upstream
     public Pit addPit(List<Object> temp){
         Pit tempPit = new Pit((int)temp.get(TEAM_NUM.val), (String)temp.get(TEAM_NAME.val),
                 (String)temp.get(SCOUT_ID.val), (String)temp.get(TIMESTAMP.val), (String)temp.get(INTERVIEWEE.val));
@@ -120,62 +104,43 @@ public class PitCollectionThread extends Thread {
         tempPit.climbUpExtend = (double)temp.get(EX_CLIMB.val);
         tempPit.bumperCoverage = (String)temp.get(COVERAGE.val);
         tempPit.maxCells = (int)temp.get(CAPACITY.val);
-=======
-    public static BasePit addPit(List<Object> temp){
-        return addPit(temp, Main.currentSession);
-    }
-    public static BasePit addPit(List<Object> temp, Session session_){
-        BasePit tempBasePit = new BasePit(Integer.valueOf((String)temp.get(TEAM_NUM.val)), (String)temp.get(TEAM_NAME.val),
-                (String)temp.get(SCOUT_ID.val), (String)temp.get(TIMESTAMP.val), (String)temp.get(INTERVIEWEE.val), session_);
-        tempBasePit.practialWeight = Double.valueOf((String)temp.get(PRAC_WEIGHT.val));
-        tempBasePit.officialWeight = Double.valueOf((String)temp.get(OFF_WEIGHT.val));
-        tempBasePit.dtLength = Double.valueOf((String)temp.get(DT_LEN.val));
-        tempBasePit.dtWidth = Double.valueOf((String)temp.get(DT_WIDTH.val));
-        tempBasePit.height = Double.valueOf((String)temp.get(HEIGHT.val));
-        tempBasePit.sideExtend = Double.valueOf((String)temp.get(EX_SIDE.val));
-        tempBasePit.teleUpExtend = Double.valueOf((String)temp.get(EX_TELE.val));
-        tempBasePit.climbUpExtend = Double.valueOf((String)temp.get(EX_CLIMB.val));
-        tempBasePit.bumperCoverage = (String)temp.get(COVERAGE.val);
-        tempBasePit.maxCells = Integer.valueOf((String)temp.get(CAPACITY.val));
->>>>>>> Stashed changes
         switch((String)temp.get(INTAKE.val)){
             case "Floor":
-                tempBasePit.intake = Enums.Pickup.FLOOR;
+                tempPit.intake = Enums.Pickup.FLOOR;
                 break;
             case "Station":
-                tempBasePit.intake = Enums.Pickup.STATION;
+                tempPit.intake = Enums.Pickup.STATION;
                 break;
             case "Both":
-                tempBasePit.intake = Enums.Pickup.BOTH;
+                tempPit.intake = Enums.Pickup.BOTH;
                 break;
             default:
-                tempBasePit.intake = Enums.Pickup.NEITHER;
+                tempPit.intake = Enums.Pickup.NEITHER;
                 break;
         }
-        tempBasePit.canClimb = (((String)temp.get(CLIMB.val)).equals("Yes"));
-        tempBasePit.climbDescrip = (String)temp.get(CLIMBER.val);
-        tempBasePit.canBuddy = ((String)temp.get(BUDDY.val)).equals("Yes");
-        tempBasePit.visionPickup = getTarget(((String)temp.get(VIS_PICKUP.val)).split(", "));
-        tempBasePit.visionAngle = new ArrayList<>(Arrays.asList(((String)temp.get(VIS_ANGLE.val)).split(", ")));
-        tempBasePit.shootAnywhere = ((String)temp.get(SHOOT_ANY.val)).equals("Yes");
+        tempPit.canClimb = (((String)temp.get(CLIMB.val)).equals("Yes"));
+        tempPit.climbDescrip = (String)temp.get(CLIMBER.val);
+        tempPit.canBuddy = ((String)temp.get(BUDDY.val)).equals("Yes");
+        tempPit.visionPickup = getTarget(((String)temp.get(VIS_PICKUP.val)).split(", "));
+        tempPit.visionAngle = new ArrayList<>(Arrays.asList(((String)temp.get(VIS_ANGLE.val)).split(", ")));
+        tempPit.shootAnywhere = ((String)temp.get(SHOOT_ANY.val)).equals("Yes");
         switch((String)temp.get(CONTROL.val)){
             case "Both":
-                tempBasePit.controlPanel = Control.BOTH;
+                tempPit.controlPanel = Control.BOTH;
                 break;
             case "Rotation":
-                tempBasePit.controlPanel = Control.ROTATION;
+                tempPit.controlPanel = Control.ROTATION;
                 break;
             case "Position":
-                tempBasePit.controlPanel = Control.POSITION;
+                tempPit.controlPanel = Control.POSITION;
                 break;
             default:
-                tempBasePit.controlPanel = Control.NEITHER;
+                tempPit.controlPanel = Control.NEITHER;
                 break;
         }
-        tempBasePit.issues = (String)temp.get(ISSUES.val);
-        tempBasePit.techNotes = (String)temp.get(TECH_NOTES.val);
+        tempPit.issues = (String)temp.get(ISSUES.val);
+        tempPit.techNotes = (String)temp.get(TECH_NOTES.val);
     
-<<<<<<< Updated upstream
         tempPit.autoStrategies = getStrat(((String)temp.get(AUTO_STRAT.val)).split(", "));
         tempPit.autoScore = ((String)temp.get(AUTO_SCORE.val)).equals("Yes");
         tempPit.teleopStrategies = getStrat((((String)temp.get(TELE_STRAT.val)).split(", ")));
@@ -194,28 +159,6 @@ public class PitCollectionThread extends Thread {
         tempPit.stratNotes = (String)temp.get(STRAT_NOTES.val);
         tempPit.imageLink = (ArrayList<String>)Arrays.asList(((String)temp.get(PHOTOS.val)).split(", "));
         return tempPit;
-=======
-        tempBasePit.autoStrategies = getStrat(((String)temp.get(AUTO_STRAT.val)).split(", "));
-        tempBasePit.autoScore = ((String)temp.get(AUTO_SCORE.val)).equals("Yes");
-        tempBasePit.teleopStrategies = getStrat((((String)temp.get(TELE_STRAT.val)).split(", ")));
-        tempBasePit.teleopStrategies = getStrat(((String)temp.get(AUTO_SCORE.val)).split(", "));
-        tempBasePit.hpPreferences.collecting = getPref((String)temp.get(HP_COLLEC.val));
-        tempBasePit.hpPreferences.loading = getPref((String)temp.get(HP_LOAD.val));
-        tempBasePit.hpPreferences.passing = getPref((String)temp.get(HP_PASS.val));
-        tempBasePit.hpPreferences.storing = getPref((String)temp.get(HP_STORE.val));
-        tempBasePit.hpPreferences.tracking = getPref((String)temp.get(HP_TRACK.val));
-        tempBasePit.hpPreferences.other = getPref((String)temp.get(HP_OTHER.val));
-        tempBasePit.travelArea = getZone(new String[]{(String) temp.get(TRAVEL.val)});
-        tempBasePit.shotArea = getZone(((String)temp.get(SHOOT.val)).split(", "));
-        tempBasePit.collectArea = getZone(((String)temp.get(COLLECT.val)).split(", "));
-        tempBasePit.teleopPref = getStrat(new String[]{(String)temp.get(TELE_PREF.val)}).get(0);
-        tempBasePit.autoPref = getStrat(new String[]{(String)temp.get(AUTO_PREF.val)}).get(0);
-        tempBasePit.stratNotes = (String)temp.get(STRAT_NOTES.val);
-        tempBasePit.imageLink = new ArrayList<String>(Arrays.asList(((String)temp.get(PHOTOS.val)).split(", ")));
-        
-        tempBasePit.dataFilled = true;
-        return tempBasePit;
->>>>>>> Stashed changes
     }
     
     public ArrayList<Enums.Target> getTarget(String[] input){

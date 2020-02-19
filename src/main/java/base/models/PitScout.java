@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class PitScout{
     String name;
     String scoutID;
-    ArrayList<Pit> pits;
+    ArrayList<BasePit> basePits;
     public ArrayList<Integer> teamsAssigned;
     ArrayList<Integer> teamsScouted;
     
@@ -34,9 +34,9 @@ public class PitScout{
         }
     }
     
-    public void addPit(Pit pit_){
-        this.teamsScouted.add(pit_.teamNum);
-        this.pits.add(pit_);
+    public void addPit(BasePit basePit_){
+        this.teamsScouted.add(basePit_.teamNum);
+        this.basePits.add(basePit_);
     }
     
     

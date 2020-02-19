@@ -1,7 +1,7 @@
 package base.threads;
 
 import base.Main;
-import base.models.Match;
+import base.models.BaseMatch;
 import base.lib.DataClasses.*;
 import base.lib.Enums;
 import base.lib.Functions;
@@ -16,52 +16,64 @@ public class CollationThread extends Thread{
 
     @Override
     public void run(){
+<<<<<<< Updated upstream:src/main/java/base/threads/CollationThread.java
         for(Match match_ : Main.currentSession.matches){
             if(match_.dataRediness()){
                 collate(match_, Main.currentSession.standScouts, Main.currentSession.noteScouts);
+=======
+        for(BaseMatch baseMatch_ : Main.currentSession.matches.values()){
+            if(baseMatch_.dataRediness()){
+                collate(baseMatch_, Main.currentSession.standScouts, Main.currentSession.noteScouts);
+>>>>>>> Stashed changes:src/main/java/base/threads/MatchCollationThread.java
             }
         }
     }
     
-    public static void collate(Match match_, HashMap<String, DataScout> dataScoutList, HashMap<String, NoteScout> noteScoutList){
+    public static void collate(BaseMatch baseMatch_, HashMap<String, DataScout> dataScoutList, HashMap<String, NoteScout> noteScoutList){
         DataScoutMatch finalData = new DataScoutMatch();
+<<<<<<< Updated upstream:src/main/java/base/threads/CollationThread.java
         DataScout[] scouts = new DataScout[match_.matchScouts.size()];
         for(int i=0; i<match_.matchScouts.size(); i++){
             scouts[i] = dataScoutList.get(match_.matchScouts.get(i));
+=======
+        DataScout[] scouts = new DataScout[baseMatch_.matchScouts.size()];
+        for(int i = 0; i< baseMatch_.matchScouts.size(); i++){
+            scouts[i] = dataScoutList.get(baseMatch_.matchScouts.get(i).getName());
+>>>>>>> Stashed changes:src/main/java/base/threads/MatchCollationThread.java
         }
         Arrays.sort(scouts);
-        finalData.matchNum =  (int) checkData(scouts, "matchNum", match_.matchNum);
-        finalData.allPos = (Enums.Station) checkData(scouts, "allPos", match_.matchNum);
-        finalData.teamNum = (int) checkData(scouts, "teamNum", match_.matchNum);
-        finalData.absent = (boolean) checkData(scouts, "absent", match_.matchNum);
-        finalData.startingPosition = (double) checkData(scouts, "startingPosition", match_.matchNum);
-        finalData.moved = (boolean) checkData(scouts, "moved", match_.matchNum);
-        finalData.capacityTimeS1 = (LocalTime) checkData(scouts, "capacityTimeS1", match_.matchNum);
-        finalData.capacityTimeS2 = (LocalTime) checkData(scouts, "capacityTimeS2", match_.matchNum);
-        finalData.capacityTimeS3 = (LocalTime) checkData(scouts, "capacityTimeS3", match_.matchNum);
-        finalData.numShots = (int) checkData(scouts, "numShots", match_.matchNum);
-        finalData.shots = checkShots(scouts, match_.matchNum, finalData.numShots);
+        finalData.matchNum =  (int) checkData(scouts, "matchNum", baseMatch_.matchNum);
+        finalData.allPos = (Enums.Station) checkData(scouts, "allPos", baseMatch_.matchNum);
+        finalData.teamNum = (int) checkData(scouts, "teamNum", baseMatch_.matchNum);
+        finalData.absent = (boolean) checkData(scouts, "absent", baseMatch_.matchNum);
+        finalData.startingPosition = (double) checkData(scouts, "startingPosition", baseMatch_.matchNum);
+        finalData.moved = (boolean) checkData(scouts, "moved", baseMatch_.matchNum);
+        finalData.capacityTimeS1 = (LocalTime) checkData(scouts, "capacityTimeS1", baseMatch_.matchNum);
+        finalData.capacityTimeS2 = (LocalTime) checkData(scouts, "capacityTimeS2", baseMatch_.matchNum);
+        finalData.capacityTimeS3 = (LocalTime) checkData(scouts, "capacityTimeS3", baseMatch_.matchNum);
+        finalData.numShots = (int) checkData(scouts, "numShots", baseMatch_.matchNum);
+        finalData.shots = checkShots(scouts, baseMatch_.matchNum, finalData.numShots);
         //TODO fouls
-        finalData.yellowCard = (boolean) checkData(scouts, "yellowCard", match_.matchNum);
-        finalData.redCard = (boolean) checkData(scouts, "redCard", match_.matchNum);
-        finalData.activateTimeS2 = (LocalTime) checkData(scouts, "activateTimeS2", match_.matchNum);
-        finalData.activateTimeS3 = (LocalTime) checkData(scouts, "activateTimeS3", match_.matchNum);
-        finalData.climbDuration = (LocalTime) checkData(scouts, "climbDuration", match_.matchNum);
-        finalData.climb = (boolean) checkData(scouts, "climb", match_.matchNum);
-        finalData.buddyClimb = (boolean) checkData(scouts, "buddyClimb", match_.matchNum);
-        finalData.wasAssisted = (boolean) checkData(scouts, "wasAssisted", match_.matchNum);
-        finalData.leveled = (boolean) checkData(scouts, "leveled", match_.matchNum);
-        finalData.parked = (boolean) checkData(scouts, "parked", match_.matchNum);
-        finalData.disabled = (boolean) checkData(scouts, "disabled", match_.matchNum);
-        finalData.incapacitated = (boolean) checkData(scouts, "incapacitated", match_.matchNum);
-        finalData.climbRP = (boolean) checkData(scouts, "climbRP", match_.matchNum);
-        finalData.totalRP = (int) checkData(scouts, "totalRP", match_.matchNum);
-        finalData.totalPoints = (int) checkData(scouts, "totalPoints", match_.matchNum);
+        finalData.yellowCard = (boolean) checkData(scouts, "yellowCard", baseMatch_.matchNum);
+        finalData.redCard = (boolean) checkData(scouts, "redCard", baseMatch_.matchNum);
+        finalData.activateTimeS2 = (LocalTime) checkData(scouts, "activateTimeS2", baseMatch_.matchNum);
+        finalData.activateTimeS3 = (LocalTime) checkData(scouts, "activateTimeS3", baseMatch_.matchNum);
+        finalData.climbDuration = (LocalTime) checkData(scouts, "climbDuration", baseMatch_.matchNum);
+        finalData.climb = (boolean) checkData(scouts, "climb", baseMatch_.matchNum);
+        finalData.buddyClimb = (boolean) checkData(scouts, "buddyClimb", baseMatch_.matchNum);
+        finalData.wasAssisted = (boolean) checkData(scouts, "wasAssisted", baseMatch_.matchNum);
+        finalData.leveled = (boolean) checkData(scouts, "leveled", baseMatch_.matchNum);
+        finalData.parked = (boolean) checkData(scouts, "parked", baseMatch_.matchNum);
+        finalData.disabled = (boolean) checkData(scouts, "disabled", baseMatch_.matchNum);
+        finalData.incapacitated = (boolean) checkData(scouts, "incapacitated", baseMatch_.matchNum);
+        finalData.climbRP = (boolean) checkData(scouts, "climbRP", baseMatch_.matchNum);
+        finalData.totalRP = (int) checkData(scouts, "totalRP", baseMatch_.matchNum);
+        finalData.totalPoints = (int) checkData(scouts, "totalPoints", baseMatch_.matchNum);
         
         
         finalData.dataNotes = "";
         for (DataScout scout_ : scouts){
-            DataScoutMatch scoutMatch = scout_.matchData.get(scout_.matchesScouted.indexOf(match_.matchNum));
+            DataScoutMatch scoutMatch = scout_.matchData.get(scout_.matchesScouted.indexOf(baseMatch_.matchNum));
             finalData.defenseRank += scoutMatch.defenseRank;
             finalData.defenseAvoidanceRank += scoutMatch.defenseAvoidanceRank;
             finalData.driverRank += scoutMatch.driverRank;
@@ -77,18 +89,24 @@ public class CollationThread extends Thread{
         finalData.humanPlayerRank = finalData.humanPlayerRank/scouts.length;
     
     
+<<<<<<< Updated upstream:src/main/java/base/threads/CollationThread.java
         NoteScout[] noteScouts = new NoteScout[match_.noteScouts.size()];
         for(int i=0; i<match_.noteScouts.size(); i++){
             noteScouts[i] = noteScoutList.get(match_.noteScouts.get(i));
+=======
+        NoteScout[] noteScouts = new NoteScout[baseMatch_.noteScouts.size()];
+        for(int i = 0; i< baseMatch_.noteScouts.size(); i++){
+            noteScouts[i] = noteScoutList.get(baseMatch_.noteScouts.get(i).getName());
+>>>>>>> Stashed changes:src/main/java/base/threads/MatchCollationThread.java
         }
     
         String finalNotes = "";
         for(NoteScout scout_ : noteScouts){
-            finalNotes += scout_.matchData.get(scout_.matchesScouted.indexOf(match_.matchNum)).bigNotes;
+            finalNotes += scout_.matchData.get(scout_.matchesScouted.indexOf(baseMatch_.matchNum)).bigNotes;
             finalNotes += "  ;  ";
         }
     
-        match_.passFinalData(finalData, finalNotes);
+        baseMatch_.passFinalData(finalData, finalNotes);
     }
     
     public static Object checkData(DataScout[] scouts, String key, int matchNum){

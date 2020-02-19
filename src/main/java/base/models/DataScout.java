@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class DataScout implements Comparable{
     String name;
     double rank; //FIXME this is currently calculated the dumb way. what if it wasnt
-    public ArrayList<Match> matches =  new ArrayList<>();
+    public ArrayList<BaseMatch> baseMatches =  new ArrayList<>();
     public ArrayList<DataScoutMatch> matchData = new ArrayList<>();
     public ArrayList<Integer> matchesScouted = new ArrayList<>();
     
@@ -26,7 +26,7 @@ public class DataScout implements Comparable{
     }
     
     /**
-     * adds a match to the data scout. does not add to any Match
+     * adds a match to the data scout. does not add to any BaseMatch
      * @param match_  a DATA SCOUT data class
      */
     public void addMatch(DataScoutMatch match_){

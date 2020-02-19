@@ -43,6 +43,7 @@ public class SessionLaunch extends Application implements ControlInterface{
     @FXML
     public void handleBeginSync(){
         //TODO TBA sync thread
+        Main.tbaIsSync = true;
     }
     
     @FXML

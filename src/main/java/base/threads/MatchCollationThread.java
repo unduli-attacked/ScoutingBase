@@ -102,7 +102,6 @@ public class MatchCollationThread extends Thread{
             }
         }
     
-        //FIXME this is jank
         Object correctData = findScoutMean(scouts, scoutData, key, matchNum);
         for(int i=0; i<scouts.length; i++){
             scouts[i].calculateRank(key, scoutData.get(i).equals(correctData));
@@ -149,8 +148,10 @@ public class MatchCollationThread extends Thread{
         }
         
         //CHECK TBA
-        if(!checkTBA(key, correctData)){
-            correctData = getTBA(key, scouts, scoutData);
+        if(Main.tbaIsSync) {
+            if (!checkTBA(key, correctData)) {
+                correctData = getTBA(key, scouts, scoutData);
+            }
         }
         
         return correctData;

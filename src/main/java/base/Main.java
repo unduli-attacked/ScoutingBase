@@ -28,6 +28,7 @@ public class Main{
     public static MatchCollationThread matchCollationThread;
     public static PitCollectionThread pitCollectionThread;
     public static TeamCollationThread teamCollationThread;
+    public static boolean tbaIsSync;
     
     
     public static void main(String args[]) throws IOException {

@@ -5,39 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="004edafe-1625-4c7c-b11a-713e9f5ce831" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/layouts/Entry.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/layouts/NewSession.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/layouts/SessionLaunch.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/layouts/TeamSearch.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/layouts/TemplateTwoElectricBoogaloo.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/layouts/breadTheme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/layouts/dark-theme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/controllers/ControlInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/controllers/ControlInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/controllers/Entry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/controllers/Entry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/controllers/NewSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/controllers/NewSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/base/controllers/SessionLaunch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/controllers/SessionLaunch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/controllers/TeamPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/controllers/TeamPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/controllers/TeamSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/controllers/TeamSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/lib/FxFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/lib/FxFunctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/DataScout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/DataScout.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/base/models/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/NoteScout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/NoteScout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/Saveable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/Saveable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/models/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/Session.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/layouts/Entry.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Entry.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/layouts/NewSession.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/NewSession.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/layouts/SessionLaunch.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/SessionLaunch.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/layouts/TeamSearch.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/TeamSearch.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/layouts/TemplateTwoElectricBoogaloo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/TemplateTwoElectricBoogaloo.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/layouts/breadTheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/breadTheme.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/layouts/dark-theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/dark-theme.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CollationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CollationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/SavingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SavingTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tokens/StoredCredential" beforeDir="false" afterPath="$PROJECT_DIR$/tokens/StoredCredential" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -105,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/src/test/java/SavingTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="93">
-              <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
+              <caret line="35" column="74" selection-start-line="35" selection-start-column="74" selection-end-line="35" selection-end-column="74" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -114,86 +85,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/CollationTest.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Match.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="139" selection-start-line="139" selection-end-line="139" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/base/models/NoteScout.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
-              <folding>
-                <element signature="e#598#599#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Session.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="79" selection-start-line="79" selection-end-line="79" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#setSheet#0;class#Session#0" />
-                <element signature="method#saveAll#0;class#Session#0" />
-                <element signature="method#recoverScouts#0;class#Session#0" />
-                <element signature="method#recoverMatches#0;class#Session#0" />
-                <element signature="method#recoverPits#0;class#Session#0" />
-                <element signature="method#recoverTeams#0;class#Session#0" />
-                <element signature="e#7109#7110#0" expanded="true" />
-                <element signature="e#7145#7146#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="328">
+              <caret line="57" column="69" selection-start-line="57" selection-start-column="69" selection-end-line="57" selection-end-column="69" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="43" column="33" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="218">
+              <caret line="154" column="9" selection-start-line="154" selection-start-column="9" selection-end-line="154" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main_storage/sessions/MAINtest2020.json">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/../../OpenJDK/jdk-11/lib/src.zip!/java.base/java/io/File.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/base/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26200">
-              <caret line="1350" column="19" selection-start-line="1350" selection-start-column="19" selection-end-line="1350" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Saveable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+            <state relative-caret-position="5">
+              <caret line="32" column="4" lean-forward="true" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -204,8 +117,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/base/controllers/SessionLaunch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="40" column="5" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+            <state relative-caret-position="249">
+              <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -244,6 +157,8 @@
       <find>, this</find>
       <find>(String)</find>
       <find>Main.currentSession</find>
+      <find>getTBA</find>
+      <find>checkTBA</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -290,7 +205,6 @@
         <option value="$PROJECT_DIR$/src/main/java/base/breadTheme.css" />
         <option value="$PROJECT_DIR$/src/main/resources/layouts/TemplateTwoElectricBoogaloo.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/layouts/Entry.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/base/Main.java" />
         <option value="$PROJECT_DIR$/src/main/resources/layouts/SessionLaunch.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/layouts/TeamSearch.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/layouts/NewSession.fxml" />
@@ -298,18 +212,19 @@
         <option value="$PROJECT_DIR$/src/main/java/base/controllers/TeamPage.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/lib/FxFunctions.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/controllers/TeamSearch.java" />
-        <option value="$PROJECT_DIR$/src/main/java/base/controllers/SessionLaunch.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/controllers/Entry.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/controllers/NewSession.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/models/Saveable.java" />
-        <option value="$PROJECT_DIR$/src/test/java/SavingTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/base/models/Match.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/models/DataScout.java" />
         <option value="$PROJECT_DIR$/src/test/java/CollationTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/models/NoteScout.java" />
-        <option value="$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/models/Session.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java" />
+        <option value="$PROJECT_DIR$/src/test/java/SavingTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/base/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/base/controllers/SessionLaunch.java" />
+        <option value="$PROJECT_DIR$/src/main/java/base/models/Match.java" />
+        <option value="$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java" />
       </list>
     </option>
   </component>
@@ -577,32 +492,11 @@
       <workItem from="1580261378918" duration="3326000" />
       <workItem from="1581197475553" duration="40254000" />
       <workItem from="1581819465081" duration="27271000" />
-      <workItem from="1581977419693" duration="4967000" />
+      <workItem from="1581977419693" duration="9027000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.17 at 15h 13m 29s.xml">
-      <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.17 at 15h 13m 42s.xml">
-      <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.17 at 15h 15m 57s.xml">
-      <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.17 at 15h 20m 18s.xml">
-      <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.17 at 16h 40m 37s.xml">
-      <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.17 at 16h 40m 57s.xml">
-      <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.17 at 16h 42m 06s.xml">
-      <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="SavingTest_SingleSaveTest - 2020.02.17 at 16h 43m 00s.xml">
       <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
     </history-entry>
@@ -612,9 +506,30 @@
     <history-entry file="SavingTest_SingleSaveTest - 2020.02.17 at 16h 45m 04s.xml">
       <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.17 at 16h 45m 24s.xml">
+      <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.17 at 16h 45m 51s.xml">
+      <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.17 at 16h 46m 09s.xml">
+      <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.17 at 16h 46m 51s.xml">
+      <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.17 at 16h 47m 28s.xml">
+      <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CollationTest - 2020.02.17 at 16h 47m 42s.xml">
+      <configuration name="CollationTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.17 at 16h 47m 47s.xml">
+      <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="261677000" />
+    <option name="totallyTimeSpent" value="265737000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -630,7 +545,7 @@
     <editor active="true" />
     <layout>
       <window_info anchor="top" id="Structure" order="0" sideWeight="0.31903484" side_tool="true" weight="0.37936267" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6809651" visible="true" weight="0.15549597" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6809651" visible="true" weight="0.15549597" />
       <window_info id="Designer" order="1" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -639,7 +554,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32776934" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.4491654" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.4825493" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.23216996" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49932975" weight="0.42584434" />
@@ -707,47 +622,47 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/CollationTest.java</url>
           <line>139</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java</url>
-          <line>49</line>
+          <line>50</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java</url>
-          <line>69</line>
-          <properties />
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java</url>
           <line>43</line>
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java</url>
-          <line>45</line>
+          <line>46</line>
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java</url>
           <line>40</line>
           <properties />
           <option name="timeStamp" value="10" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java</url>
           <line>41</line>
           <properties />
           <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java</url>
+          <line>44</line>
+          <properties />
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -820,16 +735,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="29" column="58" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/SessionLaunch.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -865,13 +770,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="42" selection-start-line="42" selection-end-line="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../OpenJDK/jdk-11/lib/src.zip!/java.base/java/lang/reflect/Method.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="565" selection-start-line="565" selection-end-line="565" />
         </state>
       </provider>
     </entry>
@@ -1088,13 +986,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Match.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="42" column="4" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/base/models/DataScout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -1122,41 +1013,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/controllers/SessionLaunch.java">
+    <entry file="file://$PROJECT_DIR$/main_storage/sessions/MAINtest2020.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../OpenJDK/jdk-11/lib/src.zip!/java.base/java/lang/reflect/Method.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="40" column="5" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+        <state relative-caret-position="101">
+          <caret line="565" selection-start-line="565" selection-end-line="565" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/models/NoteScout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
-          <folding>
-            <element signature="e#598#599#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/CollationTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="139" selection-start-line="139" selection-end-line="139" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="93">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/SavingTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
+          <caret line="70" selection-start-line="70" selection-end-line="70" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1181,16 +1051,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main_storage/sessions/MAINtest2020.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/models/NoteScout.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="43" column="33" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
+        <state relative-caret-position="208">
+          <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+          <folding>
+            <element signature="e#598#599#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/CollationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="139" selection-start-line="139" selection-end-line="139" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/SavingTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="35" column="74" selection-start-line="35" selection-start-column="74" selection-end-line="35" selection-end-column="74" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/controllers/SessionLaunch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5">
+          <caret line="32" column="4" lean-forward="true" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/models/Match.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="57" column="69" selection-start-line="57" selection-start-column="69" selection-end-line="57" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="154" column="9" selection-start-line="154" selection-start-column="9" selection-end-line="154" selection-end-column="9" />
         </state>
       </provider>
     </entry>

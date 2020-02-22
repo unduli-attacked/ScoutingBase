@@ -4,6 +4,7 @@ import base.Main;
 import base.lib.FxFunctions;
 import base.threads.MatchCollationThread;
 import base.threads.PitCollectionThread;
+import base.threads.TBACollectionThread;
 import base.threads.TeamCollationThread;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -42,7 +43,8 @@ public class SessionLaunch extends Application implements ControlInterface{
     
     @FXML
     public void handleBeginSync(){
-        //TODO TBA sync thread
+        Main.tbaCollectionThread = new TBACollectionThread();
+        Main.tbaCollectionThread.start();
         Main.tbaIsSync = true;
     }
     

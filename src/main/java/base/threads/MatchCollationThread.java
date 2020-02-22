@@ -30,33 +30,34 @@ public class MatchCollationThread extends Thread{
             scouts[i] = dataScoutList.get(match_.matchScouts.get(i).getName());
         }
         Arrays.sort(scouts);
-        finalData.matchNum =  (int) checkData(scouts, "matchNum", match_.matchNum);
-        finalData.allPos = (Enums.Station) checkData(scouts, "allPos", match_.matchNum);
-        finalData.teamNum = (int) checkData(scouts, "teamNum", match_.matchNum);
-        finalData.absent = (boolean) checkData(scouts, "absent", match_.matchNum);
-        finalData.startingPosition = (double) checkData(scouts, "startingPosition", match_.matchNum);
-        finalData.moved = (boolean) checkData(scouts, "moved", match_.matchNum);
-        finalData.capacityTimeS1 = (LocalTime) checkData(scouts, "capacityTimeS1", match_.matchNum);
-        finalData.capacityTimeS2 = (LocalTime) checkData(scouts, "capacityTimeS2", match_.matchNum);
-        finalData.capacityTimeS3 = (LocalTime) checkData(scouts, "capacityTimeS3", match_.matchNum);
-        finalData.numShots = (int) checkData(scouts, "numShots", match_.matchNum);
-        finalData.shots = checkShots(scouts, match_.matchNum, finalData.numShots);
+        finalData.matchNum =  (int) checkData(scouts, "matchNum", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.allPos = (Enums.Station) checkData(scouts, "allPos", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.teamNum = (int) checkData(scouts, "teamNum", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.absent = (boolean) checkData(scouts, "absent", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.startingPosition = (double) checkData(scouts, "startingPosition", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.moved = (boolean) checkData(scouts, "moved", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.capacityTimeS1 = (LocalTime) checkData(scouts, "capacityTimeS1", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.capacityTimeS2 = (LocalTime) checkData(scouts, "capacityTimeS2", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.capacityTimeS3 = (LocalTime) checkData(scouts, "capacityTimeS3", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.operationalRP = (boolean) checkData(scouts, "operationalRP", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.numShots = (int) checkData(scouts, "numShots", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.shots = checkShots(scouts, match_.matchNum, finalData.numShots, match_.matchBreakdown);
         //TODO fouls
-        finalData.yellowCard = (boolean) checkData(scouts, "yellowCard", match_.matchNum);
-        finalData.redCard = (boolean) checkData(scouts, "redCard", match_.matchNum);
-        finalData.activateTimeS2 = (LocalTime) checkData(scouts, "activateTimeS2", match_.matchNum);
-        finalData.activateTimeS3 = (LocalTime) checkData(scouts, "activateTimeS3", match_.matchNum);
-        finalData.climbDuration = (LocalTime) checkData(scouts, "climbDuration", match_.matchNum);
-        finalData.climb = (boolean) checkData(scouts, "climb", match_.matchNum);
-        finalData.buddyClimb = (boolean) checkData(scouts, "buddyClimb", match_.matchNum);
-        finalData.wasAssisted = (boolean) checkData(scouts, "wasAssisted", match_.matchNum);
-        finalData.leveled = (boolean) checkData(scouts, "leveled", match_.matchNum);
-        finalData.parked = (boolean) checkData(scouts, "parked", match_.matchNum);
-        finalData.disabled = (boolean) checkData(scouts, "disabled", match_.matchNum);
-        finalData.incapacitated = (boolean) checkData(scouts, "incapacitated", match_.matchNum);
-        finalData.climbRP = (boolean) checkData(scouts, "climbRP", match_.matchNum);
-        finalData.totalRP = (int) checkData(scouts, "totalRP", match_.matchNum);
-        finalData.totalPoints = (int) checkData(scouts, "totalPoints", match_.matchNum);
+        finalData.yellowCard = (boolean) checkData(scouts, "yellowCard", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.redCard = (boolean) checkData(scouts, "redCard", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.activateTimeS2 = (LocalTime) checkData(scouts, "activateTimeS2", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.activateTimeS3 = (LocalTime) checkData(scouts, "activateTimeS3", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.climbDuration = (LocalTime) checkData(scouts, "climbDuration", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.climb = (boolean) checkData(scouts, "climb", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.buddyClimb = (boolean) checkData(scouts, "buddyClimb", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.wasAssisted = (boolean) checkData(scouts, "wasAssisted", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.leveled = (boolean) checkData(scouts, "leveled", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.parked = (boolean) checkData(scouts, "parked", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.disabled = (boolean) checkData(scouts, "disabled", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.incapacitated = (boolean) checkData(scouts, "incapacitated", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.climbRP = (boolean) checkData(scouts, "climbRP", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.totalRP = (int) checkData(scouts, "totalRP", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.totalPoints = (int) checkData(scouts, "totalPoints", match_.matchNum, match_.matchBreakdown, match_.allPos);
         
         
         finalData.dataNotes = "";
@@ -91,7 +92,7 @@ public class MatchCollationThread extends Thread{
         match_.passFinalData(finalData, finalNotes);
     }
     
-    public static Object checkData(DataScout[] scouts, String key, int matchNum){
+    public static Object checkData(DataScout[] scouts, String key, int matchNum, HashMap<String, Object> tbaMap, Enums.Station allPos){
         ArrayList<Object> scoutData = new ArrayList<>();
         for(DataScout scout : scouts) {
             try {
@@ -102,14 +103,14 @@ public class MatchCollationThread extends Thread{
             }
         }
     
-        Object correctData = findScoutMean(scouts, scoutData, key, matchNum);
+        Object correctData = findScoutMean(scouts, scoutData, key, matchNum, tbaMap, allPos);
         for(int i=0; i<scouts.length; i++){
             scouts[i].calculateRank(key, scoutData.get(i).equals(correctData));
         }
         return correctData;
     }
     
-    public static Object findScoutMean(DataScout[] scouts, ArrayList<Object> scoutData, String key, int matchNum){
+    public static Object findScoutMean(DataScout[] scouts, ArrayList<Object> scoutData, String key, int matchNum, HashMap<String, Object> tbaMap, Enums.Station allPos){
         HashMap<Object, Integer> data = new HashMap<>();
         Object correctData = null;
         
@@ -149,15 +150,13 @@ public class MatchCollationThread extends Thread{
         
         //CHECK TBA
         if(Main.tbaIsSync) {
-            if (!checkTBA(key, correctData)) {
-                correctData = getTBA(key, scouts, scoutData);
-            }
+            correctData = getTBA(key, correctData, tbaMap, allPos);
         }
         
         return correctData;
     }
     
-    public static ArrayList<Shot> checkShots(DataScout[] scouts, int matchNum, int numShots){
+    public static ArrayList<Shot> checkShots(DataScout[] scouts, int matchNum, int numShots, HashMap<String, Object> tbaMap){
         ArrayList<Shot> finalShots = new ArrayList<>();
         ArrayList<ArrayList<Shot>> scoutData = new ArrayList<>();
         for(DataScout scout : scouts){
@@ -179,13 +178,13 @@ public class MatchCollationThread extends Thread{
                     shotList.add(tempShot); //todo determine if 5s is a good margin
                 }
             }
-            finalShots.add(findShotMean(scouts, shotList, matchNum));
+            finalShots.add(findShotMean(scouts, shotList, matchNum, tbaMap));
         }
         
         return finalShots;
     }
     
-    public static Shot findShotMean(DataScout[] scouts, ArrayList<Shot> scoutData, int matchNum){
+    public static Shot findShotMean(DataScout[] scouts, ArrayList<Shot> scoutData, int matchNum, HashMap<String, Object> tbaMap){
         HashMap<LocalTime, Integer> timeFrequency = new HashMap<>();
         //Time mean
         for(int i=0; i<scoutData.size(); i++){
@@ -374,15 +373,28 @@ public class MatchCollationThread extends Thread{
         return Functions.getLocalTime(avTime);
     }
     
-    
-    public static boolean checkTBA(String key, Object data){
-        //TODO once the map comes out
-        return true;
-    }
-    
-    public static Object getTBA(String key, DataScout[] scouts, ArrayList<Object> scoutData){
-        //TODO once the map comes out
-        //TODO also include rank calc here
-        return scoutData.get(0);
+    public static Object getTBA(String key, Object assumedCorrect, HashMap<String, Object> tbaMap, Enums.Station allPos){
+        int pos = allPos.toString().charAt(allPos.toString().length()-1);
+        switch (key){
+            case("moved"):
+                return tbaMap.get("initLineRobot"+pos).equals("Exited");
+            case "climb":
+                return tbaMap.get("endgameRobot"+pos).equals("Hang");
+            case "leveled":
+                return tbaMap.get("endgameRungIsLevel").equals("IsLevel");
+            case "parked":
+                return tbaMap.get("endgameRobot"+pos).equals("Park");
+            case "climbRP":
+                return tbaMap.get("shieldOperationalRankingPoint");
+            case "totalRP":
+                return tbaMap.get("rp");
+            case "totalPoints":
+                return tbaMap.get("totalPoints");
+            case "operationalRP":
+                return tbaMap.get("shieldEnergizedRankingPoint");
+            //TODO fouls
+            
+        }
+        return assumedCorrect;
     }
 }

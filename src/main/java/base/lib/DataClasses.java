@@ -56,6 +56,7 @@ public class DataClasses {
         public LocalTime capacityTimeS1;
         public LocalTime capacityTimeS2;
         public LocalTime capacityTimeS3;
+        public boolean operationalRP;
         public double defenseRank;
         public double defenseAvoidanceRank;
         public int numShots;

@@ -1,3 +1,36 @@
-              String | Object
-------------------------------------------
-//TBD
+                                   String | Object
+-------------------------------------------------------------------------------------
+                          autoCellsOuter  |  int
+                               foulCount  |  int
+                      autoInitLinePoints  |  int
+                      controlPanelPoints  |  int
+                         stage1Activated  |  boolean
+                          autoCellPoints  |  int
+                           endgamePoints  |  int
+           shieldOperationalRankingPoint  |  boolean
+                         autoCellsBottom  |  int
+             shieldEnergizedRankingPoint  |  boolean
+ tba_shieldEnergizedRankingPointFromFoul  |  boolean
+                    tba_numRobotsHanging  |  int
+                      endgameRungIsLevel  |  IsLevel
+                         stage2Activated  |  false
+                          initLineRobot3  |  None / Exited
+                          initLineRobot2  |  None / Exited
+                          initLineRobot1  |  None / Exited
+                           techFoulCount  |  0
+                       stage3TargetColor  |  Unknown
+                              foulPoints  |  0
+                            teleopPoints  |  7
+                           endgameRobot1  |  None
+                         stage3Activated  |  false
+                           endgameRobot2  |  None
+                            adjustPoints  |  0
+                           endgameRobot3  |  None
+                        teleopCellsOuter  |  0
+                          autoCellsInner  |  0
+                              autoPoints  |  5
+                             totalPoints  |  12
+                        teleopCellPoints  |  7
+                                      rp  |  2
+                       teleopCellsBottom  |  7
+                        teleopCellsInner  |  0

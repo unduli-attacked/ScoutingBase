@@ -12,25 +12,25 @@
              shieldEnergizedRankingPoint  |  boolean
  tba_shieldEnergizedRankingPointFromFoul  |  boolean
                     tba_numRobotsHanging  |  int
-                      endgameRungIsLevel  |  IsLevel
-                         stage2Activated  |  false
+                      endgameRungIsLevel  |  IsLevel / NotLevel
+                         stage2Activated  |  boolean
                           initLineRobot3  |  None / Exited
                           initLineRobot2  |  None / Exited
                           initLineRobot1  |  None / Exited
-                           techFoulCount  |  0
-                       stage3TargetColor  |  Unknown
-                              foulPoints  |  0
-                            teleopPoints  |  7
-                           endgameRobot1  |  None
-                         stage3Activated  |  false
-                           endgameRobot2  |  None
-                            adjustPoints  |  0
-                           endgameRobot3  |  None
-                        teleopCellsOuter  |  0
-                          autoCellsInner  |  0
-                              autoPoints  |  5
-                             totalPoints  |  12
-                        teleopCellPoints  |  7
-                                      rp  |  2
-                       teleopCellsBottom  |  7
-                        teleopCellsInner  |  0
+                           techFoulCount  |  int
+                       stage3TargetColor  |  Unknown / ??????
+                              foulPoints  |  int
+                            teleopPoints  |  int
+                           endgameRobot1  |  None / Hang / Park
+                         stage3Activated  |  boolean
+                           endgameRobot2  |  None / Hang / Park
+                            adjustPoints  |  int
+                           endgameRobot3  |  None / Hang / Park
+                        teleopCellsOuter  |  int
+                          autoCellsInner  |  int
+                              autoPoints  |  int
+                             totalPoints  |  int
+                        teleopCellPoints  |  int
+                                      rp  |  int
+                       teleopCellsBottom  |  int
+                        teleopCellsInner  |  int

@@ -29,4 +29,15 @@ public class TBATest {
             System.out.printf("%40s  |  %-100s%n", key, breakdown.get(key));
         }
     }
+    
+    @Test
+    public void teamPullTest(){
+        TBA.setAuthToken("OPynqKt8K0vueAXqxZzdigY9OBYK3KMgQQrsM4l8jE5cBmGfByhy6YzVIb2Ts7xD");
+        TBA tbaApi = new TBA();
+        Team tem = tbaApi.getTeam(5940);
+        System.out.println(tem.getMotto());
+        System.out.println(tem.getNickname());
+        System.out.println(tem.getName());
+        System.out.println(tem.getLocationName());
+    }
 }

@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="004edafe-1625-4c7c-b11a-713e9f5ce831" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/base/threads/TBACollectionThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/TBAMatchHashMapLayout.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/TBAMatchHashMapLayout.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/controllers/SessionLaunch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/controllers/SessionLaunch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/lib/DataClasses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/lib/DataClasses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/TBAMatchHashMapLayout.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TBAMatchHashMapLayout.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_storage/sessions/MAINtest2020.json" beforeDir="false" afterPath="$PROJECT_DIR$/main_storage/sessions/MAINtest2020.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/TBATest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TBATest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test2020/rawData/rawPits/PRIMARY_5940.json" beforeDir="false" afterPath="$PROJECT_DIR$/test2020/rawData/rawPits/PRIMARY_5940.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tokens/StoredCredential" beforeDir="false" afterPath="$PROJECT_DIR$/tokens/StoredCredential" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -125,38 +120,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/base/controllers/SessionLaunch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
+            <state relative-caret-position="100">
               <caret line="46" column="41" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.wdavies973/tba-api-v3/1.0.6/a20a74ec4f6eaadf2befe61fd374dc76a609fcd7/tba-api-v3-1.0.6-sources.jar!/com/cpjd/models/events/Event.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/CollationTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1833">
-              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+            <state relative-caret-position="100">
+              <caret line="87" column="35" lean-forward="true" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/base/threads/PitCollectionThread.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/TBATest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/base/lib/DataClasses.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="40" column="8" lean-forward="true" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
+            <state relative-caret-position="182">
+              <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -166,18 +155,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="138">
               <caret line="32" column="58" selection-start-line="32" selection-start-column="58" selection-end-line="32" selection-end-column="58" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/TBATest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -281,13 +258,13 @@
         <option value="$PROJECT_DIR$/src/test/java/SavingTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/models/Match.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/test/java/TBATest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/TBAMatchHashMapLayout.txt" />
         <option value="$PROJECT_DIR$/src/main/java/base/lib/DataClasses.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/threads/TBACollectionThread.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/base/controllers/SessionLaunch.java" />
+        <option value="$PROJECT_DIR$/src/test/java/TBATest.java" />
       </list>
     </option>
   </component>
@@ -457,7 +434,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TBATest.matchPullTest">
+  <component name="RunManager" selected="JUnit.TBATest.teamPullTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="base.Main" />
       <module name="ScoutingBase2020.main" />
@@ -493,16 +470,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PitTest.appendPitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="javafx-example.test" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PitTest" />
-      <option name="METHOD_NAME" value="appendPitTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SavingTest.SingleSaveTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="ScoutingBase2020.test" />
       <option name="PACKAGE_NAME" value="" />
@@ -533,22 +500,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TBATest.teamPullTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ScoutingBase2020.test" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TBATest" />
+      <option name="METHOD_NAME" value="teamPullTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.CollationTest" />
       <item itemvalue="JUnit.SavingTest.SingleSaveTest" />
       <item itemvalue="JUnit.CollationTest.DataCollationTest" />
-      <item itemvalue="JUnit.PitTest.appendPitTest" />
       <item itemvalue="JUnit.TBATest.simpleSyncTest" />
       <item itemvalue="JUnit.TBATest.matchPullTest" />
+      <item itemvalue="JUnit.TBATest.teamPullTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TBATest.teamPullTest" />
         <item itemvalue="JUnit.TBATest.matchPullTest" />
         <item itemvalue="JUnit.TBATest.simpleSyncTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.CollationTest.DataCollationTest" />
-        <item itemvalue="JUnit.PitTest.appendPitTest" />
       </list>
     </recent_temporary>
   </component>
@@ -573,29 +550,11 @@
       <workItem from="1581819465081" duration="27271000" />
       <workItem from="1581977419693" duration="9027000" />
       <workItem from="1582081137944" duration="822000" />
-      <workItem from="1582239355882" duration="16165000" />
+      <workItem from="1582239355882" duration="17153000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TBATest_matchPullTest - 2020.02.21 at 17h 33m 54s.xml">
-      <configuration name="TBATest.matchPullTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TBATest_matchPullTest - 2020.02.21 at 17h 36m 06s.xml">
-      <configuration name="TBATest.matchPullTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TBATest_matchPullTest - 2020.02.21 at 17h 36m 22s.xml">
-      <configuration name="TBATest.matchPullTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TBATest_matchPullTest - 2020.02.21 at 17h 36m 42s.xml">
-      <configuration name="TBATest.matchPullTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TBATest_matchPullTest - 2020.02.21 at 17h 37m 46s.xml">
-      <configuration name="TBATest.matchPullTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TBATest_matchPullTest - 2020.02.21 at 17h 39m 21s.xml">
-      <configuration name="TBATest.matchPullTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TBATest_matchPullTest - 2020.02.21 at 17h 39m 34s.xml">
       <configuration name="TBATest.matchPullTest" configurationId="JUnit" />
     </history-entry>
@@ -608,9 +567,27 @@
     <history-entry file="TBATest_matchPullTest - 2020.02.22 at 10h 35m 17s.xml">
       <configuration name="TBATest.matchPullTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="TBATest_matchPullTest - 2020.02.22 at 15h 44m 26s.xml">
+      <configuration name="TBATest.matchPullTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CollationTest - 2020.02.22 at 15h 45m 02s.xml">
+      <configuration name="CollationTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SavingTest_SingleSaveTest - 2020.02.22 at 15h 45m 17s.xml">
+      <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TBATest_teamPullTest - 2020.02.22 at 15h 48m 16s.xml">
+      <configuration name="TBATest.teamPullTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TBATest_teamPullTest - 2020.02.22 at 15h 48m 43s.xml">
+      <configuration name="TBATest.teamPullTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TBATest_teamPullTest - 2020.02.22 at 15h 48m 55s.xml">
+      <configuration name="TBATest.teamPullTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="282724000" />
+    <option name="totallyTimeSpent" value="283712000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -626,7 +603,7 @@
     <editor active="true" />
     <layout>
       <window_info anchor="top" id="Structure" order="0" sideWeight="0.31903484" side_tool="true" weight="0.37936267" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6809651" visible="true" weight="0.15951742" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6809651" visible="true" weight="0.15951742" />
       <window_info id="Designer" order="1" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -634,7 +611,7 @@
       <window_info id="Favorites" order="5" sideWeight="0.50328225" side_tool="true" weight="0.21447721" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32776934" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4491654" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4491654" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.60698026" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -710,24 +687,6 @@
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/TBATest.java</url>
-          <line>23</line>
-          <properties />
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/TBATest.java</url>
-          <line>24</line>
-          <properties />
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/TBATest.java</url>
-          <line>25</line>
-          <properties />
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java</url>
           <line>355</line>
           <properties />
@@ -764,13 +723,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/../../OpenJDK/jdk-11/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../OpenJDK/jdk-11/lib/src.zip!/java.base/jdk/internal/reflect/DelegatingMethodAccessorImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -1048,13 +1000,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/CollationTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="139" selection-start-line="139" selection-end-line="139" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/SavingTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
@@ -1069,16 +1014,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="27" column="86" selection-start-line="27" selection-start-column="86" selection-end-line="27" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/TBATest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1169,8 +1104,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/base/controllers/SessionLaunch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
+        <state relative-caret-position="100">
           <caret line="46" column="41" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/CollationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="87" column="35" lean-forward="true" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.wdavies973/tba-api-v3/1.0.6/a20a74ec4f6eaadf2befe61fd374dc76a609fcd7/tba-api-v3-1.0.6-sources.jar!/com/cpjd/models/teams/Team.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="36" column="19" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
+          <folding>
+            <element signature="e#2036#2037#0" expanded="true" />
+            <element signature="e#2071#2072#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/TBATest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

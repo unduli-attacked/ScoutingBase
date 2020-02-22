@@ -55,8 +55,7 @@ public class Match implements Comparable, Saveable{
     }
     
     public boolean dataRediness(){
-        return (!isColl)&&(!matchBreakdown.isEmpty()) && (matchScouts.size() >= Main.currentSession.numDataScouts)
-            && (noteScouts.size() >= Main.currentSession.numNoteScouts);
+        return ((!isColl || (matchBreakdown.isEmpty()&&Main.tbaIsSync))&&(!matchBreakdown.isEmpty() || !Main.tbaIsSync) && (matchScouts.size() >= Main.currentSession.numDataScouts) && (noteScouts.size() >= Main.currentSession.numNoteScouts));
     }
     
     public void passFinalData(DataScoutMatch finalData_, String bigNotes_){

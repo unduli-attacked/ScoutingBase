@@ -8,7 +8,9 @@ import base.lib.SheetsFunctions;
 import base.models.Session;
 import base.threads.MatchCollationThread;
 import base.threads.PitCollectionThread;
+import base.threads.TBACollectionThread;
 import base.threads.TeamCollationThread;
+import com.cpjd.main.TBA;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -28,9 +30,15 @@ public class Main{
     public static MatchCollationThread matchCollationThread;
     public static PitCollectionThread pitCollectionThread;
     public static TeamCollationThread teamCollationThread;
+    public static TBACollectionThread tbaCollectionThread;
+    public static boolean tbaIsSync;
+    public static TBA tbaApi;
     
     
     public static void main(String args[]) throws IOException {
+    
+        TBA.setAuthToken("OPynqKt8K0vueAXqxZzdigY9OBYK3KMgQQrsM4l8jE5cBmGfByhy6YzVIb2Ts7xD");
+        tbaApi = new TBA();
         
         new File("main_storage/").mkdir();
         new File("main_storage/sessions/").mkdir();

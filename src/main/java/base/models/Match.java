@@ -68,7 +68,6 @@ public class Match implements Comparable, Saveable{
     public int compareTo(Object o) {
         int compareRank = (int)Math.floor(((Match)o).matchNum);
         int rank = (int)Math.floor(this.matchNum);
-        //FIXME this needs to be tested idk what im do
         return rank - compareRank; //ascending
         
     }

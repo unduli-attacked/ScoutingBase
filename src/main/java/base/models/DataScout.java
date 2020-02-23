@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class DataScout implements Comparable, Saveable{
     String name;
-    double rank; //FIXME this is currently calculated the dumb way. what if it wasnt
+    double rank;
     public ArrayList<Match> matches =  new ArrayList<>();
     public ArrayList<DataScoutMatch> matchData = new ArrayList<>();
     public ArrayList<Integer> matchesScouted = new ArrayList<>();
@@ -68,7 +68,7 @@ public class DataScout implements Comparable, Saveable{
         this.rank = rank_;
     }
     
-    public void calculateRank(String key_, Object correctData, Object scoutData){ //FIXME implement citrus's code
+    public void calculateRank(String key_, Object correctData, Object scoutData){
         if(correctData.equals(scoutData)){
             this.rank+=6;
         }else{

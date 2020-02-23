@@ -105,7 +105,7 @@ public class MatchCollationThread extends Thread{
     
         Object correctData = findScoutMean(scouts, scoutData, key, matchNum, tbaMap, allPos);
         for(int i=0; i<scouts.length; i++){
-            scouts[i].calculateRank(key, scoutData.get(i).equals(correctData));
+            scouts[i].calculateRank(key, correctData, scoutData.get(i));
         }
         return correctData;
     }
@@ -214,6 +214,8 @@ public class MatchCollationThread extends Thread{
         if(correctTime==null){
             correctTime = scoutData.get(0).timeStamp; //set to best scout
         }
+        
+        
         
         //Type mean
         HashMap<Enums.Goal, Integer> typeFrequency = new HashMap<>();

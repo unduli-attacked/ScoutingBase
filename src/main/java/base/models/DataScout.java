@@ -2,7 +2,11 @@ package base.models;
 
 import base.Main;
 import base.lib.DataClasses.*;
+import base.lib.Enums;
+import base.lib.Functions;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class DataScout implements Comparable, Saveable{
@@ -64,37 +68,68 @@ public class DataScout implements Comparable, Saveable{
         this.rank = rank_;
     }
     
-    public void calculateRank(String key_, boolean wasCorrect){ //FIXME implement citrus's code
-        if(wasCorrect){
-            this.rank+=1;
+    public void calculateRank(String key_, Object correctData, Object scoutData){ //FIXME implement citrus's code
+        if(correctData.equals(scoutData)){
+            this.rank+=6;
         }else{
             switch (key_){
-                case "matchNum":
-                    this.rank-=2;
+                case "matchNum": case "yellowCard": case "redCard":
+                    this.rank-=10;
                     break;
                 case "allPos":
-                    this.rank-=2;
+                    if(((Enums.Station)correctData).isBlue() == ((Enums.Station)scoutData).isBlue()){
+                        this.rank-=10;
+                    }else{
+                        this.rank-=15;
+                    }
                     break;
                 case "teamNum":
-                    this.rank-=4;
+                    int digitsCorrect = 0;
+                    String stringNum = String.valueOf((int)scoutData);
+                    String stringCorrect = String.valueOf((int)correctData);
+                    for(int i=0; i<stringCorrect.length()-1; i++){
+                        try{
+                            if(stringNum.charAt(i) == stringCorrect.charAt(i)){
+                                digitsCorrect++;
+                            }
+                        }catch (NullPointerException e){
+                            digitsCorrect--;
+                        }
+                    }
+                    this.rank-=Math.abs((stringCorrect.length()-digitsCorrect)*2);
                     break;
                 case "absent":
-                    this.rank-=5;
+                    this.rank-=20;
                     break;
-                case "redCard":
+                case "startingPosition":
+                    this.rank-=Math.abs((double)correctData - (double)scoutData);
+                    break;
+                case "capacityTimeS1": case "capacityTimeS2": case "capacityTimeS3": case "climbDuration": case "activateTimeS2": case "activateTimeS3":
+                    this.rank-=Math.abs(Functions.getFloatTime((LocalTime)correctData) - Functions.getFloatTime((LocalTime)scoutData));
+                    break;
+                case "operationalRP": case "leveled":
+                    this.rank-=8;
+                    break;
+                case "numShots": case "totalPoints":
+                    this.rank -= Math.abs((int)correctData - (int)scoutData);
+                    break;
+                case "climb": case "parked": case "wasAssisted": case "buddyClimb":
+                    this.rank-=7;
+                    break;
+                case "disabled":
+                    this.rank-=4;
+                    break;
+                case "incapacitated":
                     this.rank-=3;
                     break;
-                case "yellowCard":
-                    this.rank-=2;
-                    break;
-                case "climb":
-                    this.rank-=1;
-                    break;
+                case "climbRP":
+                    this.rank-=8;
                 case "totalRP":
-                    this.rank-=1;
+                    this.rank-=Math.abs((int)correctData-(int)scoutData)*3.5;
                     break;
                 default:
-                        break;
+                    this.rank-=5;
+                    break;
             }
         }
     }

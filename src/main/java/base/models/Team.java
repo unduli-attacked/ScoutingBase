@@ -5,13 +5,19 @@ import base.lib.*;
 import static base.lib.Colors.*;
 import static base.lib.Enums.*;
 import base.lib.DataClasses.*;
+import com.itextpdf.awt.DefaultFontMapper;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
+import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.general.DatasetUtils;
 
-import java.awt.Color;
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -179,17 +185,20 @@ public class Team implements Saveable{
         this.defAvoidRank.put(match_, match_.matchData.defenseAvoidanceRank);
         
         this.timeToCap1.put(match_, match_.matchData.capacityTimeS1);
-        this.deltaToAct1.put(match_, LocalTime.of(0,0,15).minus(this.timeToCap1.get(match_)));
+        this.deltaToAct1.put(match_, Functions.getLocalTime(Functions.getFloatTime(LocalTime.of(0,0,15)) - Functions.getFloatTime(this.timeToCap1.get(match_))));
         
         this.timeToCap2.put(match_, match_.matchData.capacityTimeS2);
-        this.deltaToAct2.put(match_, match_.matchData.activateTimeS2.minus(this.timeToCap2.get(match_)));
+        this.deltaToAct2.put(match_, Functions.getLocalTime(Functions.getFloatTime(match_.matchData.activateTimeS2) - Functions.getFloatTime(this.timeToCap2.get(match_))));
         
+        this.timeToCap3.put(match_, match_.matchData.capacityTimeS3);
+        this.deltaToAct3.put(match_, Functions.getLocalTime(Functions.getFloatTime(match_.matchData.activateTimeS3) - Functions.getFloatTime(this.timeToCap3.get(match_))));
+    
         //averages occur in getters
-        
+    
         this.autoMovement.put(match_, (match_.matchData.moved) ? Enums.Dot.SUCCESS : Enums.Dot.FAILURE);
-        
+
         //fixme climbed is waiting on the app
-        
+    
         if(match_.matchData.wasAssisted){
             this.buddyClimb.put(match_, Enums.Dot.WAS_LIFTED);
         }
@@ -264,9 +273,21 @@ public class Team implements Saveable{
     
     public void generatePDF(Session currentSession) throws FileNotFoundException, DocumentException {
         Document doc = new Document();
-        PdfWriter.getInstance(doc, new FileOutputStream(new File(currentSession.directory+FileSystem.PDF_TEAMS+this.getFileName()+".pdf")));
+        PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(new File(currentSession.directory+FileSystem.PDF_TEAMS+this.getFileName()+".pdf")));
         doc.open();
-        
+        HashMap<String, JFreeChart> charts = genCharts();
+    
+        PdfContentByte contentByte = writer.getDirectContent();
+        PdfTemplate template = contentByte.createTemplate(650, 650);
+        Graphics2D graphics2d = template.createGraphics(650, 650,
+                new DefaultFontMapper());
+        Rectangle2D rectangle2d = new Rectangle2D.Double(0, 0, 650,
+                650);
+    
+        charts.get("Score Location").draw(graphics2d, rectangle2d);
+    
+        graphics2d.dispose();
+        contentByte.addTemplate(template, 0, 0);
     }
     
     public HashMap<String, JFreeChart> genCharts(){
@@ -332,8 +353,16 @@ public class Team implements Saveable{
         charts.put("Cycle Time", cycleTimeChart);
         
         //TODO shots over time line (5sec interval av)
+        ;
+        JFreeChart lineChart = ChartFactory.createLineChart(
+                "Average Shots",
+                "Time","Shots",
+                DatasetUtils.createCategoryDataset(new String[]{"Shots"},
+                        new String[]{"0:00","0:10", "0:20", "0:30", "0:40", "0:50", "1:00", "1:10", "1:20", "1:30", "1:40", "1:50", "2:00", "2:10", "2:20"},
+                        createShotsPer10Array()),
+                PlotOrientation.VERTICAL,
+                true,true,false);
         
-        //TODO climb speed single range
         double[][] climbSpeedData = new double[1][this.climbTime.values().size()];
         for(int i=0; i<climbSpeedData[0].length; i++){
             climbSpeedData[0][i] = (double)Functions.getFloatTime(((List<LocalTime>)this.cycleTime.values()).get(i));
@@ -345,7 +374,6 @@ public class Team implements Saveable{
         );
         charts.put("Cycle Time", cycleTimeChart);
         
-        //TODO stage 1 double range
         double[][] stage1Data = {
                 createLocalTimeArray(this.timeToCap1),
                 createLocalTimeArray(this.deltaToAct1)
@@ -357,7 +385,6 @@ public class Team implements Saveable{
         );
         charts.put("Stage 1", stage1Chart);
         
-        //TODO stage 2 double range
         double[][] stage2Data = {
                 createLocalTimeArray(this.timeToCap2),
                 createLocalTimeArray(this.deltaToAct2)
@@ -369,7 +396,6 @@ public class Team implements Saveable{
         );
         charts.put("Stage 2", stage2Chart);
         
-        //TODO stage 3 double range
         double[][] stage3Data = {
                 createLocalTimeArray(this.timeToCap3),
                 createLocalTimeArray(this.deltaToAct3)
@@ -435,5 +461,66 @@ public class Team implements Saveable{
             toReturn[0][i] = ((List<Double>)data.values()).get(i);
         }
         return toReturn;
+    }
+    
+    public double[][] createShotsPer10Array(){
+        HashMap<String, Integer> timeCounts = new HashMap<>();
+        timeCounts.put("0:00", 0);
+        timeCounts.put("0:10", 0);
+        timeCounts.put("0:20", 0);
+        timeCounts.put("0:30", 0);
+        timeCounts.put("0:40", 0);
+        timeCounts.put("0:50", 0);
+        timeCounts.put("1:00", 0);
+        timeCounts.put("1:10", 0);
+        timeCounts.put("1:20", 0);
+        timeCounts.put("1:30", 0);
+        timeCounts.put("1:40", 0);
+        timeCounts.put("1:50", 0);
+        timeCounts.put("2:00", 0);
+        timeCounts.put("2:10", 0);
+        timeCounts.put("2:20", 0);
+        for(Match m : this.totalScoring.keySet()){
+            for(Shot s : this.totalScoring.get(m)){
+                float time = Functions.getFloatTime(s.timeStamp);
+                if(time<=10){
+                    timeCounts.put("0:10", timeCounts.get("0:10")+1);
+                }else if(time>10 && time<=20){
+                    timeCounts.put("0:20", timeCounts.get("0:20")+1);
+                }else if(time>20 && time<=30){
+                    timeCounts.put("0:30", timeCounts.get("0:30")+1);
+                }else if(time>30 && time<=40){
+                    timeCounts.put("0:40", timeCounts.get("0:40")+1);
+                }else if(time>40 && time<=50){
+                    timeCounts.put("0:50", timeCounts.get("0:50")+1);
+                }else if(time>50 && time<=60){
+                    timeCounts.put("1:00", timeCounts.get("1:00")+1);
+                }else if(time>60 && time<=70){
+                    timeCounts.put("1:10", timeCounts.get("1:10")+1);
+                }else if(time>70 && time<=80){
+                    timeCounts.put("1:20", timeCounts.get("1:20")+1);
+                }else if(time>80 && time<=90){
+                    timeCounts.put("1:30", timeCounts.get("1:30")+1);
+                }else if(time>90 && time<=100){
+                    timeCounts.put("1:40", timeCounts.get("1:40")+1);
+                }else if(time>100 && time<=110){
+                    timeCounts.put("1:50", timeCounts.get("1:50")+1);
+                }else if(time>110 && time<=120){
+                    timeCounts.put("2:00", timeCounts.get("2:00")+1);
+                }else if(time>120 && time<=130){
+                    timeCounts.put("2:10", timeCounts.get("2:10")+1);
+                }else if(time>130 && time<=140){
+                    timeCounts.put("2:20", timeCounts.get("2:20")+1);
+                }
+            }
+        }
+        
+        ArrayList<Double> slkfjsdklfj = new ArrayList<>();
+        for(String key : timeCounts.keySet()){
+            slkfjsdklfj.add((double)(timeCounts.get(key)/this.totalScoring.keySet().size()));
+        }
+        
+        
+        return new double[][]{Functions.listToArray(slkfjsdklfj)};
     }
 }

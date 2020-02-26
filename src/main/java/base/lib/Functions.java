@@ -2,6 +2,7 @@ package base.lib;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import base.Main;
 import base.models.*;
@@ -162,5 +163,19 @@ public class Functions {
         }
         return sum;
         
+    }
+    
+    /**
+     * turns a List of Doubles into an Array of doubles
+     * @param ls a List of Doubles
+     * @return the same list as a double[]
+     */
+    public static double[] listToArray(List<Double> ls){
+        //FIXME i know, i know, it makes me want to commit scooter ankle too
+        double[] dbl = new double[ls.size()];
+        for(int i=0; i<ls.size(); i++){
+            dbl[i] = ls.get(i);
+        }
+        return dbl;
     }
 }

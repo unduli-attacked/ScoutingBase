@@ -22,15 +22,18 @@ public class Enums {
     }
     
     public enum Goal{
-        MISS(0), LOWER(1), OUTER(2), INNER(3);
+        MISS(0, "Miss"), LOWER(1, "Lower"),
+        OUTER(2, "Outer"), INNER(3, "Inner");
         
         int basic;
-        Goal(int pts_){
+        String name;
+        Goal(int pts_, String str_){
+            this.name = str_;
             basic=pts_;
         }
         
         @Override
-        public String toString(){return String.valueOf(basic);}
+        public String toString(){return name;}
     }
 
     public enum Pickup{
@@ -124,10 +127,10 @@ public class Enums {
     }
     
     public enum Dot {
-        SUCCESS(Color.GREEN, "Success"), FAILURE(Color.RED, "Failure"),
-        NO_ATTEMPT(Color.GRAY, "Not Attempted"), RECOVERED(Color.PINK, "Recovered"),
-        WAS_LIFTED(Color.MAGENTA, "Was Lifted"), LEVEL_SELF(Color.CYAN, "Leveled alone"),
-        LEVEL_TEAM(Color.BLUE, "Leveled With Multiple Bots");
+        SUCCESS(Colors.succ, "Success"), FAILURE(Colors.failure, "Failure"),
+        NO_ATTEMPT(Colors.noAttempt, "Not Attempted"), RECOVERED(Colors.recovered, "Recovered"),
+        WAS_LIFTED(Colors.wasLifted, "Was Lifted"), LEVEL_SELF(Colors.levelSelf, "Leveled alone"),
+        LEVEL_TEAM(Colors.levelTeam, "Leveled With Multiple Bots");
         
         public Color col;
         String basic;
@@ -136,29 +139,27 @@ public class Enums {
             this.basic = basic_;
         }
         
-        public Dot getDot(Color color){
-            if(color.equals(Color.GREEN)){
-                return SUCCESS;
-            }else if(color.equals(Color.RED)){
-                return FAILURE;
-            }else if(color.equals(Color.GRAY)){
-                return NO_ATTEMPT;
-            }else if(color.equals(Color.PINK)){
-                return RECOVERED;
-            }else if(color.equals(Color.MAGENTA)){
-                return WAS_LIFTED;
-            }else if(color.equals(Color.BLUE)){
-                return LEVEL_TEAM;
-            }else if (color.equals(Color.CYAN)){
-                return LEVEL_SELF;
-            }else{
-                return null;
-            }
-        }
-        
         @Override
         public String toString(){
             return basic;
         }
+    }
+    
+    public enum Foul {
+        GEN_TECH("General Tech Foul", true), TRENCH_TECH("Trench Intrusion", true),
+        RDV_TECH("Endgame Rendezvous Intrusion", true), ZONE_TECH("Protected Zone Intrusion", true),
+        PIN_FOUL("Pinning", false), CLIMB_PEN("Touching Climbing Robot", false),
+        GEN_FOUL("General Foul", false), EXTEND_FOUL("Outside Frame Perimeter", false),
+        HUMAN_FOUL("Human Player Error", false);
+        
+        String basic;
+        public boolean isTech;
+        Foul(String str_, boolean tech_){
+            this.basic = str_;
+            this.isTech = tech_;
+        }
+        
+        @Override
+        public String toString() { return basic; }
     }
 }

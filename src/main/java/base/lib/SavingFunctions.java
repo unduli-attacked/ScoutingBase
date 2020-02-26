@@ -4,11 +4,17 @@ import base.Main;
 import base.models.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
 
 import javax.xml.crypto.Data;
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class SavingFunctions {
     
@@ -93,5 +99,21 @@ public class SavingFunctions {
             e.printStackTrace();
             return false;
         }
+    }
+    
+    public static JFreeChart createChart(CategoryDataset set, Color[] colors, String[] rangeLabels, String title, String domain, String range){
+        for(int i=0; i<set.getRowKeys().size(); i++){
+            set.getRowKeys().set(i, rangeLabels[i]);
+        }
+        
+        JFreeChart chart = ChartFactory.createStackedBarChart(
+                title, domain, range, set,
+                PlotOrientation.VERTICAL, true, true, false);
+        
+        chart.setBackgroundPaint(Color.WHITE);
+        for(int i=0; i<colors.length; i++){
+            chart.getCategoryPlot().getRenderer().setSeriesPaint(i, colors[i]);
+        }
+        return chart;
     }
 }

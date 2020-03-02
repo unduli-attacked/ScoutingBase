@@ -6,14 +6,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="004edafe-1625-4c7c-b11a-713e9f5ce831" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/ScoutingBase2020.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/META-INF/ScoutingBase2020.main.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/base/models/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/models/Team.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/SavingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SavingTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test2020/finalData/pdfTeams/TEST.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/test2020/finalData/pdfTeams/TEST.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +132,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/build.gradle" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ScoutingApp2020" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -277,41 +274,10 @@
       <workItem from="1582501108404" duration="14885000" />
       <workItem from="1582677693188" duration="1233000" />
       <workItem from="1582679458289" duration="259000" />
-      <workItem from="1582679949369" duration="6666000" />
+      <workItem from="1582679949369" duration="14663000" />
+      <workItem from="1583024900316" duration="596000" />
     </task>
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="TBATest_matchPullTest - 2020.02.21 at 17h 39m 34s.xml">
-      <configuration name="TBATest.matchPullTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TBATest_matchPullTest - 2020.02.21 at 17h 40m 10s.xml">
-      <configuration name="TBATest.matchPullTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TBATest_matchPullTest - 2020.02.21 at 17h 40m 59s.xml">
-      <configuration name="TBATest.matchPullTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TBATest_matchPullTest - 2020.02.22 at 10h 35m 17s.xml">
-      <configuration name="TBATest.matchPullTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TBATest_matchPullTest - 2020.02.22 at 15h 44m 26s.xml">
-      <configuration name="TBATest.matchPullTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CollationTest - 2020.02.22 at 15h 45m 02s.xml">
-      <configuration name="CollationTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SavingTest_SingleSaveTest - 2020.02.22 at 15h 45m 17s.xml">
-      <configuration name="SavingTest.SingleSaveTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TBATest_teamPullTest - 2020.02.22 at 15h 48m 16s.xml">
-      <configuration name="TBATest.teamPullTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TBATest_teamPullTest - 2020.02.22 at 15h 48m 43s.xml">
-      <configuration name="TBATest.teamPullTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TBATest_teamPullTest - 2020.02.22 at 15h 48m 55s.xml">
-      <configuration name="TBATest.teamPullTest" configurationId="JUnit" />
-    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -326,14 +292,34 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1582680051327">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1582752287333">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1582680051327" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1582752287333" />
+    <state width="1493" height="152" key="GridCell.Tab.0.bottom" timestamp="1583024851573">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="152" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583024851573" />
+    <state width="1493" height="152" key="GridCell.Tab.0.center" timestamp="1583024851572">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="152" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583024851572" />
+    <state width="1493" height="152" key="GridCell.Tab.0.left" timestamp="1583024851572">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="152" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583024851572" />
+    <state width="1493" height="152" key="GridCell.Tab.0.right" timestamp="1583024851573">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="152" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583024851573" />
     <state x="249" y="0" key="SettingsEditor" timestamp="1582682034460">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1582682034460" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1582689712665">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1582689712665" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -345,32 +331,32 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java</url>
-          <line>56</line>
+          <line>66</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java</url>
-          <line>49</line>
+          <line>59</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java</url>
-          <line>52</line>
+          <line>62</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java</url>
-          <line>46</line>
+          <line>56</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java</url>
-          <line>47</line>
+          <line>57</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java</url>
-          <line>50</line>
+          <line>60</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

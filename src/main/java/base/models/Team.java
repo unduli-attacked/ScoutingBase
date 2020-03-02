@@ -300,7 +300,7 @@ public class Team implements Saveable{
                 createKeyedArray(this.score, Enums.Goal.MISS)
         };
         JFreeChart scoreLocChart = SavingFunctions.createChart(
-                DatasetUtils.createCategoryDataset("Goal", "Match", scoreLocData),
+                scoreLocData, getMatchNums(),
                 new Color[]{Colors.innerGoal, Colors.outerGoal, Colors.lowerGoal, Colors.miss},
                 new String[]{Enums.Goal.INNER.toString(), Enums.Goal.OUTER.toString(), Enums.Goal.LOWER.toString(), Enums.Goal.MISS.toString()},
                 "Score Location", "Match", "# Scored");
@@ -313,7 +313,7 @@ public class Team implements Saveable{
                 createKeyedArray(this.autoScore, Enums.Goal.MISS)
         };
         JFreeChart autoLocChart = SavingFunctions.createChart(
-                DatasetUtils.createCategoryDataset("Goal", "Match", autoLocData),
+                autoLocData, getMatchNums(),
                 new Color[]{Colors.innerGoal, Colors.outerGoal, Colors.lowerGoal, Colors.miss},
                 new String[]{Enums.Goal.INNER.toString(), Enums.Goal.OUTER.toString(), Enums.Goal.LOWER.toString(), Enums.Goal.MISS.toString()},
                 "Auto Score Location", "Match", "# Scored"
@@ -332,7 +332,7 @@ public class Team implements Saveable{
                 createKeyedArray(this.fouls, Enums.Foul.HUMAN_FOUL)
         };
         JFreeChart foulChart = SavingFunctions.createChart(
-                DatasetUtils.createCategoryDataset("Foul Type", "Match", foulData),
+                foulData, getMatchNums(),
                 new Color[]{otherTech, trenchTech, rdvEndgameTech, protecZoneTech, pinTechFoul, touchClimbPen, otherFoul, overExtendFoul, humanFoul},
                 new String[]{Foul.GEN_TECH.toString(), Foul.TRENCH_TECH.toString(), Foul.RDV_TECH.toString(), Foul.ZONE_TECH.toString(),
                                 Foul.PIN_FOUL.toString(), Foul.CLIMB_PEN.toString(), Foul.GEN_FOUL.toString(), Foul.EXTEND_FOUL.toString(),
@@ -346,14 +346,12 @@ public class Team implements Saveable{
             cycleTimeData[0][i] = (double)Functions.getFloatTime(((List<LocalTime>)this.cycleTime.values()).get(i));
         }
         JFreeChart cycleTimeChart = SavingFunctions.createChart(
-                DatasetUtils.createCategoryDataset("Average Cycle Time", "Match", cycleTimeData),
+               cycleTimeData, getMatchNums(),
                 new Color[]{Colors.cycleTime}, new String[]{"Average Cycle Time"},
                 "Cycle Time", "Match", "Time (s)"
         );
         charts.put("Cycle Time", cycleTimeChart);
         
-        //TODO shots over time line (5sec interval av)
-        ;
         JFreeChart lineChart = ChartFactory.createLineChart(
                 "Average Shots",
                 "Time","Shots",
@@ -368,7 +366,7 @@ public class Team implements Saveable{
             climbSpeedData[0][i] = (double)Functions.getFloatTime(((List<LocalTime>)this.cycleTime.values()).get(i));
         }
         JFreeChart climbSpeedChart = SavingFunctions.createChart(
-                DatasetUtils.createCategoryDataset("Climb Duration", "Match", climbSpeedData),
+                climbSpeedData, getMatchNums(),
                 new Color[]{climbSpeed}, new String[]{"Climb Duration"},
                 "Climb Speed", "Match", "Time (s)"
         );
@@ -379,7 +377,7 @@ public class Team implements Saveable{
                 createLocalTimeArray(this.deltaToAct1)
         };
         JFreeChart stage1Chart = SavingFunctions.createChart(
-            DatasetUtils.createCategoryDataset("Status", "Match", stage1Data),
+            stage1Data, getMatchNums(),
             new Color[]{Colors.timeToCap1, Colors.deltaToAct1}, new String[]{"Capacity", "Activation"},
             "Stage 1", "Match", "Time to... (s)"
         );
@@ -390,7 +388,7 @@ public class Team implements Saveable{
                 createLocalTimeArray(this.deltaToAct2)
         };
         JFreeChart stage2Chart = SavingFunctions.createChart(
-                DatasetUtils.createCategoryDataset("Status", "Match", stage2Data),
+                stage2Data, getMatchNums(),
                 new Color[]{Colors.timeToCap2, Colors.deltaToAct2}, new String[]{"Capacity", "Activation"},
                 "Stage 2", "Match", "Time to... (s)"
         );
@@ -401,36 +399,36 @@ public class Team implements Saveable{
                 createLocalTimeArray(this.deltaToAct3)
         };
         JFreeChart stage3Chart = SavingFunctions.createChart(
-                DatasetUtils.createCategoryDataset("Status", "Match", stage3Data),
+                stage3Data, getMatchNums(),
                 new Color[]{Colors.timeToCap3, Colors.deltaToAct3}, new String[]{"Capacity", "Activation"},
                 "Stage 3", "Match", "Time to... (s)"
         );
         charts.put("Stage 3", stage2Chart);
         
         JFreeChart driverRankChart = SavingFunctions.createChart(
-          DatasetUtils.createCategoryDataset("Driver Rank", "Match", createSingleRangeArray(this.driverRank)),
-          new Color[]{Colors.driverRank}, new String[]{"Driver Rank"},
-          "Driver Rank", "Match", "Rank"
+                createSingleRangeArray(this.driverRank), getMatchNums(),
+                new Color[]{Colors.driverRank}, new String[]{"Driver Rank"},
+                "Driver Rank", "Match", "Rank"
         );
         charts.put("Driver Rank", driverRankChart);
         
         //TODO hp rank single range
         JFreeChart hpRankChart = SavingFunctions.createChart(
-                DatasetUtils.createCategoryDataset("Human Player Rank", "Match", createSingleRangeArray(this.hpRank)),
+                createSingleRangeArray(this.hpRank), getMatchNums(),
                 new Color[]{Colors.hpRank}, new String[]{"HP Rank"},
                 "Human Player Rank", "Match", "Rank"
         );
         charts.put("Human Player Rank", hpRankChart);
         
         JFreeChart defRankChart = SavingFunctions.createChart(
-                DatasetUtils.createCategoryDataset("Defensive Rank", "Match", createSingleRangeArray(this.defRank)),
+                createSingleRangeArray(this.defRank), getMatchNums(),
                 new Color[]{Colors.defRank}, new String[]{"Def. Rank"},
                 "Defensive Rank", "Match", "Rank"
         );
         charts.put("Defensive Rank", defRankChart);
         
         JFreeChart antiDefRankChart = SavingFunctions.createChart(
-                DatasetUtils.createCategoryDataset("Anti-Defense Rank", "Match", createSingleRangeArray(this.defAvoidRank)),
+                createSingleRangeArray(this.defAvoidRank), getMatchNums(),
                 new Color[]{Colors.driverRank}, new String[]{"Avoidance Rank"},
                 "Defensive Avoidance Rank", "Match", "Rank"
         );
@@ -522,5 +520,13 @@ public class Team implements Saveable{
         
         
         return new double[][]{Functions.listToArray(slkfjsdklfj)};
+    }
+    
+    public String[] getMatchNums(){
+        ArrayList<String> jfsdlk = new ArrayList<>();
+        for(Match m : this.matchesScouted){
+            jfsdlk.add(String.valueOf(m.matchNum));
+        }
+        return (String[])jfsdlk.toArray();
     }
 }

@@ -4,8 +4,12 @@ import base.models.Pit;
 import base.models.Session;
 import base.threads.PitCollectionThread;
 import com.itextpdf.awt.DefaultFontMapper;
+import com.itextpdf.awt.PdfGraphics2D;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -65,30 +69,18 @@ public class SavingTest {
     
     @Test
     public void ChartTest() throws FileNotFoundException, DocumentException {
-        Document doc = new Document();
-        PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(new File("test2020/"+FileSystem.PDF_TEAMS+"TEST.pdf")));
-        doc.open();
+        Document doc = new Document(PageSize.LETTER);
         double[][] scoreLocData = {
                 {10, 15, 20},
                 {20, 30, 40},
-                {40, 50, 60}
+                {40, 50, 60},
+                {60, 70, 80}
         };
         JFreeChart scoreLocChart = SavingFunctions.createChart(
-                DatasetUtils.createCategoryDataset("Goal", "Match", scoreLocData),
+               scoreLocData, new String[]{"1", "2", "3"},
                 new Color[]{Colors.innerGoal, Colors.outerGoal, Colors.lowerGoal, Colors.miss},
                 new String[]{Enums.Goal.INNER.toString(), Enums.Goal.OUTER.toString(), Enums.Goal.LOWER.toString(), Enums.Goal.MISS.toString()},
                 "Score Location", "Match", "# Scored");
-    
-        PdfContentByte contentByte = writer.getDirectContent();
-        PdfTemplate template = contentByte.createTemplate(650, 650);
-        Graphics2D graphics2d = template.createGraphics(650, 650,
-                new DefaultFontMapper());
-        Rectangle2D rectangle2d = new Rectangle2D.Double(0, 0, 650,
-                650);
-    
-        scoreLocChart.draw(graphics2d, rectangle2d);
-    
-        graphics2d.dispose();
-        contentByte.addTemplate(template, 0, 0);
+        SavingFunctions.drawChart(doc, new File("test2020/"+FileSystem.PDF_TEAMS+"TEST.pdf"), scoreLocChart, 114, 114, 100, 100);
     }
 }

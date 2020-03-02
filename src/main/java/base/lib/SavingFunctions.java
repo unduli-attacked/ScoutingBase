@@ -4,13 +4,23 @@ import base.Main;
 import base.models.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.itextpdf.awt.PdfGraphics2D;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfTemplate;
+import com.itextpdf.text.pdf.PdfWriter;
+import javafx.util.Pair;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.general.DatasetUtils;
 
 import javax.xml.crypto.Data;
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -101,13 +111,10 @@ public class SavingFunctions {
         }
     }
     
-    public static JFreeChart createChart(CategoryDataset set, Color[] colors, String[] rangeLabels, String title, String domain, String range){
-        for(int i=0; i<set.getRowKeys().size(); i++){
-            set.getRowKeys().set(i, rangeLabels[i]);
-        }
+    public static JFreeChart createChart(double[][] set, String[] matchNums, Color[] colors, String[] rangeLabels, String title, String domain, String range){
         
         JFreeChart chart = ChartFactory.createStackedBarChart(
-                title, domain, range, set,
+                title, domain, range, DatasetUtils.createCategoryDataset(rangeLabels, matchNums, set),
                 PlotOrientation.VERTICAL, true, true, false);
         
         chart.setBackgroundPaint(Color.WHITE);
@@ -115,5 +122,26 @@ public class SavingFunctions {
             chart.getCategoryPlot().getRenderer().setSeriesPaint(i, colors[i]);
         }
         return chart;
+    }
+    
+    public static void drawChart(Document doc, File loc, JFreeChart chart, double width, double height, double x, double y) throws FileNotFoundException, DocumentException {
+        PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(loc));
+        doc.open();
+        PdfContentByte contentByte = writer.getDirectContent();
+        PdfTemplate template = contentByte.createTemplate(500, 500);
+        Graphics2D graphics2d = new PdfGraphics2D(template, 500, 500);
+        Rectangle2D rectangle2d = new Rectangle2D.Double(x, y, 500,
+                500);
+    
+        chart.draw(graphics2d, rectangle2d);
+    
+        graphics2d.dispose();
+    
+        Image image = com.itextpdf.text.Image.getInstance(template);
+        image.scaleAbsolute((float)width, (float)height);
+        image.setAbsolutePosition((float)width,(float)height);
+        doc.add(image);
+    
+        doc.close();
     }
 }

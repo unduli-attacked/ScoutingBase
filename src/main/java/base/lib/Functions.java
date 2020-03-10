@@ -98,6 +98,15 @@ public class Functions {
         return findMatch(teamNum_, Main.currentSession);
     }
     
+    public static Match findIndivMatch(int matchNum, int teamNum, Session session_){
+        for(Match match : session_.matches.values()){
+            if(match.matchNum==matchNum && match.teamNum==teamNum){
+                return match;
+            }
+        }
+        return null;
+    }
+    
     /**
      * compares two local times
      * @param first later time

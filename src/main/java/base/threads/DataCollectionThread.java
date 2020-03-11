@@ -128,21 +128,12 @@ public class DataCollectionThread extends Thread {
         tempMatch.incapacitated = temp.get(BROKE.val).equals("on");
         tempMatch.yellowCard = temp.get(YELLOW.val).equals("on");
         tempMatch.redCard = temp.get(RED.val).equals("on");
-        tempMatch. = temp.get(CLIMB.val).equals("on");
+        tempMatch.climb = temp.get(CLIMB.val).equals("on");
         tempMatch.driverRank = Integer.parseInt(temp.get(DRIVE_RANK.val));
         tempMatch.humanPlayerRank = Integer.parseInt(temp.get(HP_RANK.val));
         tempMatch.defenseRank = Integer.parseInt(temp.get(DEF_RANK.val));
         tempMatch.defenseAvoidanceRank = Integer.parseInt(temp.get(DEF_AVOID_RANK.val));
         tempMatch.dataNotes = temp.get(NOTES.val);
-    
-    
-    
-    
-    
-    
-    
-    
-    
         return tempMatch;
     }
 }

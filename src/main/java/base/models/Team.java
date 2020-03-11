@@ -50,12 +50,12 @@ public class Team implements Saveable{
     public HashMap<Match, Double> defAvoidRank = new HashMap<>();
     
     //STAGES
-    public HashMap<Match, LocalTime> timeToCap1 = new HashMap<>();
-    public HashMap<Match, LocalTime> deltaToAct1 = new HashMap<>();
-    public HashMap<Match, LocalTime> timeToCap2 = new HashMap<>();
-    public HashMap<Match, LocalTime> deltaToAct2 = new HashMap<>();
-    public HashMap<Match, LocalTime> timeToCap3 = new HashMap<>();
-    public HashMap<Match, LocalTime> deltaToAct3 = new HashMap<>();
+//    public HashMap<Match, LocalTime> timeToCap1 = new HashMap<>();
+//    public HashMap<Match, LocalTime> deltaToAct1 = new HashMap<>();
+//    public HashMap<Match, LocalTime> timeToCap2 = new HashMap<>();
+//    public HashMap<Match, LocalTime> deltaToAct2 = new HashMap<>();
+//    public HashMap<Match, LocalTime> timeToCap3 = new HashMap<>();
+//    public HashMap<Match, LocalTime> deltaToAct3 = new HashMap<>();
     
     //AVERAGES
     private LocalTime avCycleT;
@@ -184,14 +184,14 @@ public class Team implements Saveable{
         
         this.defAvoidRank.put(match_, match_.matchData.defenseAvoidanceRank);
         
-        this.timeToCap1.put(match_, match_.matchData.capacityTimeS1);
-        this.deltaToAct1.put(match_, Functions.getLocalTime(Functions.getFloatTime(LocalTime.of(0,0,15)) - Functions.getFloatTime(this.timeToCap1.get(match_))));
-        
-        this.timeToCap2.put(match_, match_.matchData.capacityTimeS2);
-        this.deltaToAct2.put(match_, Functions.getLocalTime(Functions.getFloatTime(match_.matchData.activateTimeS2) - Functions.getFloatTime(this.timeToCap2.get(match_))));
-        
-        this.timeToCap3.put(match_, match_.matchData.capacityTimeS3);
-        this.deltaToAct3.put(match_, Functions.getLocalTime(Functions.getFloatTime(match_.matchData.activateTimeS3) - Functions.getFloatTime(this.timeToCap3.get(match_))));
+//        this.timeToCap1.put(match_, match_.matchData.capacityTimeS1);
+//        this.deltaToAct1.put(match_, Functions.getLocalTime(Functions.getFloatTime(LocalTime.of(0,0,15)) - Functions.getFloatTime(this.timeToCap1.get(match_))));
+//
+//        this.timeToCap2.put(match_, match_.matchData.capacityTimeS2);
+//        this.deltaToAct2.put(match_, Functions.getLocalTime(Functions.getFloatTime(match_.matchData.activateTimeS2) - Functions.getFloatTime(this.timeToCap2.get(match_))));
+//
+//        this.timeToCap3.put(match_, match_.matchData.capacityTimeS3);
+//        this.deltaToAct3.put(match_, Functions.getLocalTime(Functions.getFloatTime(match_.matchData.activateTimeS3) - Functions.getFloatTime(this.timeToCap3.get(match_))));
     
         //averages occur in getters
     
@@ -370,41 +370,41 @@ public class Team implements Saveable{
                 new Color[]{climbSpeed}, new String[]{"Climb Duration"},
                 "Climb Speed", "Match", "Time (s)"
         );
-        charts.put("Cycle Time", cycleTimeChart);
-        
-        double[][] stage1Data = {
-                createLocalTimeArray(this.timeToCap1),
-                createLocalTimeArray(this.deltaToAct1)
-        };
-        JFreeChart stage1Chart = SavingFunctions.createChart(
-            stage1Data, getMatchNums(),
-            new Color[]{Colors.timeToCap1, Colors.deltaToAct1}, new String[]{"Capacity", "Activation"},
-            "Stage 1", "Match", "Time to... (s)"
-        );
-        charts.put("Stage 1", stage1Chart);
-        
-        double[][] stage2Data = {
-                createLocalTimeArray(this.timeToCap2),
-                createLocalTimeArray(this.deltaToAct2)
-        };
-        JFreeChart stage2Chart = SavingFunctions.createChart(
-                stage2Data, getMatchNums(),
-                new Color[]{Colors.timeToCap2, Colors.deltaToAct2}, new String[]{"Capacity", "Activation"},
-                "Stage 2", "Match", "Time to... (s)"
-        );
-        charts.put("Stage 2", stage2Chart);
-        
-        double[][] stage3Data = {
-                createLocalTimeArray(this.timeToCap3),
-                createLocalTimeArray(this.deltaToAct3)
-        };
-        JFreeChart stage3Chart = SavingFunctions.createChart(
-                stage3Data, getMatchNums(),
-                new Color[]{Colors.timeToCap3, Colors.deltaToAct3}, new String[]{"Capacity", "Activation"},
-                "Stage 3", "Match", "Time to... (s)"
-        );
-        charts.put("Stage 3", stage2Chart);
-        
+//        charts.put("Cycle Time", cycleTimeChart);
+//
+//        double[][] stage1Data = {
+//                createLocalTimeArray(this.timeToCap1),
+//                createLocalTimeArray(this.deltaToAct1)
+//        };
+//        JFreeChart stage1Chart = SavingFunctions.createChart(
+//            stage1Data, getMatchNums(),
+//            new Color[]{Colors.timeToCap1, Colors.deltaToAct1}, new String[]{"Capacity", "Activation"},
+//            "Stage 1", "Match", "Time to... (s)"
+//        );
+//        charts.put("Stage 1", stage1Chart);
+//
+//        double[][] stage2Data = {
+//                createLocalTimeArray(this.timeToCap2),
+//                createLocalTimeArray(this.deltaToAct2)
+//        };
+//        JFreeChart stage2Chart = SavingFunctions.createChart(
+//                stage2Data, getMatchNums(),
+//                new Color[]{Colors.timeToCap2, Colors.deltaToAct2}, new String[]{"Capacity", "Activation"},
+//                "Stage 2", "Match", "Time to... (s)"
+//        );
+//        charts.put("Stage 2", stage2Chart);
+//
+//        double[][] stage3Data = {
+//                createLocalTimeArray(this.timeToCap3),
+//                createLocalTimeArray(this.deltaToAct3)
+//        };
+//        JFreeChart stage3Chart = SavingFunctions.createChart(
+//                stage3Data, getMatchNums(),
+//                new Color[]{Colors.timeToCap3, Colors.deltaToAct3}, new String[]{"Capacity", "Activation"},
+//                "Stage 3", "Match", "Time to... (s)"
+//        );
+//        charts.put("Stage 3", stage2Chart);
+//
         JFreeChart driverRankChart = SavingFunctions.createChart(
                 createSingleRangeArray(this.driverRank), getMatchNums(),
                 new Color[]{Colors.driverRank}, new String[]{"Driver Rank"},

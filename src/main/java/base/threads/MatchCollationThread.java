@@ -3,7 +3,7 @@ package base.threads;
 import base.Main;
 import base.models.Match;
 import base.lib.DataClasses.*;
-import base.lib.Enums;
+import base.lib.Enums.*;
 import base.lib.Functions;
 import base.models.DataScout;
 import base.models.NoteScout;
@@ -12,10 +12,10 @@ import java.awt.*;
 import java.time.LocalTime;
 import java.util.*;
 
-public class MatchCollationThread extends Thread{
-
+public class MatchCollationThread extends Thread {
+    
     @Override
-    public void run(){
+    public void run() {
         while (!Thread.currentThread().isInterrupted()) {
             for (Match match_ : Main.currentSession.matches.values()) {
                 if (match_.dataRediness()) {
@@ -26,30 +26,30 @@ public class MatchCollationThread extends Thread{
         }
     }
     
-    public static void collate(Match match_, HashMap<String, DataScout> dataScoutList, HashMap<String, NoteScout> noteScoutList){
+    public static void collate(Match match_, HashMap<String, DataScout> dataScoutList, HashMap<String, NoteScout> noteScoutList) {
         DataScoutMatch finalData = new DataScoutMatch();
         DataScout[] scouts = new DataScout[match_.matchScouts.size()];
-        for(int i=0; i<match_.matchScouts.size(); i++){
+        for (int i = 0; i < match_.matchScouts.size(); i++) {
             scouts[i] = dataScoutList.get(match_.matchScouts.get(i).getName());
         }
         Arrays.sort(scouts);
-        finalData.matchNum =  (int) checkData(scouts, "matchNum", match_.matchNum, match_.matchBreakdown, match_.allPos);
-        finalData.allPos = (Enums.Station) checkData(scouts, "allPos", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.matchNum = (int) checkData(scouts, "matchNum", match_.matchNum, match_.matchBreakdown, match_.allPos);
+        finalData.allPos = (Station) checkData(scouts, "allPos", match_.matchNum, match_.matchBreakdown, match_.allPos);
         finalData.teamNum = (int) checkData(scouts, "teamNum", match_.matchNum, match_.matchBreakdown, match_.allPos);
         finalData.absent = (boolean) checkData(scouts, "absent", match_.matchNum, match_.matchBreakdown, match_.allPos);
         finalData.startingPosition = (double) checkData(scouts, "startingPosition", match_.matchNum, match_.matchBreakdown, match_.allPos);
         finalData.moved = (boolean) checkData(scouts, "moved", match_.matchNum, match_.matchBreakdown, match_.allPos);
-        finalData.capacityTimeS1 = (LocalTime) checkData(scouts, "capacityTimeS1", match_.matchNum, match_.matchBreakdown, match_.allPos);
-        finalData.capacityTimeS2 = (LocalTime) checkData(scouts, "capacityTimeS2", match_.matchNum, match_.matchBreakdown, match_.allPos);
-        finalData.capacityTimeS3 = (LocalTime) checkData(scouts, "capacityTimeS3", match_.matchNum, match_.matchBreakdown, match_.allPos);
+//        finalData.capacityTimeS1 = (LocalTime) checkData(scouts, "capacityTimeS1", match_.matchNum, match_.matchBreakdown, match_.allPos);
+//        finalData.capacityTimeS2 = (LocalTime) checkData(scouts, "capacityTimeS2", match_.matchNum, match_.matchBreakdown, match_.allPos);
+//        finalData.capacityTimeS3 = (LocalTime) checkData(scouts, "capacityTimeS3", match_.matchNum, match_.matchBreakdown, match_.allPos);
         finalData.operationalRP = (boolean) checkData(scouts, "operationalRP", match_.matchNum, match_.matchBreakdown, match_.allPos);
         finalData.numShots = (int) checkData(scouts, "numShots", match_.matchNum, match_.matchBreakdown, match_.allPos);
         finalData.shots = checkShots(scouts, match_.matchNum, finalData.numShots, match_.matchBreakdown);
-        //TODO fouls
+        finalData.fouls = checkFouls(scouts, "fouls", match_.matchNum, match_.matchBreakdown, match_.allPos); //fixme make it not like this
         finalData.yellowCard = (boolean) checkData(scouts, "yellowCard", match_.matchNum, match_.matchBreakdown, match_.allPos);
         finalData.redCard = (boolean) checkData(scouts, "redCard", match_.matchNum, match_.matchBreakdown, match_.allPos);
-        finalData.activateTimeS2 = (LocalTime) checkData(scouts, "activateTimeS2", match_.matchNum, match_.matchBreakdown, match_.allPos);
-        finalData.activateTimeS3 = (LocalTime) checkData(scouts, "activateTimeS3", match_.matchNum, match_.matchBreakdown, match_.allPos);
+//        finalData.activateTimeS2 = (LocalTime) checkData(scouts, "activateTimeS2", match_.matchNum, match_.matchBreakdown, match_.allPos);
+//        finalData.activateTimeS3 = (LocalTime) checkData(scouts, "activateTimeS3", match_.matchNum, match_.matchBreakdown, match_.allPos);
         finalData.climbDuration = (LocalTime) checkData(scouts, "climbDuration", match_.matchNum, match_.matchBreakdown, match_.allPos);
         finalData.climb = (boolean) checkData(scouts, "climb", match_.matchNum, match_.matchBreakdown, match_.allPos);
         finalData.buddyClimb = (boolean) checkData(scouts, "buddyClimb", match_.matchNum, match_.matchBreakdown, match_.allPos);
@@ -64,7 +64,7 @@ public class MatchCollationThread extends Thread{
         
         
         finalData.dataNotes = "";
-        for (DataScout scout_ : scouts){
+        for (DataScout scout_ : scouts) {
             DataScoutMatch scoutMatch = scout_.matchData.get(scout_.matchesScouted.indexOf(match_.matchNum));
             finalData.defenseRank += scoutMatch.defenseRank;
             finalData.defenseAvoidanceRank += scoutMatch.defenseAvoidanceRank;
@@ -75,29 +75,29 @@ public class MatchCollationThread extends Thread{
         }
         
         //TODO check for outliers
-        finalData.defenseRank = finalData.defenseRank/scouts.length;
-        finalData.defenseAvoidanceRank = finalData.defenseAvoidanceRank/scouts.length;
-        finalData.driverRank = finalData.driverRank/scouts.length;
-        finalData.humanPlayerRank = finalData.humanPlayerRank/scouts.length;
-    
-    
+        finalData.defenseRank = finalData.defenseRank / scouts.length;
+        finalData.defenseAvoidanceRank = finalData.defenseAvoidanceRank / scouts.length;
+        finalData.driverRank = finalData.driverRank / scouts.length;
+        finalData.humanPlayerRank = finalData.humanPlayerRank / scouts.length;
+        
+        
         NoteScout[] noteScouts = new NoteScout[match_.noteScouts.size()];
-        for(int i=0; i<match_.noteScouts.size(); i++){
+        for (int i = 0; i < match_.noteScouts.size(); i++) {
             noteScouts[i] = noteScoutList.get(match_.noteScouts.get(i).getName());
         }
-    
+        
         String finalNotes = "";
-        for(NoteScout scout_ : noteScouts){
+        for (NoteScout scout_ : noteScouts) {
             finalNotes += scout_.matchData.get(scout_.matchesScouted.indexOf(match_.matchNum)).bigNotes;
             finalNotes += "  ;  ";
         }
-    
+        
         match_.passFinalData(finalData, finalNotes);
     }
     
-    public static Object checkData(DataScout[] scouts, String key, int matchNum, HashMap<String, Object> tbaMap, Enums.Station allPos){
+    public static Object checkData(DataScout[] scouts, String key, int matchNum, HashMap<String, Object> tbaMap, Station allPos) {
         ArrayList<Object> scoutData = new ArrayList<>();
-        for(DataScout scout : scouts) {
+        for (DataScout scout : scouts) {
             try {
                 scoutData.add(DataScoutMatch.class.getField(key).get(scout.matchData.get(scout.matchesScouted.indexOf(matchNum))));
             } catch (Exception e) {
@@ -105,31 +105,55 @@ public class MatchCollationThread extends Thread{
                 return null;
             }
         }
-    
+        
         Object correctData = findScoutMean(scouts, scoutData, key, matchNum, tbaMap, allPos);
-        for(int i=0; i<scouts.length; i++){
+        for (int i = 0; i < scouts.length; i++) {
             scouts[i].calculateRank(key, correctData, scoutData.get(i));
         }
         return correctData;
     }
     
-    public static Object findScoutMean(DataScout[] scouts, ArrayList<Object> scoutData, String key, int matchNum, HashMap<String, Object> tbaMap, Enums.Station allPos){
-        HashMap<Object, Integer> data = new HashMap<>();
-        Object correctData = null;
-        
-        for(int i=0; i<scoutData.size(); i++){
-            boolean found = false;
-            for(Object k : data.keySet()){
-                if(k.equals(scoutData.get(i))){
-                    data.put(k, data.get(k)+1);
-                    found = true;
-                }
-            }
-            if(!found){
-                data.put(scoutData.get(i), 1);
+    public static HashMap<Foul, Integer> checkFouls(DataScout[] scouts, String key, int matchNum, HashMap<String, Object> tbaMap, Station allPos) {
+        HashMap<Foul, ArrayList<Integer>> scoutData = new HashMap<>();
+        Foul[] fouls = {Foul.GEN_TECH, Foul.TRENCH_TECH, Foul.RDV_TECH, Foul.ZONE_TECH, Foul.PIN_FOUL, Foul.CLIMB_PEN, Foul.GEN_FOUL, Foul.EXTEND_FOUL, Foul.HUMAN_FOUL};
+        for(Foul foul : fouls){
+            scoutData.put(foul, new ArrayList<>());
+        }
+        for (DataScout scout : scouts) {
+            for(Foul foul : fouls){
+                scoutData.get(foul).add(scout.matchData.get(scout.matchesScouted.indexOf(matchNum)).fouls.get(foul));
+                
             }
         }
         
+        HashMap<Foul, Integer> correctData = new HashMap<>();
+        for(Foul foul : fouls){
+            correctData.put(foul, findScoutMean(scouts, scoutData.get(foul), foul.toString(), matchNum, tbaMap, allPos));
+            for(int i=0; i<scouts.length; i++){
+                scouts[i].calculateRank(foul.toString(), correctData.get(foul), scoutData.get(foul).get(i));
+            }
+        }
+        
+        return correctData;
+    }
+    
+    public static Object findScoutMean(DataScout[] scouts, ArrayList<Object> scoutData, String key, int matchNum, HashMap<String, Object> tbaMap, Station allPos) {
+        HashMap<Object, Integer> data = new HashMap<>();
+        Object correctData = null;
+        
+        for (int i = 0; i < scoutData.size(); i++) {
+            boolean found = false;
+            for (Object k : data.keySet()) {
+                if (k.equals(scoutData.get(i))) {
+                    data.put(k, data.get(k) + 1);
+                    found = true;
+                }
+            }
+            if (!found) {
+                data.put(scoutData.get(i), 1);
+            }
+        }
+
 //        for(Object scoutPoint : scoutData){
 //            if(data.containsKey(scoutPoint)){
 //                data.put(scoutPoint, data.get(scoutPoint)+1);
@@ -139,45 +163,45 @@ public class MatchCollationThread extends Thread{
 //        }
         
         int correctDataRank = 0;
-        for(Object point : data.keySet()){
-            if(data.get(point) > correctDataRank){
+        for (Object point : data.keySet()) {
+            if (data.get(point) > correctDataRank) {
                 correctData = point;
                 correctDataRank = data.get(correctData);
-            }else if(data.get(point)==correctDataRank){
+            } else if (data.get(point) == correctDataRank) {
                 correctData = null;
             }
         }
-        if(correctData==null){
+        if (correctData == null) {
             correctData = scoutData.get(0); //highest ranked
         }
         
         //CHECK TBA
-        if(Main.tbaIsSync) {
+        if (Main.tbaIsSync) {
             correctData = getTBA(key, correctData, tbaMap, allPos);
         }
         
         return correctData;
     }
     
-    public static ArrayList<Shot> checkShots(DataScout[] scouts, int matchNum, int numShots, HashMap<String, Object> tbaMap){
+    public static ArrayList<Shot> checkShots(DataScout[] scouts, int matchNum, int numShots, HashMap<String, Object> tbaMap) {
         ArrayList<Shot> finalShots = new ArrayList<>();
         ArrayList<ArrayList<Shot>> scoutData = new ArrayList<>();
-        for(DataScout scout : scouts){
+        for (DataScout scout : scouts) {
             scoutData.add(scout.matchData.get(scout.matchesScouted.indexOf(matchNum)).shots);
         }
         ArrayList<ArrayList<LocalTime>> timeLines = new ArrayList<>();
-        for(int i=0; i<scoutData.size(); i++){
-            timeLines.add(i,new ArrayList<>());
-            for(int j=0; j<scoutData.get(i).size(); j++){
+        for (int i = 0; i < scoutData.size(); i++) {
+            timeLines.add(i, new ArrayList<>());
+            for (int j = 0; j < scoutData.get(i).size(); j++) {
                 timeLines.get(i).add(j, scoutData.get(i).get(j).timeStamp);
             }
         }
         ArrayList<LocalTime> finalTimeLine = alignTimelines(timeLines, numShots, scouts);
-        for(LocalTime shotTime : finalTimeLine){
+        for (LocalTime shotTime : finalTimeLine) {
             ArrayList<Shot> shotList = new ArrayList<>();
-            for(int scoutShots=0; scoutShots<scoutData.size(); scoutShots++){
+            for (int scoutShots = 0; scoutShots < scoutData.size(); scoutShots++) {
                 Shot tempShot = Functions.findShot(scoutData.get(scoutShots), shotTime, 5);
-                if(tempShot!=null) {
+                if (tempShot != null) {
                     shotList.add(tempShot); //todo determine if 5s is a good margin
                 }
             }
@@ -187,93 +211,92 @@ public class MatchCollationThread extends Thread{
         return finalShots;
     }
     
-    public static Shot findShotMean(DataScout[] scouts, ArrayList<Shot> scoutData, int matchNum, HashMap<String, Object> tbaMap){
+    public static Shot findShotMean(DataScout[] scouts, ArrayList<Shot> scoutData, int matchNum, HashMap<String, Object> tbaMap) {
         HashMap<LocalTime, Integer> timeFrequency = new HashMap<>();
         //Time mean
-        for(int i=0; i<scoutData.size(); i++){
+        for (int i = 0; i < scoutData.size(); i++) {
             boolean found = false;
-            for(LocalTime k : timeFrequency.keySet()){
-                if(k.equals(scoutData.get(i).timeStamp)){
-                    timeFrequency.put(k, timeFrequency.get(k)+1);
+            for (LocalTime k : timeFrequency.keySet()) {
+                if (k.equals(scoutData.get(i).timeStamp)) {
+                    timeFrequency.put(k, timeFrequency.get(k) + 1);
                     found = true;
                 }
             }
-            if(!found){
+            if (!found) {
                 timeFrequency.put(scoutData.get(i).timeStamp, 1);
             }
         }
         
         int timeMaxFreq = 0;
         LocalTime correctTime = null;
-        for(LocalTime k : timeFrequency.keySet()){
-            if(timeFrequency.get(k) > timeMaxFreq){
+        for (LocalTime k : timeFrequency.keySet()) {
+            if (timeFrequency.get(k) > timeMaxFreq) {
                 correctTime = k;
                 timeMaxFreq = timeFrequency.get(k);
-            }else if(timeFrequency.get(k) == timeMaxFreq){
+            } else if (timeFrequency.get(k) == timeMaxFreq) {
                 correctTime = null;
             }
         }
         
-        if(correctTime==null){
+        if (correctTime == null) {
             correctTime = scoutData.get(0).timeStamp; //set to best scout
         }
         
         
-        
         //Type mean
-        HashMap<Enums.Goal, Integer> typeFrequency = new HashMap<>();
-        typeFrequency.put(Enums.Goal.MISS, 0);
-        typeFrequency.put(Enums.Goal.INNER, 0);
-        typeFrequency.put(Enums.Goal.OUTER, 0);
-        typeFrequency.put(Enums.Goal.LOWER, 0);
-        for(int i=0; i<scoutData.size(); i++){
-            typeFrequency.put(scoutData.get(i).scored, typeFrequency.get(scoutData.get(i).scored)+1);
+        HashMap<Goal, Integer> typeFrequency = new HashMap<>();
+        typeFrequency.put(Goal.MISS, 0);
+        typeFrequency.put(Goal.INNER, 0);
+        typeFrequency.put(Goal.OUTER, 0);
+        typeFrequency.put(Goal.LOWER, 0);
+        for (int i = 0; i < scoutData.size(); i++) {
+            typeFrequency.put(scoutData.get(i).scored, typeFrequency.get(scoutData.get(i).scored) + 1);
         }
-    
+        
         int typeMaxFreq = 0;
-        Enums.Goal correctType = null;
-        for(Enums.Goal k : typeFrequency.keySet()){
-            if(typeFrequency.get(k) > typeMaxFreq){
+        Goal correctType = null;
+        for (Goal k : typeFrequency.keySet()) {
+            if (typeFrequency.get(k) > typeMaxFreq) {
                 correctType = k;
                 typeMaxFreq = typeFrequency.get(k);
-            }else if(typeFrequency.get(k) == typeMaxFreq){
+            } else if (typeFrequency.get(k) == typeMaxFreq) {
                 correctType = null;
             }
         }
-    
-        if(correctType==null){
+        
+        if (correctType == null) {
             correctType = scoutData.get(0).scored; //set to best scout
         }
         
         
         //Position mean
         HashMap<Point, Integer> positionFrequency = new HashMap<>();
-        for(int i=0; i<scoutData.size(); i++){
+        for (int i = 0; i < scoutData.size(); i++) {
             boolean found = false;
-            for(Point k : positionFrequency.keySet()){
+            for (Point k : positionFrequency.keySet()) {
                 //fixme test margins
-                if((Math.abs(k.getX()-scoutData.get(i).position.getX())<=10)&&(Math.abs(k.getY()-scoutData.get(i).position.getY())<=10)){
-                    positionFrequency.put(k, positionFrequency.get(k)+1);
+                if ((Math.abs(k.getX() - scoutData.get(i).position.getX()) <= 10) && (Math.abs(k.getY() - scoutData.get(i).position.getY()) <= 10)) {
+                    positionFrequency.put(k, positionFrequency.get(k) + 1);
                     found = true;
                 }
             }
-            if(!found){
+            if (!found) {
                 positionFrequency.put(scoutData.get(i).position, 1);
             }
         }
-    
+        
         int positionMaxFreq = 0;
         Point correctPos = null;
-        for(Point k : positionFrequency.keySet()){
-            if(positionFrequency.get(k) > positionMaxFreq){
+        for (Point k : positionFrequency.keySet()) {
+            if (positionFrequency.get(k) > positionMaxFreq) {
                 correctPos = k;
                 positionMaxFreq = positionFrequency.get(k);
-            }else if(positionFrequency.get(k) == positionMaxFreq){
+            } else if (positionFrequency.get(k) == positionMaxFreq) {
                 correctPos = null;
             }
         }
-    
-        if(correctPos==null){
+        
+        if (correctPos == null) {
             correctPos = scoutData.get(0).position; //set to best scout
         }
         
@@ -283,72 +306,72 @@ public class MatchCollationThread extends Thread{
         
     }
     
-    public static ArrayList<LocalTime> alignTimelines(ArrayList<ArrayList<LocalTime>> timeLines, int numShots, DataScout[] scouts){
+    public static ArrayList<LocalTime> alignTimelines(ArrayList<ArrayList<LocalTime>> timeLines, int numShots, DataScout[] scouts) {
         //Convert timelines to floats
         ArrayList<ArrayList<Float>> floatTimeLines = new ArrayList<>();
-        for(int i=0; i<timeLines.size(); i++){
+        for (int i = 0; i < timeLines.size(); i++) {
             floatTimeLines.add(i, new ArrayList<>());
-            for(int j=0; j<timeLines.get(i).size(); j++) {
+            for (int j = 0; j < timeLines.get(i).size(); j++) {
                 floatTimeLines.get(i).add(Functions.getFloatTime(timeLines.get(i).get(j)));
             }
         }
         
         ArrayList<ArrayList<Float>> correctLength = new ArrayList<>();
         
-        for(int i=0; i<floatTimeLines.size(); i++){
-            if(numShots == floatTimeLines.get(i).size()){
+        for (int i = 0; i < floatTimeLines.size(); i++) {
+            if (numShots == floatTimeLines.get(i).size()) {
                 correctLength.add(floatTimeLines.get(i));
-            }else{
+            } else {
                 correctLength.add(new ArrayList<>());
-                for(int j=0; j<numShots; j++){
-                    correctLength.get(i).add((float)254); //IMPORTANT the number 254 is a key to see what hasn't been set
+                for (int j = 0; j < numShots; j++) {
+                    correctLength.get(i).add((float) 254); //IMPORTANT the number 254 is a key to see what hasn't been set
                 }
             }
         }
         
         ArrayList<Float> correctTimeline = new ArrayList<>();
         //get highest ranked scout with correct length
-        for(int i=0; i<floatTimeLines.size(); i++){
-            if(correctLength.contains(floatTimeLines.get(i))){
+        for (int i = 0; i < floatTimeLines.size(); i++) {
+            if (correctLength.contains(floatTimeLines.get(i))) {
                 correctTimeline = floatTimeLines.get(i);
-                i=floatTimeLines.size()+1;
+                i = floatTimeLines.size() + 1;
             }
         }
         
-        for(int wrongTL=0; wrongTL<floatTimeLines.size(); wrongTL++){
-            if(!correctLength.contains(floatTimeLines.get(wrongTL))){
+        for (int wrongTL = 0; wrongTL < floatTimeLines.size(); wrongTL++) {
+            if (!correctLength.contains(floatTimeLines.get(wrongTL))) {
                 //timeline is actually wrong
                 // create a matrix that is wrongTimes x rightTimes
                 // this will be filled with the time difference between
                 // each wrong time and every right time
                 Float[][] times = new Float[floatTimeLines.get(wrongTL).size()][correctTimeline.size()];
                 
-                for(int i=0; i<floatTimeLines.get(wrongTL).size(); i++){
-                    for(int j=0; j<correctTimeline.size(); j++){
-                        times[i][j] = Math.abs(correctTimeline.get(j)-floatTimeLines.get(wrongTL).get(i));
+                for (int i = 0; i < floatTimeLines.get(wrongTL).size(); i++) {
+                    for (int j = 0; j < correctTimeline.size(); j++) {
+                        times[i][j] = Math.abs(correctTimeline.get(j) - floatTimeLines.get(wrongTL).get(i));
                     }
                 }
                 
-                while(Functions.getMin(times)[0][0]<200){
+                while (Functions.getMin(times)[0][0] < 200) {
                     Float[][] lowestIndex = Functions.getMin(times); // [y,x]
                     correctLength.get(wrongTL).set(Math.round(lowestIndex[1][1]), floatTimeLines.get(wrongTL).get(Math.round(lowestIndex[1][0])));
                     int lowestRow = Math.round(lowestIndex[1][0]);
-                    for(int col=0; col<times[lowestRow].length; col++){
-                        times[lowestRow][col] = (float)200;
+                    for (int col = 0; col < times[lowestRow].length; col++) {
+                        times[lowestRow][col] = (float) 200;
                     }
                 }
                 
-                for(int t=0; t<correctLength.get(wrongTL).size(); t++){
-                    if(correctLength.get(wrongTL).get(t)==254){
+                for (int t = 0; t < correctLength.get(wrongTL).size(); t++) {
+                    if (correctLength.get(wrongTL).get(t) == 254) {
                         correctLength.get(wrongTL).set(t, correctTimeline.get(t));
                     }
                 }
             }
         }
         ArrayList<LocalTime> finalTimeline = new ArrayList<>();
-        for(int indivT = 0; indivT<numShots; indivT++){
+        for (int indivT = 0; indivT < numShots; indivT++) {
             ArrayList<Float> potentialTimes = new ArrayList<>();
-            for(int sNum=0; sNum<correctLength.size(); sNum++){
+            for (int sNum = 0; sNum < correctLength.size(); sNum++) {
                 potentialTimes.add(correctLength.get(sNum).get(indivT));
             }
             finalTimeline.add(consolidateFloatTimes(potentialTimes, scouts));
@@ -357,38 +380,38 @@ public class MatchCollationThread extends Thread{
         return finalTimeline;
     }
     
-    public static LocalTime consolidateTimes(ArrayList<LocalTime> times, DataScout[] scouts){
+    public static LocalTime consolidateTimes(ArrayList<LocalTime> times, DataScout[] scouts) {
         ArrayList<Float> floatTimes = new ArrayList<>();
-        for(LocalTime time : times){
+        for (LocalTime time : times) {
             floatTimes.add(Functions.getFloatTime(time));
         }
         return consolidateFloatTimes(floatTimes, scouts);
     }
     
-    public static LocalTime consolidateFloatTimes(ArrayList<Float> floatTimes, DataScout[] scouts){
+    public static LocalTime consolidateFloatTimes(ArrayList<Float> floatTimes, DataScout[] scouts) {
         ArrayList<Float> weights = new ArrayList<>();
-        for(int w=0; w<floatTimes.size(); w++){
-            weights.add((float)Math.abs(floatTimes.size()-w)+1);
+        for (int w = 0; w < floatTimes.size(); w++) {
+            weights.add((float) Math.abs(floatTimes.size() - w) + 1);
         }
         ArrayList<Float> weightedTimes = new ArrayList<>();
-        for(int i=0; i<floatTimes.size(); i++){
-            weightedTimes.add(floatTimes.get(i)*weights.get(i));
+        for (int i = 0; i < floatTimes.size(); i++) {
+            weightedTimes.add(floatTimes.get(i) * weights.get(i));
         }
-        float avTime = Functions.getSum(weightedTimes)/Functions.getSum(weights);
+        float avTime = Functions.getSum(weightedTimes) / Functions.getSum(weights);
         return Functions.getLocalTime(avTime);
     }
     
-    public static Object getTBA(String key, Object assumedCorrect, HashMap<String, Object> tbaMap, Enums.Station allPos){
-        int pos = allPos.toString().charAt(allPos.toString().length()-1);
-        switch (key){
-            case("moved"):
-                return tbaMap.get("initLineRobot"+pos).equals("Exited");
+    public static Object getTBA(String key, Object assumedCorrect, HashMap<String, Object> tbaMap, Station allPos) {
+        int pos = allPos.toString().charAt(allPos.toString().length() - 1);
+        switch (key) {
+            case ("moved"):
+                return tbaMap.get("initLineRobot" + pos).equals("Exited");
             case "climb":
-                return tbaMap.get("endgameRobot"+pos).equals("Hang");
+                return tbaMap.get("endgameRobot" + pos).equals("Hang");
             case "leveled":
                 return tbaMap.get("endgameRungIsLevel").equals("IsLevel");
             case "parked":
-                return tbaMap.get("endgameRobot"+pos).equals("Park");
+                return tbaMap.get("endgameRobot" + pos).equals("Park");
             case "climbRP":
                 return tbaMap.get("shieldOperationalRankingPoint");
             case "totalRP":
@@ -397,7 +420,18 @@ public class MatchCollationThread extends Thread{
                 return tbaMap.get("totalPoints");
             case "operationalRP":
                 return tbaMap.get("shieldEnergizedRankingPoint");
-            //TODO fouls
+            case Foul.GEN_TECH.toString():
+                if((int)tbaMap.get("techFoulCount")<(int)assumedCorrect){
+                    return tbaMap.get("techFoulCount");
+                }else{
+                    return assumedCorrect;
+                }
+            case Foul.GEN_FOUL.toString():
+                if((int)tbaMap.get("foulCount")<(int)assumedCorrect){
+                    return tbaMap.get("foulCount");
+                }else{
+                    return assumedCorrect;
+                }
             
         }
         return assumedCorrect;

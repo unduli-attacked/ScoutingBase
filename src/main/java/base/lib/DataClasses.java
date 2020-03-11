@@ -3,6 +3,7 @@ import java.awt.*;
  
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import base.lib.Enums.*;
    
@@ -21,6 +22,10 @@ public class DataClasses {
             
             this.timeStamp = timeStamp_;
          
+        }
+        
+        public Shot(){
+        
         }
         
         @Override
@@ -53,19 +58,19 @@ public class DataClasses {
         public boolean absent;
         public double startingPosition;
         public boolean moved;
-        public LocalTime capacityTimeS1;
-        public LocalTime capacityTimeS2;
-        public LocalTime capacityTimeS3;
+//        public LocalTime capacityTimeS1;
+//        public LocalTime capacityTimeS2;
+//        public LocalTime capacityTimeS3;
         public boolean operationalRP;
         public double defenseRank;
         public double defenseAvoidanceRank;
         public int numShots;
         public ArrayList<Shot> shots;
-        //TODO foul counters
+        public HashMap<Foul, Integer> fouls;
         public boolean yellowCard;
         public boolean redCard;
-        public LocalTime activateTimeS2;
-        public LocalTime activateTimeS3;
+//        public LocalTime activateTimeS2;
+//        public LocalTime activateTimeS3;
         public LocalTime climbDuration;
         public boolean climb;
         public boolean buddyClimb;
@@ -90,18 +95,18 @@ public class DataClasses {
             this.teamNum = other.teamNum;
             this.absent = other.absent;
             this.startingPosition = other.startingPosition;
-            this.capacityTimeS1 = other.capacityTimeS1;
-            this.capacityTimeS2 = other.capacityTimeS2;
-            this.capacityTimeS3 = other.capacityTimeS3;
+//            this.capacityTimeS1 = other.capacityTimeS1;
+//            this.capacityTimeS2 = other.capacityTimeS2;
+//            this.capacityTimeS3 = other.capacityTimeS3;
             this.defenseRank = other.defenseRank;
             this.defenseAvoidanceRank = other.defenseAvoidanceRank;
             this.numShots = other.numShots;
             this.shots = other.shots;
-            //todo fouls
+            this.fouls = other.fouls;
             this.yellowCard = other.yellowCard;
             this.redCard = other.redCard;
-            this.activateTimeS2 = other.activateTimeS2;
-            this.activateTimeS3 = other.activateTimeS3;
+//            this.activateTimeS2 = other.activateTimeS2;
+//            this.activateTimeS3 = other.activateTimeS3;
             this.climbDuration = other.climbDuration;
             this.climb = other.climb;
             this.buddyClimb = other.buddyClimb;

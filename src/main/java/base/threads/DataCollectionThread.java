@@ -28,7 +28,7 @@ public class DataCollectionThread extends Thread {
             
             }
             if (temp != null) {
-                if (Functions.findIndivMatch(Integer.valueOf(temp.get(MATCH_NUM.val)), Integer.valueOf(temp.get(TEAM_NUM.val)), Main.currentSession) == null) {
+                if (Functions.findIndivMatch(Integer.parseInt((String)temp.get(MATCH_NUM.val)), Integer.parseInt((String)temp.get(TEAM_NUM.val)), Main.currentSession) == null) {
                     saveMatch(temp);
                 }
                 lastSavedRow++;
@@ -38,7 +38,11 @@ public class DataCollectionThread extends Thread {
         }
     }
     
-    public DataScoutMatch saveMatch(List<String> temp){
+    public DataScoutMatch saveMatch(List<Object> temp_){
+        ArrayList<String> temp = new ArrayList<>();
+        for(Object o : temp_){
+            temp.add((String) o);
+        }
         DataScoutMatch tempMatch = new DataScoutMatch();
         int len = Integer.parseInt(temp.get(IMG_DIM.val).split(",")[0].substring(1)); //todo tst
         int hei = Integer.parseInt(temp.get(IMG_DIM.val).split(",")[1].substring(0, temp.get(IMG_DIM.val).split(",")[1].length()-1));
@@ -112,12 +116,12 @@ public class DataCollectionThread extends Thread {
         tempMatch.absent = temp.get(ABSENT.val).equals("on");
         tempMatch.startingPosition = Integer.parseInt(temp.get(START_POS.val));
         tempMatch.moved = temp.get(OFF_LINE.val).equals("on");
-        tempMatch.fouls.put(Enums.Foul.TRENCH_TECH, temp.get(TRENCH_TECH.val));
-        tempMatch.fouls.put(Enums.Foul.PIN_FOUL, temp.get(PIN_FOUL.val));
-        tempMatch.fouls.put(Enums.Foul.HUMAN_FOUL, temp.get(HUMAN_FOUL.val));
-        tempMatch.fouls.put(Enums.Foul.ZONE_TECH, temp.get(ZONE_FOUL.val));
-        tempMatch.fouls.put(Enums.Foul.GEN_TECH, temp.get(TECH_FOUL.val));
-        tempMatch.fouls.put(Enums.Foul.GEN_FOUL, temp.get(FOUL.val));
+        tempMatch.fouls.put(Enums.Foul.TRENCH_TECH, Integer.parseInt(temp.get(TRENCH_TECH.val)));
+        tempMatch.fouls.put(Enums.Foul.PIN_FOUL, Integer.parseInt(temp.get(PIN_FOUL.val)));
+        tempMatch.fouls.put(Enums.Foul.HUMAN_FOUL, Integer.parseInt(temp.get(HUMAN_FOUL.val)));
+        tempMatch.fouls.put(Enums.Foul.ZONE_TECH, Integer.parseInt(temp.get(ZONE_FOUL.val)));
+        tempMatch.fouls.put(Enums.Foul.GEN_TECH, Integer.parseInt(temp.get(TECH_FOUL.val)));
+        tempMatch.fouls.put(Enums.Foul.GEN_FOUL, Integer.parseInt(temp.get(FOUL.val)));
         tempMatch.climb = temp.get(CLIMB.val).equals("on");
         tempMatch.buddyClimb = temp.get(BUDDY.val).equals("on");
         tempMatch.wasAssisted = temp.get(ASSIST.val).equals("on");

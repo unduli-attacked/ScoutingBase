@@ -35,9 +35,9 @@ public class CollationTest {
         data.teamNum = 5940;
         data.absent = false;
         data.startingPosition = 3;
-        data.capacityTimeS1 = LocalTime.of(0, 0, 10);
-        data.capacityTimeS2 = LocalTime.of(0, 0, 45);
-        data.capacityTimeS3 = LocalTime.of(0, 2, 5);
+//        data.capacityTimeS1 = LocalTime.of(0, 0, 10);
+//        data.capacityTimeS2 = LocalTime.of(0, 0, 45);
+//        data.capacityTimeS3 = LocalTime.of(0, 2, 5);
         data.defenseRank = 5;
         data.defenseAvoidanceRank = 2;
         data.numShots = 4;
@@ -47,8 +47,8 @@ public class CollationTest {
                 new DataClasses.Shot(new Point(25, 30), Enums.Goal.MISS, LocalTime.of(0, 2, 1))));
         data.yellowCard = false;
         data.redCard = false;
-        data.activateTimeS2 = LocalTime.of(0, 1, 1);
-        data.activateTimeS3 = LocalTime.of(0, 2, 10);
+//        data.activateTimeS2 = LocalTime.of(0, 1, 1);
+//        data.activateTimeS3 = LocalTime.of(0, 2, 10);
         data.climbDuration = LocalTime.of(0, 0, 0);
         data.climb = false;
         data.buddyClimb = false;
@@ -146,7 +146,7 @@ public class CollationTest {
         
         
         Assertions.assertEquals(3.2, testMatch.matchData.startingPosition);
-        Assertions.assertEquals(LocalTime.of(0, 0, 10), testMatch.matchData.capacityTimeS1);
+//        Assertions.assertEquals(LocalTime.of(0, 0, 10), testMatch.matchData.capacityTimeS1);
         Assertions.assertEquals(5.66, testMatch.matchData.defenseRank, 0.1);
         Assertions.assertEquals(2.66, testMatch.matchData.defenseAvoidanceRank, 0.1);
         Assertions.assertEquals(5, testMatch.matchData.numShots);

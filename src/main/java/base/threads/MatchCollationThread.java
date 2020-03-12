@@ -114,7 +114,7 @@ public class MatchCollationThread extends Thread {
     }
     
     public static HashMap<Foul, Integer> checkFouls(DataScout[] scouts, String key, int matchNum, HashMap<String, Object> tbaMap, Station allPos) {
-        HashMap<Foul, ArrayList<Integer>> scoutData = new HashMap<>();
+        HashMap<Foul, ArrayList<Object>> scoutData = new HashMap<>();
         Foul[] fouls = {Foul.GEN_TECH, Foul.TRENCH_TECH, Foul.RDV_TECH, Foul.ZONE_TECH, Foul.PIN_FOUL, Foul.CLIMB_PEN, Foul.GEN_FOUL, Foul.EXTEND_FOUL, Foul.HUMAN_FOUL};
         for(Foul foul : fouls){
             scoutData.put(foul, new ArrayList<>());
@@ -128,7 +128,7 @@ public class MatchCollationThread extends Thread {
         
         HashMap<Foul, Integer> correctData = new HashMap<>();
         for(Foul foul : fouls){
-            correctData.put(foul, findScoutMean(scouts, scoutData.get(foul), foul.toString(), matchNum, tbaMap, allPos));
+            correctData.put(foul, (Integer)findScoutMean(scouts, scoutData.get(foul), foul.toString(), matchNum, tbaMap, allPos));
             for(int i=0; i<scouts.length; i++){
                 scouts[i].calculateRank(foul.toString(), correctData.get(foul), scoutData.get(foul).get(i));
             }
@@ -420,13 +420,13 @@ public class MatchCollationThread extends Thread {
                 return tbaMap.get("totalPoints");
             case "operationalRP":
                 return tbaMap.get("shieldEnergizedRankingPoint");
-            case Foul.GEN_TECH.toString():
+            case "General Tech Foul":
                 if((int)tbaMap.get("techFoulCount")<(int)assumedCorrect){
                     return tbaMap.get("techFoulCount");
                 }else{
                     return assumedCorrect;
                 }
-            case Foul.GEN_FOUL.toString():
+            case "General Foul":
                 if((int)tbaMap.get("foulCount")<(int)assumedCorrect){
                     return tbaMap.get("foulCount");
                 }else{

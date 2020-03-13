@@ -23,6 +23,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Main execution class for the Scouting Base
+ *
+ * @author Jocelyn McHugo
+ * @version 2020.1
+ * @since 2020-03-13
+ */
 public class Main {
     /**
      * The name of the current event, set when a session is selected

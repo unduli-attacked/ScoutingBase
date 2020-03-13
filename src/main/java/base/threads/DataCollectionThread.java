@@ -15,9 +15,24 @@ import java.util.List;
 
 import static base.lib.ColumnMappings.AppData.*;
 
+/**
+ * Collects data from a Google Sheet and saves it in a Base-readable format
+ *
+ * @author Jocelyn McHugo
+ * @version 2020.1
+ * @since 2020-03-13
+ */
 public class DataCollectionThread extends Thread {
+    
+    /**
+     * The last row that the program has checked. Defaults to 1 to account for headers.
+     */
     public int lastSavedRow = 1;
     
+    /**
+     * Repeatedly checks for new data from the current {@link base.models.Session}'s spreadsheet.
+     * If data is found, converts it into a {@link DataScoutMatch} using {@code saveMatch} and saves it
+     */
     @Override
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
@@ -29,7 +44,8 @@ public class DataCollectionThread extends Thread {
             }
             if (temp != null) {
                 if (Functions.findIndivMatch(Integer.parseInt((String)temp.get(MATCH_NUM.val)), Integer.parseInt((String)temp.get(TEAM_NUM.val)), Main.currentSession) == null) {
-                    saveMatch(temp);
+                    DataScoutMatch tempMatch = saveMatch(temp);
+                    //TODO add to associated scout and Session
                 }
                 lastSavedRow++;
             }
@@ -38,6 +54,11 @@ public class DataCollectionThread extends Thread {
         }
     }
     
+    /**
+     * Takes a sheet output list, converts it to strings, and matches it to values in a {@link DataScoutMatch}
+     * @param temp_ object list from {@link SheetsFunctions}
+     * @return the object list in {@link DataScoutMatch} form
+     */
     public DataScoutMatch saveMatch(List<Object> temp_){
         ArrayList<String> temp = new ArrayList<>();
         for(Object o : temp_){
@@ -50,6 +71,7 @@ public class DataCollectionThread extends Thread {
         String[] shots = temp.get(SHOTS.val).split(";");
         ArrayList<Shot> shoots = new ArrayList<>();
         for(String str : shots){
+            //FIXME currently relative to screen size
             Shot finShot = new Shot();
             String shot = str.substring(1, str.length()-1);
             String[] elements = shot.split(";");

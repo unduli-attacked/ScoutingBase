@@ -6,8 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="004edafe-1625-4c7c-b11a-713e9f5ce831" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test2020/finalData/pdfTeams/TEST.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/test2020/finalData/pdfTeams/TEST.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +101,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Language Defaults" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
   <component name="RecentsManager">
@@ -241,7 +242,7 @@
       <workItem from="1583806658847" duration="2800000" />
       <workItem from="1583813566911" duration="897000" />
       <workItem from="1583883115216" duration="5922000" />
-      <workItem from="1583893800391" duration="12078000" />
+      <workItem from="1583893800391" duration="12955000" />
     </task>
     <servers />
   </component>
@@ -270,22 +271,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1582752287333" />
-    <state width="1493" height="152" key="GridCell.Tab.0.bottom" timestamp="1584001939885">
+    <state width="1493" height="152" key="GridCell.Tab.0.bottom" timestamp="1584140861752">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="152" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584001939885" />
-    <state width="1493" height="152" key="GridCell.Tab.0.center" timestamp="1584001939884">
+    <state width="1493" height="152" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584140861752" />
+    <state width="1493" height="152" key="GridCell.Tab.0.center" timestamp="1584140861752">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="152" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584001939884" />
-    <state width="1493" height="152" key="GridCell.Tab.0.left" timestamp="1584001939884">
+    <state width="1493" height="152" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584140861752" />
+    <state width="1493" height="152" key="GridCell.Tab.0.left" timestamp="1584140861752">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="152" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584001939884" />
-    <state width="1493" height="152" key="GridCell.Tab.0.right" timestamp="1584001939885">
+    <state width="1493" height="152" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584140861752" />
+    <state width="1493" height="152" key="GridCell.Tab.0.right" timestamp="1584140861752">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="152" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584001939885" />
+    <state width="1493" height="152" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584140861752" />
     <state width="1493" height="180" key="GridCell.Tab.1.bottom" timestamp="1584001823177">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -302,10 +303,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="180" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1584001823177" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1583946778202">
+    <state x="249" y="0" key="SettingsEditor" timestamp="1584141086176">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1583946778202" />
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1584141086176" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1582689712665">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -353,11 +354,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/base/threads/MatchCollationThread.java</url>
           <line>373</line>
           <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/base/lib/SavingFunctions.java</url>
-          <line>142</line>
-          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,22 +1,22 @@
 package base.models;
 
 import base.Main;
-import base.lib.DataClasses.*;
+import base.lib.DataClasses.NoteScoutMatch;
 
 import java.util.ArrayList;
 
-public class NoteScout implements Saveable{
+public class NoteScout implements Saveable {
     public String name;
     public ArrayList<Match> matches = new ArrayList<>();
     public ArrayList<NoteScoutMatch> matchData = new ArrayList<>();
     public ArrayList<Integer> matchesScouted = new ArrayList<>();
     
-    public NoteScout(String name_, Session session_){
+    public NoteScout(String name_, Session session_) {
         this.name = name_;
         session_.noteScouts.put(this.name, this);
     }
     
-    public NoteScout(String name_){
+    public NoteScout(String name_) {
         new NoteScout(name_, Main.currentSession);
     }
     
@@ -26,9 +26,10 @@ public class NoteScout implements Saveable{
     
     /**
      * adds a match of notes to the note scout. does NOT add it to any Match
-     * @param match_  a NOTE SCOUT match hashmap
+     *
+     * @param match_ a NOTE SCOUT match hashmap
      */
-    public void addMatch(NoteScoutMatch match_){
+    public void addMatch(NoteScoutMatch match_) {
         this.matchesScouted.add(match_.matchNum);
         
         //sanitize input
@@ -37,16 +38,16 @@ public class NoteScout implements Saveable{
         
         NoteScoutMatch temp = match_;
         temp.bigNotes = str;
-    
+        
         this.matchData.add(temp);
     }
     
-    public NoteScoutMatch submitMatch(int matchNum_){
-        if(!matchesScouted.contains(matchNum_)){
+    public NoteScoutMatch submitMatch(int matchNum_) {
+        if (!matchesScouted.contains(matchNum_)) {
             return null;
         }
-        for(NoteScoutMatch match_ : matchData){
-            if((int)match_.matchNum==matchNum_){
+        for (NoteScoutMatch match_ : matchData) {
+            if ((int) match_.matchNum == matchNum_) {
                 return match_;
             }
         }
@@ -60,7 +61,7 @@ public class NoteScout implements Saveable{
      */
     @Override
     public String getFileName() {
-        return "NOTE_"+this.getName();
+        return "NOTE_" + this.getName();
     }
     
     /**

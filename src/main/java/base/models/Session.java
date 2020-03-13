@@ -3,14 +3,9 @@ package base.models;
 import base.lib.FileSystem;
 import base.lib.Functions;
 import base.lib.SavingFunctions;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 public class Session {
@@ -61,7 +56,7 @@ public class Session {
     }
     
     public void setSheet(String spreadsheetID_, String mainPitTab_, String secondPitTab_, String dataTab_, String noteTab_,
-                         String finalMainPitCol_, String finalSecondPitCol_, String finalDataCol_, String finalNoteCol_){
+                         String finalMainPitCol_, String finalSecondPitCol_, String finalDataCol_, String finalNoteCol_) {
         this.spreadsheetID = spreadsheetID_;
         this.mainPitTab = mainPitTab_;
         this.secondPitTab = secondPitTab_;
@@ -74,13 +69,13 @@ public class Session {
         this.finalNoteCol = finalNoteCol_;
     }
     
-    public boolean saveSession(){
-            File fl = new File("main_storage/sessions/MAIN"+this.tbaEventKey+".json");
-            System.out.println(fl.getAbsolutePath());
-            return SavingFunctions.save(fl, this);
+    public boolean saveSession() {
+        File fl = new File("main_storage/sessions/MAIN" + this.tbaEventKey + ".json");
+        System.out.println(fl.getAbsolutePath());
+        return SavingFunctions.save(fl, this);
     }
     
-    public void saveAll(){
+    public void saveAll() {
         this.saveSession();
         SavingFunctions.saveSaveables(this.matches.values());
         SavingFunctions.saveSaveables(this.pits.values());
@@ -90,51 +85,51 @@ public class Session {
         SavingFunctions.saveSaveables(this.noteScouts.values());
     }
     
-    public void recoverScouts(){
-        File scouts = new File(this.directory+ FileSystem.RAW_SCOUTS);
-        if(scouts.isDirectory() && scouts.listFiles()!=null) {
+    public void recoverScouts() {
+        File scouts = new File(this.directory + FileSystem.RAW_SCOUTS);
+        if (scouts.isDirectory() && scouts.listFiles() != null) {
             for (File scoutJson_ : scouts.listFiles()) {
-                if(scoutJson_.getName().startsWith("PIT")){
+                if (scoutJson_.getName().startsWith("PIT")) {
                     PitScout tempPScout = SavingFunctions.recoverSaveable(scoutJson_, PitScout.class);
-                    if (tempPScout!=null)this.pitScouts.put(tempPScout.getID(), tempPScout);
-                }else if(scoutJson_.getName().startsWith("DATA")){
+                    if (tempPScout != null) this.pitScouts.put(tempPScout.getID(), tempPScout);
+                } else if (scoutJson_.getName().startsWith("DATA")) {
                     DataScout tempDScout = SavingFunctions.recoverSaveable(scoutJson_, DataScout.class);
-                    if (tempDScout!=null)this.standScouts.put(tempDScout.getName(), tempDScout);
-                }else if(scoutJson_.getName().startsWith("NOTE")){
+                    if (tempDScout != null) this.standScouts.put(tempDScout.getName(), tempDScout);
+                } else if (scoutJson_.getName().startsWith("NOTE")) {
                     NoteScout tempNScout = SavingFunctions.recoverSaveable(scoutJson_, NoteScout.class);
-                    if (tempNScout!=null) this.noteScouts.put(tempNScout.name, tempNScout);
+                    if (tempNScout != null) this.noteScouts.put(tempNScout.name, tempNScout);
                 }
             }
         }
     }
     
-    public void recoverMatches(){
-        File matches  = new File(this.directory+FileSystem.RAW_MATCHES);
-        if(matches.isDirectory() && matches.listFiles()!=null){
-            for(File matchJson_ : matches.listFiles()){
+    public void recoverMatches() {
+        File matches = new File(this.directory + FileSystem.RAW_MATCHES);
+        if (matches.isDirectory() && matches.listFiles() != null) {
+            for (File matchJson_ : matches.listFiles()) {
                 Match tempMatch = SavingFunctions.recoverSaveable(matchJson_, Match.class);
-                if (tempMatch!=null)this.matches.put(tempMatch.getFileName(), tempMatch);
+                if (tempMatch != null) this.matches.put(tempMatch.getFileName(), tempMatch);
             }
         }
     }
     
-    public void recoverPits(){
-        File pits  = new File(this.directory+FileSystem.RAW_PITS);
-        if(pits.isDirectory() && pits.listFiles()!=null) {
-            for(File pitJson_ : pits.listFiles()){
-                if(pitJson_.getName().startsWith("PRIMARY")){
+    public void recoverPits() {
+        File pits = new File(this.directory + FileSystem.RAW_PITS);
+        if (pits.isDirectory() && pits.listFiles() != null) {
+            for (File pitJson_ : pits.listFiles()) {
+                if (pitJson_.getName().startsWith("PRIMARY")) {
                     Pit tempP = SavingFunctions.recoverSaveable(pitJson_, Pit.class);
-                    if(tempP!=null)this.pits.put(tempP.teamNum, tempP);
+                    if (tempP != null) this.pits.put(tempP.teamNum, tempP);
                 }
             }
-        
-            for(File pitJson_ : pits.listFiles()){
-                if(pitJson_.getName().startsWith("SECOND")){
+            
+            for (File pitJson_ : pits.listFiles()) {
+                if (pitJson_.getName().startsWith("SECOND")) {
                     SecondPit tempSecondP = SavingFunctions.recoverSaveable(pitJson_, SecondPit.class);
-                    if(tempSecondP!=null){
+                    if (tempSecondP != null) {
                         Pit connecPit = Functions.findPit(tempSecondP.teamNum, this);
-                        if(connecPit!=null){
-                            if(!connecPit.secondPits.containsValue(tempSecondP)){
+                        if (connecPit != null) {
+                            if (!connecPit.secondPits.containsValue(tempSecondP)) {
                                 connecPit.secondPits.put(tempSecondP.timeScouted, tempSecondP);
                             }
                         }
@@ -142,37 +137,37 @@ public class Session {
                 }
             }
         }
-    
+        
     }
     
-    public void recoverTeams(){
-        File rawTeams = new File(this.directory+FileSystem.RAW_TEAMS);
-        if(rawTeams.isDirectory() && rawTeams.listFiles()!=null){
-            for(File tem : rawTeams.listFiles()){
+    public void recoverTeams() {
+        File rawTeams = new File(this.directory + FileSystem.RAW_TEAMS);
+        if (rawTeams.isDirectory() && rawTeams.listFiles() != null) {
+            for (File tem : rawTeams.listFiles()) {
                 Team tempTem = SavingFunctions.recoverSaveable(tem, Team.class);
-                if(tempTem!=null) this.teams.put(tempTem.teamNum, tempTem);
+                if (tempTem != null) this.teams.put(tempTem.teamNum, tempTem);
             }
         }
     }
     
     public void genDirectories() throws IOException {
-        new File(this.directory+FileSystem.RAW_DATA).mkdirs();
-        new File(this.directory+FileSystem.RAW_SCOUTS).mkdirs();
-        new File(this.directory+FileSystem.RAW_MATCHES).mkdirs();
-        new File(this.directory+FileSystem.RAW_PITS).mkdirs();
-        new File(this.directory+FileSystem.RAW_TEAMS).mkdirs();
-        new File(this.directory+FileSystem.FINAL_DATA).mkdirs();
-        new File(this.directory+FileSystem.PDF_TEAMS).mkdirs();
-        new File(this.directory+FileSystem.PDF_PIT_NOTES).mkdirs();
-        new File(this.directory+FileSystem.PDF_MATCH_NOTES).mkdirs();
+        new File(this.directory + FileSystem.RAW_DATA).mkdirs();
+        new File(this.directory + FileSystem.RAW_SCOUTS).mkdirs();
+        new File(this.directory + FileSystem.RAW_MATCHES).mkdirs();
+        new File(this.directory + FileSystem.RAW_PITS).mkdirs();
+        new File(this.directory + FileSystem.RAW_TEAMS).mkdirs();
+        new File(this.directory + FileSystem.FINAL_DATA).mkdirs();
+        new File(this.directory + FileSystem.PDF_TEAMS).mkdirs();
+        new File(this.directory + FileSystem.PDF_PIT_NOTES).mkdirs();
+        new File(this.directory + FileSystem.PDF_MATCH_NOTES).mkdirs();
     }
     
-    public void genTeams() throws IOException{
+    public void genTeams() throws IOException {
         //TODO team file
     }
     
     @Override
-    public String toString(){
+    public String toString() {
         return this.eventName;
     }
 }

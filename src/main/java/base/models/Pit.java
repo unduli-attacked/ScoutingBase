@@ -5,12 +5,11 @@ import base.lib.DataClasses;
 import base.lib.Enums.*;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Pit implements Saveable{
+public class Pit implements Saveable {
     //MAJOR IDENTIFIERS
     public int teamNum;
     public String teamName;
@@ -57,22 +56,22 @@ public class Pit implements Saveable{
     //SECOND
     public HashMap<LocalDateTime, SecondPit> secondPits = new HashMap<LocalDateTime, SecondPit>();
     
-    public Pit(int teamNum_, String teamName_, String scoutEmail_, String timeScouted_, String interviewee_){
+    public Pit(int teamNum_, String teamName_, String scoutEmail_, String timeScouted_, String interviewee_) {
         new Pit(teamNum_, teamName_, scoutEmail_, timeScouted_, interviewee_, Main.currentSession);
     }
     
-    public Pit(int teamNum_, String teamName_, String scoutEmail_, String timeScouted_, String interviewee_, Session session_){
+    public Pit(int teamNum_, String teamName_, String scoutEmail_, String timeScouted_, String interviewee_, Session session_) {
         this.teamNum = teamNum_;
         this.teamName = teamName_;
         this.scoutID = scoutEmail_.split("@")[0]; //Get the first part of the email
         String formatPattern = "M/dd/yyyy H:mm:ss";
-        if(timeScouted_.charAt(1)!='/'){
+        if (timeScouted_.charAt(1) != '/') {
             formatPattern = "MM/dd/yyyy H:mm:ss";
-            if(timeScouted_.charAt(12)!=':'){
-                formatPattern="MM/dd/yyyy HH:mm:ss";
+            if (timeScouted_.charAt(12) != ':') {
+                formatPattern = "MM/dd/yyyy HH:mm:ss";
             }
-        }else if(timeScouted_.charAt(11)!=':'){
-            formatPattern="M/dd/yyyy HH:mm:ss";
+        } else if (timeScouted_.charAt(11) != ':') {
+            formatPattern = "M/dd/yyyy HH:mm:ss";
         }
         this.timeScouted = LocalDateTime.parse(timeScouted_, DateTimeFormatter.ofPattern(formatPattern)); //TODO test me s3nd help
         this.interviewee = interviewee_;
@@ -80,8 +79,8 @@ public class Pit implements Saveable{
     }
     
     @Override
-    public boolean equals(Object o){
-        if(o.getClass() != Pit.class){
+    public boolean equals(Object o) {
+        if (o.getClass() != Pit.class) {
             return false;
         }
         return ((Pit) o).teamNum == this.teamNum
@@ -97,7 +96,7 @@ public class Pit implements Saveable{
      */
     @Override
     public String getFileName() {
-        return "PRIMARY_"+this.teamNum;
+        return "PRIMARY_" + this.teamNum;
     }
     
     /**

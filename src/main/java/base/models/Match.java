@@ -1,15 +1,13 @@
 package base.models;
 
 import base.Main;
-import base.lib.DataClasses.*;
-import base.lib.Enums.*;
-import base.models.DataScout;
-import base.models.NoteScout;
+import base.lib.DataClasses.DataScoutMatch;
+import base.lib.Enums.Station;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Match implements Comparable, Saveable{
+public class Match implements Comparable, Saveable {
     
     //MAJOR IDENTIFIERS
     public final int matchNum;
@@ -18,8 +16,8 @@ public class Match implements Comparable, Saveable{
     private boolean isColl = false;
     
     //RAW DATA
-     public ArrayList<DataScout> matchScouts = new ArrayList<>(); //if something breaks, it's bc this was strings
-     public ArrayList<NoteScout> noteScouts = new ArrayList<>();
+    public ArrayList<DataScout> matchScouts = new ArrayList<>(); //if something breaks, it's bc this was strings
+    public ArrayList<NoteScout> noteScouts = new ArrayList<>();
     public HashMap<String, Object> matchBreakdown = new HashMap<>();
     
     //FINAL DATA
@@ -28,37 +26,37 @@ public class Match implements Comparable, Saveable{
     public String bigNotes;
     
     
-    public Match (int matchNum_, int teamNum_, Station alliancePosition_, Session currentSession_){
+    public Match(int matchNum_, int teamNum_, Station alliancePosition_, Session currentSession_) {
         this.matchNum = matchNum_;
         this.teamNum = teamNum_;
         this.allPos = alliancePosition_;
         currentSession_.matches.put(this.getFileName(), this);
     }
     
-    public Match (int matchNum_, int teamNum_, Station alliancePosition_){
+    public Match(int matchNum_, int teamNum_, Station alliancePosition_) {
         this.matchNum = matchNum_;
         this.teamNum = teamNum_;
         this.allPos = alliancePosition_;
-        Main. currentSession.matches.put(this.getFileName(), this);
+        Main.currentSession.matches.put(this.getFileName(), this);
     }
     
-    public void addDataScout(DataScout scout_){
+    public void addDataScout(DataScout scout_) {
         this.matchScouts.add(scout_);
     }
-
+    
     public void addNoteScout(NoteScout scout_) {
         this.noteScouts.add(scout_);
     }
     
-    public void addTBAData(HashMap<String, Object> matchBreakdown_){
+    public void addTBAData(HashMap<String, Object> matchBreakdown_) {
         this.matchBreakdown = matchBreakdown_;
     }
     
-    public boolean dataRediness(){
-        return ((!isColl || (matchBreakdown.isEmpty()&&Main.tbaIsSync))&&(!matchBreakdown.isEmpty() || !Main.tbaIsSync) && (matchScouts.size() >= Main.currentSession.numDataScouts) && (noteScouts.size() >= Main.currentSession.numNoteScouts));
+    public boolean dataRediness() {
+        return ((!isColl || (matchBreakdown.isEmpty() && Main.tbaIsSync)) && (!matchBreakdown.isEmpty() || !Main.tbaIsSync) && (matchScouts.size() >= Main.currentSession.numDataScouts) && (noteScouts.size() >= Main.currentSession.numNoteScouts));
     }
     
-    public void passFinalData(DataScoutMatch finalData_, String bigNotes_){
+    public void passFinalData(DataScoutMatch finalData_, String bigNotes_) {
         this.matchData = finalData_;
         this.bigNotes = bigNotes_;
         this.isColl = true;
@@ -66,15 +64,15 @@ public class Match implements Comparable, Saveable{
     
     @Override
     public int compareTo(Object o) {
-        int compareRank = (int)Math.floor(((Match)o).matchNum);
-        int rank = (int)Math.floor(this.matchNum);
+        int compareRank = (int) Math.floor(((Match) o).matchNum);
+        int rank = (int) Math.floor(this.matchNum);
         return rank - compareRank; //ascending
         
     }
     
     @Override
-    public boolean equals(Object o){
-        return ((Match) o).teamNum==this.teamNum
+    public boolean equals(Object o) {
+        return ((Match) o).teamNum == this.teamNum
                 && ((Match) o).matchNum == this.matchNum
                 && ((Match) o).allPos.equals(this.allPos);
     }
@@ -86,7 +84,7 @@ public class Match implements Comparable, Saveable{
      */
     @Override
     public String getFileName() {
-        return "M"+this.matchNum+"_"+this.allPos.toString();
+        return "M" + this.matchNum + "_" + this.allPos.toString();
     }
     
     /**

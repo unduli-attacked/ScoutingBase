@@ -30,8 +30,8 @@ public class DataCollectionThread extends Thread {
     public int lastSavedRow = 1;
     
     /**
-     * Repeatedly checks for new data from the current {@link base.models.Session}'s spreadsheet.
-     * If data is found, converts it into a {@link DataScoutMatch} using {@code saveMatch} and saves it
+     * Repeatedly checks for new data from the current {@link base.models.Session}'s spreadsheet. If data is found,
+     * converts it into a {@link DataScoutMatch} using {@code saveMatch} and saves it
      */
     @Override
     public void run() {
@@ -43,7 +43,7 @@ public class DataCollectionThread extends Thread {
             
             }
             if (temp != null) {
-                if (Functions.findIndivMatch(Integer.parseInt((String)temp.get(MATCH_NUM.val)), Integer.parseInt((String)temp.get(TEAM_NUM.val)), Main.currentSession) == null) {
+                if (Functions.findIndivMatch(Integer.parseInt((String) temp.get(MATCH_NUM.val)), Integer.parseInt((String) temp.get(TEAM_NUM.val)), Main.currentSession) == null) {
                     DataScoutMatch tempMatch = saveMatch(temp);
                     //TODO add to associated scout and Session
                 }
@@ -56,38 +56,39 @@ public class DataCollectionThread extends Thread {
     
     /**
      * Takes a sheet output list, converts it to strings, and matches it to values in a {@link DataScoutMatch}
+     *
      * @param temp_ object list from {@link SheetsFunctions}
      * @return the object list in {@link DataScoutMatch} form
      */
-    public DataScoutMatch saveMatch(List<Object> temp_){
+    public DataScoutMatch saveMatch(List<Object> temp_) {
         ArrayList<String> temp = new ArrayList<>();
-        for(Object o : temp_){
+        for (Object o : temp_) {
             temp.add((String) o);
         }
         DataScoutMatch tempMatch = new DataScoutMatch();
         int len = Integer.parseInt(temp.get(IMG_DIM.val).split(",")[0].substring(1)); //todo tst
-        int hei = Integer.parseInt(temp.get(IMG_DIM.val).split(",")[1].substring(0, temp.get(IMG_DIM.val).split(",")[1].length()-1));
+        int hei = Integer.parseInt(temp.get(IMG_DIM.val).split(",")[1].substring(0, temp.get(IMG_DIM.val).split(",")[1].length() - 1));
         int startTimeMS = Integer.parseInt(temp.get(MATCH_START.val));
         String[] shots = temp.get(SHOTS.val).split(";");
         ArrayList<Shot> shoots = new ArrayList<>();
-        for(String str : shots){
+        for (String str : shots) {
             //FIXME currently relative to screen size
             Shot finShot = new Shot();
-            String shot = str.substring(1, str.length()-1);
+            String shot = str.substring(1, str.length() - 1);
             String[] elements = shot.split(";");
             
             //LOCATION
-            int y,x;
-            try{
+            int y, x;
+            try {
                 x = Integer.parseInt(elements[0].split(",")[0].substring(1));
-                y = Integer.parseInt(elements[0].split(",")[1].substring(1, elements[0].split(",")[1].length()-1));
-            }catch(NumberFormatException e){
+                y = Integer.parseInt(elements[0].split(",")[1].substring(1, elements[0].split(",")[1].length() - 1));
+            } catch (NumberFormatException e) {
                 continue;
             }
-            finShot.position = new Point(x,y);
+            finShot.position = new Point(x, y);
             
             //TYPE
-            switch (elements[1]){
+            switch (elements[1]) {
                 case "MISS":
                     finShot.scored = Enums.Goal.MISS;
                     break;
@@ -106,16 +107,16 @@ public class DataCollectionThread extends Thread {
             }
             
             //TIME
-            finShot.timeStamp = Functions.getLocalTime((float)Integer.parseInt(elements[2]) - startTimeMS);
+            finShot.timeStamp = Functions.getLocalTime((float) Integer.parseInt(elements[2]) - startTimeMS);
             
             shoots.add(finShot);
         }
         tempMatch.shots = shoots;
-        tempMatch.climbDuration = Functions.getLocalTime((float)Integer.parseInt(temp.get(CLIMB_END.val)) - (float)Integer.parseInt(temp.get(CLIMB_START.val)));
+        tempMatch.climbDuration = Functions.getLocalTime((float) Integer.parseInt(temp.get(CLIMB_END.val)) - (float) Integer.parseInt(temp.get(CLIMB_START.val)));
         tempMatch.scoutName = temp.get(ID.val);
         tempMatch.teamNum = Integer.parseInt(temp.get(TEAM_NUM.val));
         tempMatch.matchNum = Integer.parseInt(temp.get(MATCH_NUM.val));
-        switch (temp.get(ALL_POS.val)){
+        switch (temp.get(ALL_POS.val)) {
             case "Red1":
                 tempMatch.allPos = Enums.Station.RED_1;
                 break;

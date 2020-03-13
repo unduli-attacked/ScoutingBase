@@ -7,11 +7,21 @@ import com.cpjd.models.events.Event;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TBACollectionThread extends Thread{
+/**
+ * Retrieves match breakdowns from The Blue Alliance and links them to {@link Match} instances
+ *
+ * @author Jocelyn McHugo
+ * @version 2020.1
+ * @since 2020-03-13
+ */
+public class TBACollectionThread extends Thread {
     
-    
+    /**
+     * Continuously checks each {@link Match} in the current Session for associated match breakdowns on The Blue
+     * Alliance. If a breakdown is found, it is added to the Match
+     */
     @Override
-    public void run(){
+    public void run() {
         while (!Thread.currentThread().isInterrupted()) {
             for (Match match_ : Main.currentSession.matches.values()) {
                 HashMap<String, Object> breakdown;

@@ -4,7 +4,7 @@ import base.Main;
 
 import java.util.ArrayList;
 
-public class PitScout implements Saveable{
+public class PitScout implements Saveable {
     String name;
     String scoutID;
     ArrayList<Pit> pits;
@@ -24,17 +24,18 @@ public class PitScout implements Saveable{
     
     /**
      * add new teams to the existing list assigned
+     *
      * @param teams_ a list of team numbers to add
      */
-    public void addTeams(ArrayList<Integer> teams_){
-        for(int team_ : teams_){
-            if(!this.teamsAssigned.contains(team_)){
+    public void addTeams(ArrayList<Integer> teams_) {
+        for (int team_ : teams_) {
+            if (!this.teamsAssigned.contains(team_)) {
                 this.teamsAssigned.add(team_);
             }
         }
     }
     
-    public void addPit(Pit pit_){
+    public void addPit(Pit pit_) {
         this.teamsScouted.add(pit_.teamNum);
         this.pits.add(pit_);
     }
@@ -47,7 +48,7 @@ public class PitScout implements Saveable{
      */
     @Override
     public String getFileName() {
-        return "PIT_"+this.scoutID;
+        return "PIT_" + this.scoutID;
     }
     
     /**

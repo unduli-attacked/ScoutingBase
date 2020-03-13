@@ -1,56 +1,60 @@
 package base.lib;
+
+import base.lib.Enums.Foul;
+import base.lib.Enums.Goal;
+import base.lib.Enums.Pref;
+import base.lib.Enums.Station;
+
 import java.awt.*;
- 
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import base.lib.Enums.*;
-   
 public class DataClasses {
-    public static class Shot implements Comparable{
+    public static class Shot implements Comparable {
         public Point position;
-         
+        
         public Goal scored;
         
         public LocalTime timeStamp;
-         
-        public Shot(Point position_, Goal goal_, LocalTime timeStamp_){
+        
+        public Shot(Point position_, Goal goal_, LocalTime timeStamp_) {
             this.position = position_;
-             
+            
             this.scored = goal_;
             
             this.timeStamp = timeStamp_;
-         
+            
         }
         
-        public Shot(){
+        public Shot() {
         
         }
         
         @Override
-        public boolean equals(Object other){
+        public boolean equals(Object other) {
             boolean toReturn;
-            if(other.getClass() != Shot.class){
+            if (other.getClass() != Shot.class) {
                 return false;
             }
-            Shot other_ = (Shot)other;
-    
+            Shot other_ = (Shot) other;
+            
             toReturn = this.position.getX() == other_.position.getX()
-                    || (Math.abs(this.position.getX() - other_.position.getX())<=10);
+                    || (Math.abs(this.position.getX() - other_.position.getX()) <= 10);
             toReturn = toReturn && this.position.getY() == other_.position.getY()
-                    || (Math.abs(this.position.getY() - other_.position.getY())<=10);
+                    || (Math.abs(this.position.getY() - other_.position.getY()) <= 10);
             toReturn = toReturn && (this.scored == other_.scored);
             return toReturn;
         }
         
         @Override
-        public int compareTo(Object other){
-            return ((this.timeStamp.getMinute()*60+this.timeStamp.getSecond()
-                    - (((Shot)other).timeStamp.getMinute()*60+((Shot)other).timeStamp.getSecond())));
+        public int compareTo(Object other) {
+            return ((this.timeStamp.getMinute() * 60 + this.timeStamp.getSecond()
+                    - (((Shot) other).timeStamp.getMinute() * 60 + ((Shot) other).timeStamp.getSecond())));
         }
-    }            
-    public static class DataScoutMatch{
+    }
+    
+    public static class DataScoutMatch {
         public String scoutName;
         public int matchNum;
         public Station allPos;
@@ -58,7 +62,7 @@ public class DataClasses {
         public boolean absent;
         public double startingPosition;
         public boolean moved;
-//        public LocalTime capacityTimeS1;
+        //        public LocalTime capacityTimeS1;
 //        public LocalTime capacityTimeS2;
 //        public LocalTime capacityTimeS3;
         public boolean operationalRP;
@@ -69,7 +73,7 @@ public class DataClasses {
         public HashMap<Foul, Integer> fouls;
         public boolean yellowCard;
         public boolean redCard;
-//        public LocalTime activateTimeS2;
+        //        public LocalTime activateTimeS2;
 //        public LocalTime activateTimeS3;
         public LocalTime climbDuration;
         public boolean climb;
@@ -86,9 +90,10 @@ public class DataClasses {
         public double humanPlayerRank;
         public String dataNotes;
         
-        public DataScoutMatch(){}
+        public DataScoutMatch() {
+        }
         
-        public void copy(DataScoutMatch other){
+        public void copy(DataScoutMatch other) {
             this.scoutName = other.scoutName;
             this.matchNum = other.matchNum;
             this.allPos = other.allPos;
@@ -124,15 +129,16 @@ public class DataClasses {
         }
     }
     
-    public static class NoteScoutMatch{
+    public static class NoteScoutMatch {
         public String scoutName;
         public int matchNum;
         public boolean isBlue;
         public String bigNotes;
         
-        public NoteScoutMatch(){}
+        public NoteScoutMatch() {
+        }
         
-        public void copy(NoteScoutMatch other){
+        public void copy(NoteScoutMatch other) {
             this.scoutName = other.scoutName;
             this.matchNum = other.matchNum;
             this.isBlue = other.isBlue;
@@ -140,7 +146,7 @@ public class DataClasses {
         }
     }
     
-    public static class HumanPlayerPreferences{
+    public static class HumanPlayerPreferences {
         public Pref loading;
         public Pref collecting;
         public Pref passing;
@@ -148,6 +154,7 @@ public class DataClasses {
         public Pref tracking;
         public Pref other;
         
-        public HumanPlayerPreferences(){}
+        public HumanPlayerPreferences() {
+        }
     }
 }

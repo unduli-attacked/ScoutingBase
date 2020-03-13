@@ -1,14 +1,11 @@
 package base.models;
 
-import base.Main;
-
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class SecondPit implements Saveable{
+public class SecondPit implements Saveable {
     //MAJOR IDENTIFIERS
     public int teamNum;
     public String teamName;
@@ -24,7 +21,7 @@ public class SecondPit implements Saveable{
     public HashMap<String, String> specificQuestions; // Question, Answer (includes more)
     
     
-    public SecondPit(int teamNum_, String teamName_, String scoutEmail_, String timeScouted_, String interviewee_){
+    public SecondPit(int teamNum_, String teamName_, String scoutEmail_, String timeScouted_, String interviewee_) {
         this.teamNum = teamNum_;
         this.teamName = teamName_;
         this.scoutID = scoutEmail_.split("@")[0]; //Get the first part of the email
@@ -33,8 +30,8 @@ public class SecondPit implements Saveable{
     }
     
     @Override
-    public boolean equals(Object o){
-        if(o.getClass() != SecondPit.class){
+    public boolean equals(Object o) {
+        if (o.getClass() != SecondPit.class) {
             return false;
         }
         
@@ -51,8 +48,8 @@ public class SecondPit implements Saveable{
      */
     @Override
     public String getFileName() {
-        return "SECOND_"+this.teamNum+"_"+this.timeScouted.getMonth()+"-"+this.timeScouted.getDayOfMonth()+"-"+this.timeScouted.getYear()
-                +"T"+this.timeScouted.getHour()+"-"+this.timeScouted.getMinute()+"-"+this.timeScouted.getSecond();
+        return "SECOND_" + this.teamNum + "_" + this.timeScouted.getMonth() + "-" + this.timeScouted.getDayOfMonth() + "-" + this.timeScouted.getYear()
+                + "T" + this.timeScouted.getHour() + "-" + this.timeScouted.getMinute() + "-" + this.timeScouted.getSecond();
     }
     
     /**

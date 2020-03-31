@@ -18,7 +18,7 @@ public class TBACollectionThread extends Thread {
     
     /**
      * Continuously checks each {@link Match} in the current Session for associated match breakdowns on The Blue
-     * Alliance. If a breakdown is found, it is added to the Match
+     * Alliance. If a breakdown is found, it is added to the match
      */
     @Override
     public void run() {

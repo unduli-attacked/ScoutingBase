@@ -1,32 +1,42 @@
 package base.threads;
 
 import base.Main;
-import base.models.Pit;
-import base.models.SecondPit;
 import base.lib.ColumnMappings;
 import base.lib.Enums;
 import base.lib.Enums.*;
 import base.lib.Functions;
 import base.lib.SheetsFunctions;
+import base.models.Pit;
+import base.models.SecondPit;
 import base.models.Session;
 
-import static base.lib.ColumnMappings.MainPit.*;
-
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import static base.lib.ColumnMappings.MainPit.*;
+
+/**
+ * Collects data from the primary and secondary Pit Scouting form responses sheet and adds it to a {@link Pit}
+ *
+ * @author Jocelyn McHugo
+ * @version 2020.1
+ * @since 2020-03-13
+ */
 public class PitCollectionThread extends Thread {
     List<Object> headers;
     HashMap<String, Integer> valuesToCols; // The alphabet starts at 0
     int lastSavedRow;
     int secondLastSavedRow;
     
+    /**
+     * Collects headers
+     */
     @Override
+    @Deprecated
     public void start() {
         try {
             this.headers = SheetsFunctions.getHeaders(Main.currentSession.spreadsheetID, Main.currentSession.mainPitTab, Main.currentSession.finalMainPitCol);
@@ -43,42 +53,65 @@ public class PitCollectionThread extends Thread {
         secondLastSavedRow = 1;
     }
     
+    /**
+     * Collects Main and Second pits from their respective spreadsheets and saves them in a base-readable format
+     */
     @Override
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
-            List<Object> mainTemp = null;
-            try {
-                mainTemp = SheetsFunctions.getData(Main.currentSession.spreadsheetID, Main.currentSession.mainPitTab, lastSavedRow + 1, Main.currentSession.finalMainPitCol);
-            } catch (Exception e) {
-            
-            }
-            if (mainTemp != null) {
-                if (Functions.findPit((int) mainTemp.get(TEAM_NUM.val)) == null) {
-                    Pit pt = addPit(mainTemp);
-                    Main.currentSession.pits.put(pt.teamNum, pt);
-                    Main.currentSession.pitScouts.get(pt.scoutID).addPit(pt);
-                }
-                lastSavedRow++;
-            }
-            List<Object> secondTemp = null;
-            try {
-                secondTemp = SheetsFunctions.getData(Main.currentSession.spreadsheetID, Main.currentSession.secondPitTab, secondLastSavedRow, Main.currentSession.finalSecondPitCol);
-            } catch (Exception e) {
-            
-            }
-            if (secondTemp != null) {
-                Pit foundPit = Functions.findPit((int) secondTemp.get(ColumnMappings.ReScoutPit.TEAM_NUM.val));
-                if (foundPit != null) {
-                    foundPit.secondPits.put(LocalDateTime.parse((String) secondTemp.get(ColumnMappings.ReScoutPit.TIMESTAMP.val), DateTimeFormatter.ofPattern("MM/dd/uuuu kk:mm:ss")),
-                            addSecondPit(secondTemp));
-                }
-            }
-            secondLastSavedRow++;
+            collectMain();
+            collectSecond();
         }
         yield();
     }
     
+    /**
+     * Checks each unsaved row in the current Session's spreadsheet of Second Pit data for new data and, if found, adds
+     * it to its associated {@link Pit}
+     */
+    private void collectSecond() {
+        List<Object> secondTemp = null;
+        try {
+            secondTemp = SheetsFunctions.getData(Main.currentSession.spreadsheetID, Main.currentSession.secondPitTab, secondLastSavedRow, Main.currentSession.finalSecondPitCol);
+        } catch (Exception e) {
+        
+        }
+        if (secondTemp != null) {
+            Pit foundPit = Functions.findPit((int) secondTemp.get(ColumnMappings.ReScoutPit.TEAM_NUM.val));
+            if (foundPit != null) {
+                foundPit.secondPits.put(LocalDateTime.parse((String) secondTemp.get(ColumnMappings.ReScoutPit.TIMESTAMP.val), DateTimeFormatter.ofPattern("MM/dd/uuuu kk:mm:ss")),
+                        addSecondPit(secondTemp));
+            }
+        }
+        secondLastSavedRow++;
+    }
     
+    /**
+     * Checks each unsaved row in the current Session's spreadsheet of Main Pit data for new data and, if found, saves
+     * it as a {@link Pit}
+     */
+    private void collectMain() {
+        List<Object> mainTemp = null;
+        try {
+            mainTemp = SheetsFunctions.getData(Main.currentSession.spreadsheetID, Main.currentSession.mainPitTab, lastSavedRow + 1, Main.currentSession.finalMainPitCol);
+        } catch (Exception e) {
+        
+        }
+        if (mainTemp != null) {
+            if (Functions.findPit((int) mainTemp.get(TEAM_NUM.val)) == null) {
+                Pit pt = addPit(mainTemp);
+                Main.currentSession.pits.put(pt.teamNum, pt);
+                Main.currentSession.pitScouts.get(pt.scoutID).addPit(pt);
+            }
+            lastSavedRow++;
+        }
+    }
+    
+    /**
+     * Maps a list of spreadsheet data to a {@link SecondPit} data class
+     * @param secondTemp the Object list of spreadsheet data
+     * @return the resulting {@link SecondPit}
+     */
     public SecondPit addSecondPit(List<Object> secondTemp) {
         SecondPit tempSecondPit = new SecondPit((int) secondTemp.get(ColumnMappings.ReScoutPit.TEAM_NUM.val),
                 (String) secondTemp.get(ColumnMappings.ReScoutPit.TEAM_NAME.val),
@@ -99,23 +132,35 @@ public class PitCollectionThread extends Thread {
         
     }
     
+    /**
+     * Defaults to the current session.
+     * {@see addPit}
+     * @param temp
+     * @return
+     */
     public static Pit addPit(List<Object> temp) {
         return addPit(temp, Main.currentSession);
     }
     
+    /**
+     *
+     * @param temp
+     * @param session_
+     * @return
+     */
     public static Pit addPit(List<Object> temp, Session session_) {
-        Pit tempPit = new Pit(Integer.valueOf((String) temp.get(TEAM_NUM.val)), (String) temp.get(TEAM_NAME.val),
+        Pit tempPit = new Pit(Integer.parseInt((String) temp.get(TEAM_NUM.val)), (String) temp.get(TEAM_NAME.val),
                 (String) temp.get(SCOUT_ID.val), (String) temp.get(TIMESTAMP.val), (String) temp.get(INTERVIEWEE.val), session_);
-        tempPit.practialWeight = Double.valueOf((String) temp.get(PRAC_WEIGHT.val));
-        tempPit.officialWeight = Double.valueOf((String) temp.get(OFF_WEIGHT.val));
-        tempPit.dtLength = Double.valueOf((String) temp.get(DT_LEN.val));
-        tempPit.dtWidth = Double.valueOf((String) temp.get(DT_WIDTH.val));
-        tempPit.height = Double.valueOf((String) temp.get(HEIGHT.val));
-        tempPit.sideExtend = Double.valueOf((String) temp.get(EX_SIDE.val));
-        tempPit.teleUpExtend = Double.valueOf((String) temp.get(EX_TELE.val));
-        tempPit.climbUpExtend = Double.valueOf((String) temp.get(EX_CLIMB.val));
+        tempPit.practialWeight = Double.parseDouble((String) temp.get(PRAC_WEIGHT.val));
+        tempPit.officialWeight = Double.parseDouble((String) temp.get(OFF_WEIGHT.val));
+        tempPit.dtLength = Double.parseDouble((String) temp.get(DT_LEN.val));
+        tempPit.dtWidth = Double.parseDouble((String) temp.get(DT_WIDTH.val));
+        tempPit.height = Double.parseDouble((String) temp.get(HEIGHT.val));
+        tempPit.sideExtend = Double.parseDouble((String) temp.get(EX_SIDE.val));
+        tempPit.teleUpExtend = Double.parseDouble((String) temp.get(EX_TELE.val));
+        tempPit.climbUpExtend = Double.parseDouble((String) temp.get(EX_CLIMB.val));
         tempPit.bumperCoverage = (String) temp.get(COVERAGE.val);
-        tempPit.maxCells = Integer.valueOf((String) temp.get(CAPACITY.val));
+        tempPit.maxCells = Integer.parseInt((String) temp.get(CAPACITY.val));
         switch ((String) temp.get(INTAKE.val)) {
             case "Floor":
                 tempPit.intake = Enums.Pickup.FLOOR;

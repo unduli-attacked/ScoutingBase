@@ -1,27 +1,15 @@
 package base;
 
-import base.controllers.ControlInterface;
 import base.controllers.Entry;
-import base.lib.FileSystem;
 import base.lib.SavingFunctions;
-import base.lib.SheetsFunctions;
 import base.models.Session;
-import base.threads.MatchCollationThread;
-import base.threads.PitCollectionThread;
-import base.threads.TBACollectionThread;
-import base.threads.TeamCollationThread;
+import base.threads.*;
 import com.cpjd.main.TBA;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Main execution class for the Scouting Base
@@ -46,25 +34,32 @@ public class Main {
      */
     public static ArrayList<Session> recoveredSessions = new ArrayList<>();
     
-    /**
-     * Knockoff-singleton MatchCollectionThread for use throughout the project.
-     */
-    public static MatchCollationThread matchCollationThread;
+    //FIXME should these be in the session?
     
     /**
      * Knockoff-singleton MatchCollectionThread for use throughout the project.
      */
-    public static PitCollectionThread pitCollectionThread;
+    public static MatchCollationThread matchCollationThread = new MatchCollationThread();
+    
+    /**
+     * Knockoff-singleton MatchCollectionThread for use throughout the project.
+     */
+    public static PitCollectionThread pitCollectionThread = new PitCollectionThread();
     
     /**
      * Knockoff-singleton PitCollectionThread for use throughout the project.
      */
-    public static TeamCollationThread teamCollationThread;
+    public static TeamCollationThread teamCollationThread = new TeamCollationThread();
     
     /**
      * Knockoff-singleton TeamCollationThread for use throughout the project.
      */
-    public static TBACollectionThread tbaCollectionThread;
+    public static TBACollectionThread tbaCollectionThread = new TBACollectionThread();
+    
+    /**
+     * Knockoff-singleton DataCollectionThread for use throughout the project.
+     */
+    public static DataCollectionThread dataCollectionThread = new DataCollectionThread();
     
     /**
      * Set to {@code true} when {@code tbaCollectionThread} is started for the first time
@@ -78,6 +73,7 @@ public class Main {
     
     /**
      * Launches the program. Sets the auth token for {@link TBA}, recovers sessions, and launches {@link Entry}
+     *
      * @param args console arguments
      * @throws IOException thrown from session recovery
      */

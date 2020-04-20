@@ -9,11 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class TeamSearch extends Application implements ControlInterface {
@@ -32,7 +29,7 @@ public class TeamSearch extends Application implements ControlInterface {
     }
     
     @FXML
-    public void handleReturnLaunch(ActionEvent event){
+    public void handleReturnLaunch(ActionEvent event) {
         try {
             FxFunctions.changePage(new SessionLaunch(), event);
         } catch (Exception e) {
@@ -41,12 +38,12 @@ public class TeamSearch extends Application implements ControlInterface {
     }
     
     @FXML
-    public void handleSearch(){
-        String teamNumber = (String)teamNum.getCharacters();
-        try{
+    public void handleSearch() {
+        String teamNumber = (String) teamNum.getCharacters();
+        try {
             Team t = Functions.findTeam(Integer.valueOf(teamNumber));
             //TODO team page stuff
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             teamNum.setText("INVALID");
         }
     }

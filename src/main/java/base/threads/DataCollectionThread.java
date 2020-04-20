@@ -1,13 +1,11 @@
 package base.threads;
 
 import base.Main;
-import base.lib.ColumnMappings;
-import base.lib.DataClasses.*;
+import base.lib.DataClasses.DataScoutMatch;
+import base.lib.DataClasses.Shot;
 import base.lib.Enums;
 import base.lib.Functions;
 import base.lib.SheetsFunctions;
-import base.models.Match;
-import base.models.Pit;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -27,30 +25,26 @@ public class DataCollectionThread extends Thread {
     /**
      * The last row that the program has checked. Defaults to 1 to account for headers.
      */
-    public int lastSavedRow = 1;
+    public int lastSavedRow = 1; //TODO find some way to make this universal and resettable
     
     /**
-     * Repeatedly checks for new data from the current {@link base.models.Session}'s spreadsheet. If data is found,
-     * converts it into a {@link DataScoutMatch} using {@code saveMatch} and saves it
+     * Checks ONCE for new data from the current {@link base.models.Session}'s spreadsheet. If data is found, converts
+     * it into a {@link DataScoutMatch} using {@code saveMatch} and saves it
      */
     @Override
     public void run() {
-        while (!Thread.currentThread().isInterrupted()) {
-            List<Object> temp = null;
-            try {
-                temp = SheetsFunctions.getData(Main.currentSession.spreadsheetID, Main.currentSession.dataTab, lastSavedRow + 1, Main.currentSession.finalDataCol);
-            } catch (Exception e) {
+        List<Object> temp = null;
+        try {
+            temp = SheetsFunctions.getData(Main.currentSession.spreadsheetID, Main.currentSession.dataTab, lastSavedRow + 1, Main.currentSession.finalDataCol);
+        } catch (Exception e) {
             
+        }
+        if (temp != null) {
+            if (Functions.findIndivMatch(Integer.parseInt((String) temp.get(MATCH_NUM.val)), Integer.parseInt((String) temp.get(TEAM_NUM.val)), Main.currentSession) == null) {
+                DataScoutMatch tempMatch = saveMatch(temp);
+                //TODO add to associated scout and Session
             }
-            if (temp != null) {
-                if (Functions.findIndivMatch(Integer.parseInt((String) temp.get(MATCH_NUM.val)), Integer.parseInt((String) temp.get(TEAM_NUM.val)), Main.currentSession) == null) {
-                    DataScoutMatch tempMatch = saveMatch(temp);
-                    //TODO add to associated scout and Session
-                }
-                lastSavedRow++;
-            }
-            
-            yield();
+            lastSavedRow++;
         }
     }
     

@@ -58,11 +58,8 @@ public class PitCollectionThread extends Thread {
      */
     @Override
     public void run() {
-        while (!Thread.currentThread().isInterrupted()) {
-            collectMain();
-            collectSecond();
-        }
-        yield();
+        collectMain();
+        collectSecond();
     }
     
     /**
@@ -109,6 +106,7 @@ public class PitCollectionThread extends Thread {
     
     /**
      * Maps a list of spreadsheet data to a {@link SecondPit} data class
+     *
      * @param secondTemp the Object list of spreadsheet data
      * @return the resulting {@link SecondPit}
      */
@@ -133,8 +131,8 @@ public class PitCollectionThread extends Thread {
     }
     
     /**
-     * Defaults to the current session.
-     * {@see addPit}
+     * Defaults to the current session. {@see addPit}
+     *
      * @param temp
      * @return
      */
@@ -143,7 +141,6 @@ public class PitCollectionThread extends Thread {
     }
     
     /**
-     *
      * @param temp
      * @param session_
      * @return

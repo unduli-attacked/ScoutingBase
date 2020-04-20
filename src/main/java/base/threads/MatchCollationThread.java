@@ -1,28 +1,30 @@
 package base.threads;
 
 import base.Main;
-import base.models.Match;
-import base.lib.DataClasses.*;
-import base.lib.Enums.*;
+import base.lib.DataClasses.DataScoutMatch;
+import base.lib.DataClasses.Shot;
+import base.lib.Enums.Foul;
+import base.lib.Enums.Goal;
+import base.lib.Enums.Station;
 import base.lib.Functions;
 import base.models.DataScout;
+import base.models.Match;
 import base.models.NoteScout;
 
 import java.awt.*;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class MatchCollationThread extends Thread {
     
     @Override
     public void run() {
-        while (!Thread.currentThread().isInterrupted()) {
-            for (Match match_ : Main.currentSession.matches.values()) {
-                if (match_.dataRediness()) {
-                    collate(match_, Main.currentSession.standScouts, Main.currentSession.noteScouts);
-                }
+        for (Match match_ : Main.currentSession.matches.values()) {
+            if (match_.dataRediness()) {
+                collate(match_, Main.currentSession.standScouts, Main.currentSession.noteScouts);
             }
-            yield();
         }
     }
     
@@ -116,20 +118,20 @@ public class MatchCollationThread extends Thread {
     public static HashMap<Foul, Integer> checkFouls(DataScout[] scouts, String key, int matchNum, HashMap<String, Object> tbaMap, Station allPos) {
         HashMap<Foul, ArrayList<Object>> scoutData = new HashMap<>();
         Foul[] fouls = {Foul.GEN_TECH, Foul.TRENCH_TECH, Foul.RDV_TECH, Foul.ZONE_TECH, Foul.PIN_FOUL, Foul.CLIMB_PEN, Foul.GEN_FOUL, Foul.EXTEND_FOUL, Foul.HUMAN_FOUL};
-        for(Foul foul : fouls){
+        for (Foul foul : fouls) {
             scoutData.put(foul, new ArrayList<>());
         }
         for (DataScout scout : scouts) {
-            for(Foul foul : fouls){
+            for (Foul foul : fouls) {
                 scoutData.get(foul).add(scout.matchData.get(scout.matchesScouted.indexOf(matchNum)).fouls.get(foul));
                 
             }
         }
         
         HashMap<Foul, Integer> correctData = new HashMap<>();
-        for(Foul foul : fouls){
-            correctData.put(foul, (Integer)findScoutMean(scouts, scoutData.get(foul), foul.toString(), matchNum, tbaMap, allPos));
-            for(int i=0; i<scouts.length; i++){
+        for (Foul foul : fouls) {
+            correctData.put(foul, (Integer) findScoutMean(scouts, scoutData.get(foul), foul.toString(), matchNum, tbaMap, allPos));
+            for (int i = 0; i < scouts.length; i++) {
                 scouts[i].calculateRank(foul.toString(), correctData.get(foul), scoutData.get(foul).get(i));
             }
         }
@@ -143,7 +145,7 @@ public class MatchCollationThread extends Thread {
         
         for (int i = 0; i < scoutData.size(); i++) {
             boolean found = false;
-            for (Object k : data.keySet()) {
+            for (Object k : data.keySet()) { //fixme try catch
                 if (k.equals(scoutData.get(i))) {
                     data.put(k, data.get(k) + 1);
                     found = true;
@@ -421,15 +423,15 @@ public class MatchCollationThread extends Thread {
             case "operationalRP":
                 return tbaMap.get("shieldEnergizedRankingPoint");
             case "General Tech Foul":
-                if((int)tbaMap.get("techFoulCount")<(int)assumedCorrect){
+                if ((int) tbaMap.get("techFoulCount") < (int) assumedCorrect) {
                     return tbaMap.get("techFoulCount");
-                }else{
+                } else {
                     return assumedCorrect;
                 }
             case "General Foul":
-                if((int)tbaMap.get("foulCount")<(int)assumedCorrect){
+                if ((int) tbaMap.get("foulCount") < (int) assumedCorrect) {
                     return tbaMap.get("foulCount");
-                }else{
+                } else {
                     return assumedCorrect;
                 }
             

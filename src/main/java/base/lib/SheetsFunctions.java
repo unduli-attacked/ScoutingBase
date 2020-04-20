@@ -59,9 +59,7 @@ public class SheetsFunctions {
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
     
-    /**
-     * Prints the names and majors of students in a sample spreadsheet: https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
-     */
+   
     public static List<Object> getData(String spreadsheetID_, String tab_, int row_, String finalCol_) throws IOException, GeneralSecurityException {
         // Build a new authorized API client service.
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();

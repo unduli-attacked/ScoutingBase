@@ -7,36 +7,44 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
 
-import java.awt.*;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class NewSession extends Application implements ControlInterface{
+public class NewSession extends Application implements ControlInterface {
     
     @FXML
     TextField year;
-    @FXML TextField name;
-    @FXML TextField dir;
-    @FXML TextField eventKey;
-    @FXML TextField numData;
-    @FXML TextField numNote;
-    @FXML TextField sheetID;
-    @FXML TextField mainPitTab;
-    @FXML TextField secondPitTab;
-    @FXML TextField finalMainCol;
-    @FXML TextField finalSecondCol;
-    @FXML TextField dataTab;
-    @FXML TextField finalDataCol;
-    @FXML TextField noteTab;
-    @FXML TextField finalNoteCol;
+    @FXML
+    TextField name;
+    @FXML
+    TextField dir;
+    @FXML
+    TextField eventKey;
+    @FXML
+    TextField numData;
+    @FXML
+    TextField numNote;
+    @FXML
+    TextField sheetID;
+    @FXML
+    TextField mainPitTab;
+    @FXML
+    TextField secondPitTab;
+    @FXML
+    TextField finalMainCol;
+    @FXML
+    TextField finalSecondCol;
+    @FXML
+    TextField dataTab;
+    @FXML
+    TextField finalDataCol;
+    @FXML
+    TextField noteTab;
+    @FXML
+    TextField finalNoteCol;
     
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -56,7 +64,7 @@ public class NewSession extends Application implements ControlInterface{
     }
     
     @FXML
-    public void handleReturnEntry(ActionEvent event){
+    public void handleReturnEntry(ActionEvent event) {
         try {
             FxFunctions.changePage(new Entry(), event);
         } catch (Exception e) {
@@ -71,31 +79,31 @@ public class NewSession extends Application implements ControlInterface{
         String dir_;
         try {
             year_ = Integer.valueOf(year.getCharacters().toString());
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             year.setText("INVALID");
             return;
         }
         
-        try{
+        try {
             numData_ = Integer.valueOf(numData.getCharacters().toString());
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             numData.setText("INVALID");
             return;
         }
         
-        try{
+        try {
             numNote_ = Integer.valueOf((numData.getCharacters().toString()));
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             numData.setText("INVALID");
             return;
         }
         
         dir_ = dir.getCharacters().toString();
-        if(dir_.charAt(dir_.length()-1) != '/'){
-            if(dir_.charAt(dir_.length()-1) == '\\'){
-                dir_ = dir_.substring(0, dir_.length()-1);
+        if (dir_.charAt(dir_.length() - 1) != '/') {
+            if (dir_.charAt(dir_.length() - 1) == '\\') {
+                dir_ = dir_.substring(0, dir_.length() - 1);
             }
-            dir_=dir_+"/";
+            dir_ = dir_ + "/";
         }
         Session tempSesh = new Session(year_, name.getCharacters().toString(), eventKey.getCharacters().toString(), dir_, numData_, numNote_);
         tempSesh.setSheet(sheetID.getCharacters().toString(), mainPitTab.getCharacters().toString(), secondPitTab.getCharacters().toString(),
@@ -103,7 +111,7 @@ public class NewSession extends Application implements ControlInterface{
                 finalDataCol.getCharacters().toString(), finalNoteCol.getCharacters().toString());
         Main.recoveredSessions.add(tempSesh);
         tempSesh.saveSession();
-    
+        
         try {
             FxFunctions.changePage(new Entry(), event);
         } catch (Exception e) {
